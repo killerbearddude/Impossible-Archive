@@ -13,6 +13,10 @@ enum class DiagnosticDetailSurface {
     KnowledgeHorizonFinding,
     ContradictionBudgetBucket,
     ContradictionBudgetPolicy,
+    CandidateArtifactPlan,
+    CandidateArtifactPlanEvaluation,
+    CandidateArtifactProposal,
+    CandidateArtifactProposalAudit,
     ValidationErrors,
 };
 
