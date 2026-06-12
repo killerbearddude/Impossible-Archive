@@ -1,5 +1,6 @@
 #include "contradiction_budget_api.h"
 #include "archive_views_api.h"
+#include "diagnostic_access_policy.h"
 #include "knowledge_horizon_api.h"
 
 #include <cmath>
@@ -654,7 +655,7 @@ void format_policy_common(std::ostringstream& out, const ContradictionBudgetPoli
         out << "- generation_bug_ratio: " << bucket.generation_bug_ratio << "\n";
         out << "- severity: " << to_string(bucket.severity) << "\n";
         out << "- status: " << to_string(bucket.status) << "\n";
-        if (can_view(access, AccessLevel::Curator)) {
+        if (can_view_diagnostic_detail(access, DiagnosticDetailSurface::ContradictionBudgetBucket)) {
             out << "- reason_codes:";
             if (bucket.reason_codes.empty()) {
                 out << " none";
@@ -666,7 +667,7 @@ void format_policy_common(std::ostringstream& out, const ContradictionBudgetPoli
             out << "\n";
         }
     }
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::ContradictionBudgetBucket)) {
         out << "- details: aggregate-only at this access level; bucket IDs, representative contradiction IDs, hidden causes, and notes are restricted.\n";
     }
     return out.str();
@@ -679,11 +680,11 @@ void format_policy_common(std::ostringstream& out, const ContradictionBudgetPoli
     out << "- result: " << (report.errors.empty() ? "passed" : "failed") << "\n";
     out << "- buckets: " << report.buckets.size() << "\n";
     out << "- errors: " << report.errors.size() << "\n";
-    if (can_view(access, AccessLevel::Curator)) {
+    if (can_view_diagnostic_detail(access, DiagnosticDetailSurface::ContradictionBudgetPolicy)) {
         format_policy_common(out, default_contradiction_budget_policy());
     }
     if (!report.errors.empty()) {
-        if (can_view(access, AccessLevel::Curator)) {
+        if (can_view_diagnostic_detail(access, DiagnosticDetailSurface::ValidationErrors)) {
             out << "Validation errors:\n";
             for (const std::string& error : report.errors) {
                 out << "- " << error << "\n";
@@ -699,7 +700,7 @@ void format_policy_common(std::ostringstream& out, const ContradictionBudgetPoli
     const ContradictionBudgetReport report = compute_contradiction_budget(state, access);
     std::ostringstream out;
     out << "ContradictionBudget buckets visible to " << to_string(access) << ":\n";
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::ContradictionBudgetBucket)) {
         out << "- aggregate-only at this access level; detailed bucket IDs and diagnostic notes are restricted.\n";
         const auto archive_it = std::find_if(report.buckets.begin(), report.buckets.end(), [](const ContradictionBudgetBucket& bucket) {
             return bucket.id == "contradiction_budget.archive";
@@ -747,8 +748,8 @@ void format_policy_common(std::ostringstream& out, const ContradictionBudgetPoli
         out << "- found: false\n";
         return out.str();
     }
-    if (!can_view(access, AccessLevel::Curator)) {
-        if (bucket_id != "contradiction_budget.archive") {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::ContradictionBudgetBucket)) {
+        if (!can_view_contradiction_budget_public_bucket_summary(access, bucket_id)) {
             out << "- found: false\n";
             return out.str();
         }
