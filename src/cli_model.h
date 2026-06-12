@@ -76,6 +76,7 @@ struct CliOptions {
     std::string candidate_artifact_plan_evaluation_id;
     std::string candidate_artifact_proposal_id;
     std::string candidate_artifact_proposal_audit_id;
+    std::string candidate_artifact_draft_id;
     std::string control_layer_audit_entry_id;
     ArchiveRuntimeSelection runtime_selection;
 };
