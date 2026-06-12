@@ -8,7 +8,7 @@ The diagnostic/detail access helper is implemented in:
 src/diagnostic_access_policy.h
 ```
 
-The initial formatter migration is complete. `KnowledgeHorizon` and `ContradictionBudget` diagnostic/detail formatters now route the migrated access decisions through the helper instead of relying only on direct inline curator checks.
+The migrated formatter surfaces now route diagnostic/detail access decisions through the helper instead of relying only on direct inline curator checks.
 
 ## Current policy shape
 
@@ -23,8 +23,6 @@ No public diagnostic ID expansion is introduced.
 
 ## Migrated surfaces
 
-The first migrated formatter surfaces are:
-
 ```text
 KnowledgeHorizon finding detail
 KnowledgeHorizon finding lists
@@ -33,6 +31,10 @@ ContradictionBudget bucket detail
 ContradictionBudget bucket lists
 ContradictionBudget policy detail
 ContradictionBudget validation errors
+CandidateArtifactPlan summary/list/detail/validation-error diagnostics
+CandidateArtifactPlanEvaluation summary/list/detail/validation-error diagnostics
+CandidateArtifactProposal summary/list/detail/validation-error diagnostics
+CandidateArtifactProposalAudit summary/list/detail/validation-error diagnostics
 ```
 
 ## Public/scholar behavior preserved
@@ -68,9 +70,22 @@ The archive-bucket public/scholar summary exception is represented by:
 can_view_contradiction_budget_public_bucket_summary(access, bucket_id)
 ```
 
-## Validation used for migration
+### Candidate artifact layers
 
-The source-changing migration was validated locally before merge with:
+Public and scholar output must continue to preserve these behaviors:
+
+```text
+- list output remains aggregate-first
+- public-safe detail summaries remain visible only when currently allowed
+- hidden source IDs remain restricted
+- diagnostic IDs remain restricted
+- validation errors remain restricted below curator/debug access
+- curator/debug diagnostic detail remains visible
+```
+
+## Validation used for migrations
+
+The source-changing migrations were validated before merge with:
 
 ```bash
 make test
@@ -79,7 +94,7 @@ make strict
 make smoke
 ```
 
-The smoke workflow included the existing public-detail blocking checks for KnowledgeHorizon and ContradictionBudget.
+The smoke workflow includes public-detail blocking checks for KnowledgeHorizon, ContradictionBudget, CandidateArtifactPlan, CandidateArtifactPlanEvaluation, CandidateArtifactProposal, and CandidateArtifactProposalAudit.
 
 ## Non-goals
 
@@ -91,15 +106,11 @@ No public exposure of diagnostic IDs.
 No v29 draft/detail implementation.
 ```
 
-## Future migration targets
+## Future migration target
 
-The next likely candidates for helper-based detail access migration are:
+The remaining likely helper-based detail access migration candidate is:
 
 ```text
-CandidateArtifactPlan detail
-CandidateArtifactPlanEvaluation detail
-CandidateArtifactProposal detail
-CandidateArtifactProposalAudit detail
 ControlLayerAudit entry detail
 ```
 
