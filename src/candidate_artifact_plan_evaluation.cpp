@@ -1,6 +1,7 @@
 #include "candidate_artifact_plan_evaluation_api.h"
 #include "candidate_artifact_plan_api.h"
 #include "contradiction_budget_api.h"
+#include "diagnostic_access_policy.h"
 #include "knowledge_horizon_api.h"
 
 #include <map>
@@ -108,7 +109,7 @@ void add_finding(CandidateArtifactPlanEvaluation& evaluation,
 [[nodiscard]] bool evaluation_visible_to(const CandidateArtifactPlanEvaluation& evaluation,
                                           const ArchiveEngineState& state,
                                           AccessLevel access) {
-    if (can_view(access, AccessLevel::Curator)) {
+    if (can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactPlanEvaluation)) {
         return true;
     }
     const CandidateArtifactPlan* plan = find_plan(state, evaluation.plan_id);
@@ -413,7 +414,7 @@ void evaluate_candidate_artifact_plans_into_state(ArchiveEngineState& state, Acc
     append_counts(out, readiness_buckets);
     out << "Risk buckets:\n";
     append_counts(out, risk_buckets);
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactPlanEvaluation)) {
         out << "- details: aggregate-only at this access level; hidden plan IDs, KnowledgeHorizon IDs, ContradictionBudget IDs, protected mystery details, hidden rationale, and curator-only findings are restricted.\n";
     }
     return out.str();
@@ -427,7 +428,7 @@ void evaluate_candidate_artifact_plans_into_state(ArchiveEngineState& state, Acc
     out << "- evaluations: " << report.evaluations.size() << "\n";
     out << "- errors: " << report.errors.size() << "\n";
     if (!report.errors.empty()) {
-        if (can_view(access, AccessLevel::Curator)) {
+        if (can_view_diagnostic_detail(access, DiagnosticDetailSurface::ValidationErrors)) {
             out << "Validation errors:\n";
             for (const std::string& error : report.errors) {
                 out << "- " << error << "\n";
@@ -443,7 +444,7 @@ void evaluate_candidate_artifact_plans_into_state(ArchiveEngineState& state, Acc
     const std::vector<CandidateArtifactPlanEvaluation> evaluations = evaluations_for_formatting(state, access);
     std::ostringstream out;
     out << "CandidateArtifactPlanEvaluations visible to " << to_string(access) << ":\n";
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactPlanEvaluation)) {
         std::size_t visible = 0;
         for (const CandidateArtifactPlanEvaluation& evaluation : evaluations) {
             if (evaluation_visible_to(evaluation, state, access)) { ++visible; }
@@ -489,7 +490,7 @@ void evaluate_candidate_artifact_plans_into_state(ArchiveEngineState& state, Acc
         return out.str();
     }
     out << "- found: true\n";
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactPlanEvaluation)) {
         out << "- decision: " << to_string(it->decision) << "\n";
         out << "- readiness_score: " << it->readiness_score << "\n";
         out << "- risk_score: " << it->risk_score << "\n";

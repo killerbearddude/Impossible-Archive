@@ -1,5 +1,6 @@
 #include "candidate_artifact_plan_api.h"
 #include "contradiction_budget_api.h"
+#include "diagnostic_access_policy.h"
 #include "knowledge_horizon_api.h"
 
 #include <map>
@@ -242,7 +243,7 @@ void add_default_validation_steps(CandidateArtifactPlan& plan) {
 }
 
 [[nodiscard]] bool plan_visible_to(const CandidateArtifactPlan& plan, AccessLevel access) {
-    if (can_view(access, AccessLevel::Curator)) {
+    if (can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactPlan)) {
         return true;
     }
     return plan.public_safe && plan.status == CandidateArtifactPlanStatus::Plausible;
@@ -517,7 +518,7 @@ void derive_candidate_artifact_plans_into_state(ArchiveEngineState& state, Acces
     append_counts(out, by_status);
     out << "Risk counts:\n";
     append_counts(out, by_risk);
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactPlan)) {
         out << "- details: aggregate-only at this access level; hidden source IDs, diagnostic IDs, rationale, warnings, and protected mystery details are restricted.\n";
     }
     return out.str();
@@ -531,7 +532,7 @@ void derive_candidate_artifact_plans_into_state(ArchiveEngineState& state, Acces
     out << "- plans: " << report.plans.size() << "\n";
     out << "- errors: " << report.errors.size() << "\n";
     if (!report.errors.empty()) {
-        if (can_view(access, AccessLevel::Curator)) {
+        if (can_view_diagnostic_detail(access, DiagnosticDetailSurface::ValidationErrors)) {
             out << "Validation errors:\n";
             for (const std::string& error : report.errors) {
                 out << "- " << error << "\n";
@@ -547,7 +548,7 @@ void derive_candidate_artifact_plans_into_state(ArchiveEngineState& state, Acces
     const std::vector<CandidateArtifactPlan> plans = plans_for_formatting(state, access);
     std::ostringstream out;
     out << "CandidateArtifactPlans visible to " << to_string(access) << ":\n";
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactPlan)) {
         std::size_t visible = 0;
         for (const CandidateArtifactPlan& plan : plans) {
             if (plan_visible_to(plan, access)) {
@@ -598,7 +599,7 @@ void derive_candidate_artifact_plans_into_state(ArchiveEngineState& state, Acces
         return out.str();
     }
     out << "- found: true\n";
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactPlan)) {
         out << "- planned_shape: " << to_string(it->planned_shape) << "\n";
         out << "- planned_artifact_type: " << to_string(it->planned_artifact_type) << "\n";
         out << "- evidence_role: public evidence planning summary\n";

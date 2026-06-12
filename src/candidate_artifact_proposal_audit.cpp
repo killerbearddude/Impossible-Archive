@@ -1,5 +1,6 @@
 #include "candidate_artifact_proposal_audit_api.h"
 #include "candidate_artifact_proposal_api.h"
+#include "diagnostic_access_policy.h"
 
 #include <map>
 #include <set>
@@ -218,7 +219,7 @@ void add_audit_finding(CandidateArtifactProposalAudit& audit,
 }
 
 [[nodiscard]] bool audit_visible_to(const ArchiveEngineState& state, const CandidateArtifactProposalAudit& audit, AccessLevel access) {
-    if (can_view(access, AccessLevel::Curator)) {
+    if (can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactProposalAudit)) {
         return true;
     }
     const CandidateArtifactProposal* proposal = find_proposal(state, audit.proposal_id);
@@ -664,7 +665,7 @@ void audit_candidate_artifact_proposals_into_state(ArchiveEngineState& state, Ac
     append_counts(out, by_decision);
     out << "Quality buckets:\n";
     append_counts(out, quality_buckets);
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactProposalAudit)) {
         out << "- details: aggregate-only at this access level; hidden proposal IDs, source IDs, KnowledgeHorizon diagnostics, ContradictionBudget diagnostics, protected mystery details, hidden rationale, curator-only findings, and privileged required revisions are restricted.\n";
     }
     return out.str();
@@ -678,7 +679,7 @@ void audit_candidate_artifact_proposals_into_state(ArchiveEngineState& state, Ac
     out << "- audits: " << report.audits.size() << "\n";
     out << "- errors: " << report.errors.size() << "\n";
     if (!report.errors.empty()) {
-        if (can_view(access, AccessLevel::Curator)) {
+        if (can_view_diagnostic_detail(access, DiagnosticDetailSurface::ValidationErrors)) {
             out << "Validation errors:\n";
             for (const std::string& error : report.errors) {
                 out << "- " << error << "\n";
@@ -694,7 +695,7 @@ void audit_candidate_artifact_proposals_into_state(ArchiveEngineState& state, Ac
     const std::vector<CandidateArtifactProposalAudit> audits = audits_for_formatting(state, access);
     std::ostringstream out;
     out << "CandidateArtifactProposalAudits visible to " << to_string(access) << ":\n";
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactProposalAudit)) {
         std::size_t visible = 0;
         for (const CandidateArtifactProposalAudit& audit : audits) {
             if (audit_visible_to(state, audit, access)) { ++visible; }
@@ -745,7 +746,7 @@ void audit_candidate_artifact_proposals_into_state(ArchiveEngineState& state, Ac
         return out.str();
     }
     out << "- found: true\n";
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactProposalAudit)) {
         out << "- decision: " << to_string(it->decision) << "\n";
         out << "- quality_score: " << it->proposal_quality_score << "\n";
         out << "- safety_score: " << it->safety_score << "\n";
