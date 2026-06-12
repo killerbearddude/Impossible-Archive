@@ -22,6 +22,8 @@
 #include "candidate_artifact_proposal_api.h"
 #include "candidate_artifact_proposal_audit_model.h"
 #include "candidate_artifact_proposal_audit_api.h"
+#include "candidate_artifact_draft_model.h"
+#include "candidate_artifact_draft_api.h"
 #include "control_layer_audit_model.h"
 #include "control_layer_audit_api.h"
 #include "validation_api.h"
