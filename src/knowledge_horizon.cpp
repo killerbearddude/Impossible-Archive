@@ -1,5 +1,6 @@
 #include "knowledge_horizon_api.h"
 #include "archive_views_api.h"
+#include "diagnostic_access_policy.h"
 
 #include <iomanip>
 #include <sstream>
@@ -354,7 +355,7 @@ void validate_evidence_potential_knowledge(KnowledgeHorizonReport& report, const
 }
 
 [[nodiscard]] bool finding_visible_to(const KnowledgeHorizonFinding& finding, AccessLevel access) {
-    if (can_view(access, AccessLevel::Curator)) {
+    if (can_view_diagnostic_detail(access, DiagnosticDetailSurface::KnowledgeHorizonFinding)) {
         return true;
     }
     return finding.context_type == KnowledgeContextType::Interpreter ||
@@ -518,7 +519,7 @@ void sort_report(KnowledgeHorizonReport& report) {
     for (const auto& [context, count] : by_context) {
         out << "- " << context << ": " << count << "\n";
     }
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::KnowledgeHorizonFinding)) {
         out << "- details: restricted; use curator/debug access for finding IDs and source diagnostics.\n";
     }
     return out.str();
@@ -532,7 +533,7 @@ void sort_report(KnowledgeHorizonReport& report) {
     out << "- findings: " << report.findings.size() << "\n";
     out << "- errors: " << report.errors.size() << "\n";
     if (!report.errors.empty()) {
-        if (can_view(access, AccessLevel::Curator)) {
+        if (can_view_diagnostic_detail(access, DiagnosticDetailSurface::ValidationErrors)) {
             out << "Validation errors:\n";
             for (const std::string& error : report.errors) {
                 out << "- " << error << "\n";
@@ -548,7 +549,7 @@ void sort_report(KnowledgeHorizonReport& report) {
     const KnowledgeHorizonReport report = validate_knowledge_horizon(state, access);
     std::ostringstream out;
     out << "KnowledgeHorizon findings visible to " << to_string(access) << ":\n";
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::KnowledgeHorizonFinding)) {
         out << "- aggregate-only at this access level; hidden IDs and explanations are restricted.\n";
         out << "- total_findings: " << report.findings.size() << "\n";
         out << "- errors: " << report.errors.size() << "\n";
@@ -581,7 +582,9 @@ void sort_report(KnowledgeHorizonReport& report) {
     });
     std::ostringstream out;
     out << "KnowledgeHorizon finding:\n";
-    if (it == report.findings.end() || !can_view(access, AccessLevel::Curator) || !finding_visible_to(*it, access)) {
+    if (it == report.findings.end() ||
+        !can_view_diagnostic_detail(access, DiagnosticDetailSurface::KnowledgeHorizonFinding) ||
+        !finding_visible_to(*it, access)) {
         out << "- found: false\n";
         return out.str();
     }
