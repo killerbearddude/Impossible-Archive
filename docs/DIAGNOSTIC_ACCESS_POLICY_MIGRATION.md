@@ -1,80 +1,76 @@
-# Diagnostic Access Policy Migration
+# Diagnostic Access Policy
 
 ## Current status
 
-This repository now has a small helper scaffold for diagnostic/detail access gates:
+The diagnostic/detail access helper is implemented in:
 
 ```text
 src/diagnostic_access_policy.h
 ```
 
-The helper is intentionally narrow. It preserves the current v28 behavior that diagnostic detail is curator-or-higher unless a surface has an explicit public-safe summary rule.
+The initial formatter migration is complete. `KnowledgeHorizon` and `ContradictionBudget` diagnostic/detail formatters now route the migrated access decisions through the helper instead of relying only on direct inline curator checks.
 
-## Intended first migrations
+## Current policy shape
 
-The first formatter migrations should remain behavior-preserving:
+The helper intentionally preserves the existing v28 behavior:
+
+```text
+Diagnostic detail is curator-or-higher by default.
+Public/scholar detail output remains aggregate-only or found:false unless a surface has an explicit public-safe summary exception.
+No new access level is introduced.
+No public diagnostic ID expansion is introduced.
+```
+
+## Migrated surfaces
+
+The first migrated formatter surfaces are:
 
 ```text
 KnowledgeHorizon finding detail
+KnowledgeHorizon finding lists
+KnowledgeHorizon validation errors
 ContradictionBudget bucket detail
-ContradictionBudget validation policy detail
+ContradictionBudget bucket lists
+ContradictionBudget policy detail
 ContradictionBudget validation errors
 ```
 
-## Target replacements
+## Public/scholar behavior preserved
 
 ### KnowledgeHorizon
 
-In `src/knowledge_horizon.cpp`, replace direct curator checks for finding diagnostics with:
-
-```cpp
-can_view_diagnostic_detail(access, DiagnosticDetailSurface::KnowledgeHorizonFinding)
-```
-
-Use this for:
-
-```text
-format_knowledge_horizon_summary
-format_knowledge_horizon_validation
-format_knowledge_horizon_findings
-format_knowledge_horizon_finding_detail
-```
-
-The public/scholar behavior must remain:
+Public and scholar output must continue to preserve these behaviors:
 
 ```text
 - aggregate-only list output
-- found: false for hidden/inaccessible finding detail
-- no hidden IDs or explanations below curator/debug access
+- found:false for hidden/inaccessible finding detail
+- no hidden IDs below curator/debug access
+- no explanations below curator/debug access
 ```
 
 ### ContradictionBudget
 
-In `src/contradiction_budget.cpp`, replace direct curator checks for bucket/policy diagnostics with:
+Public and scholar output must continue to preserve these behaviors:
 
-```cpp
-can_view_diagnostic_detail(access, DiagnosticDetailSurface::ContradictionBudgetBucket)
-can_view_diagnostic_detail(access, DiagnosticDetailSurface::ContradictionBudgetPolicy)
-can_view_diagnostic_detail(access, DiagnosticDetailSurface::ValidationErrors)
+```text
+- archive bucket summary remains visible
+- non-archive bucket detail returns found:false
+- reason codes remain restricted
+- representative contradiction IDs remain restricted
+- hidden causes remain restricted
+- policy thresholds remain restricted
+- diagnostic notes remain restricted
 ```
 
-For public/scholar bucket detail, preserve the existing archive-summary exception with:
+The archive-bucket public/scholar summary exception is represented by:
 
 ```cpp
 can_view_contradiction_budget_public_bucket_summary(access, bucket_id)
 ```
 
-The public/scholar behavior must remain:
+## Validation used for migration
 
-```text
-- archive bucket summary remains visible
-- non-archive bucket detail returns found: false
-- reason codes, representative contradiction IDs, hidden causes, policy thresholds, and notes remain restricted
-```
-
-## Validation requirements
-
-After migration, run:
+The source-changing migration was validated locally before merge with:
 
 ```bash
 make test
@@ -83,12 +79,7 @@ make strict
 make smoke
 ```
 
-At minimum, the affected translation units should compile with:
-
-```bash
-g++ -std=c++20 -Wall -Wextra -pedantic -O0 -c src/knowledge_horizon.cpp
-g++ -std=c++20 -Wall -Wextra -pedantic -O0 -c src/contradiction_budget.cpp
-```
+The smoke workflow included the existing public-detail blocking checks for KnowledgeHorizon and ContradictionBudget.
 
 ## Non-goals
 
@@ -99,3 +90,17 @@ No new access level.
 No public exposure of diagnostic IDs.
 No v29 draft/detail implementation.
 ```
+
+## Future migration targets
+
+The next likely candidates for helper-based detail access migration are:
+
+```text
+CandidateArtifactPlan detail
+CandidateArtifactPlanEvaluation detail
+CandidateArtifactProposal detail
+CandidateArtifactProposalAudit detail
+ControlLayerAudit entry detail
+```
+
+Each future migration should remain behavior-preserving and should keep public/scholar output at least as restrictive as the current formatter behavior.
