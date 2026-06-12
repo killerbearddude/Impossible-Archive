@@ -34,3 +34,23 @@ jobs:
         run: |
           make clean
           make strict
+
+  sanitize:
+    name: Ubuntu sanitizer self-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sanitizer build and test
+        run: |
+          make clean
+          make sanitize
+
+  smoke:
+    name: Ubuntu README workflow smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: README workflow smoke tests
+        run: |
+          make clean
+          make smoke
