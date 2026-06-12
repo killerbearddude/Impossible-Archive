@@ -1,6 +1,7 @@
 #include "candidate_artifact_proposal_api.h"
 #include "candidate_artifact_plan_api.h"
 #include "candidate_artifact_plan_evaluation_api.h"
+#include "diagnostic_access_policy.h"
 
 #include <map>
 #include <set>
@@ -256,7 +257,7 @@ void append_counts(std::ostringstream& out, const std::map<std::string, std::siz
 }
 
 [[nodiscard]] bool candidate_artifact_proposal_visible_to(const CandidateArtifactProposal& proposal, AccessLevel access) {
-    if (can_view(access, AccessLevel::Curator)) {
+    if (can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactProposal)) {
         return true;
     }
     if (proposal.visibility_class == CandidateArtifactProposalVisibilityClass::PublicEligible) {
@@ -484,7 +485,7 @@ void draft_candidate_artifact_proposals_into_state(ArchiveEngineState& state, Ac
     append_counts(out, by_safety);
     out << "Text status counts:\n";
     append_counts(out, by_text_status);
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactProposal)) {
         out << "- details: aggregate-only at this access level; hidden source IDs, diagnostic IDs, protected mystery details, hidden rationale, blocking internals, and curator-only notes are restricted.\n";
     }
     return out.str();
@@ -498,7 +499,7 @@ void draft_candidate_artifact_proposals_into_state(ArchiveEngineState& state, Ac
     out << "- proposals: " << report.proposals.size() << "\n";
     out << "- errors: " << report.errors.size() << "\n";
     if (!report.errors.empty()) {
-        if (can_view(access, AccessLevel::Curator)) {
+        if (can_view_diagnostic_detail(access, DiagnosticDetailSurface::ValidationErrors)) {
             out << "Validation errors:\n";
             for (const std::string& error : report.errors) {
                 out << "- " << error << "\n";
@@ -514,7 +515,7 @@ void draft_candidate_artifact_proposals_into_state(ArchiveEngineState& state, Ac
     const std::vector<CandidateArtifactProposal> proposals = proposals_for_formatting(state, access);
     std::ostringstream out;
     out << "CandidateArtifactProposals visible to " << to_string(access) << ":\n";
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactProposal)) {
         std::size_t visible = 0;
         for (const CandidateArtifactProposal& proposal : proposals) {
             if (candidate_artifact_proposal_visible_to(proposal, access)) { ++visible; }
@@ -563,7 +564,7 @@ void draft_candidate_artifact_proposals_into_state(ArchiveEngineState& state, Ac
         return out.str();
     }
     out << "- found: true\n";
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::CandidateArtifactProposal)) {
         out << "- decision: " << to_string(it->decision) << "\n";
         out << "- safety: " << to_string(proposal_safety_for_access(*it, access)) << "\n";
         out << "- text_status: " << to_string(it->text_status) << "\n";
