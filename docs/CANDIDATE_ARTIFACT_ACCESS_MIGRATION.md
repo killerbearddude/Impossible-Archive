@@ -2,9 +2,9 @@
 
 ## Current status
 
-This branch prepares the next behavior-preserving diagnostic access migration for candidate artifact detail surfaces.
+The candidate artifact diagnostic access migration is complete.
 
-The helper enum now includes:
+The helper enum includes:
 
 ```text
 CandidateArtifactPlan
@@ -13,13 +13,15 @@ CandidateArtifactProposal
 CandidateArtifactProposalAudit
 ```
 
-The source-changing migration is captured in:
+The formatter surfaces now route migrated diagnostic/detail visibility decisions through:
 
-```text
-scripts/apply_candidate_artifact_diagnostic_access_migration.py
+```cpp
+can_view_diagnostic_detail(access, DiagnosticDetailSurface::<surface>)
 ```
 
-## Intended migrated surfaces
+The temporary local application script has been removed after the source-changing migration was applied and merged.
+
+## Migrated surfaces
 
 ```text
 CandidateArtifactPlan summary/list/detail/validation-error diagnostics
@@ -28,7 +30,7 @@ CandidateArtifactProposal summary/list/detail/validation-error diagnostics
 CandidateArtifactProposalAudit summary/list/detail/validation-error diagnostics
 ```
 
-## Public/scholar behavior to preserve
+## Public/scholar behavior preserved
 
 ```text
 Public/scholar list output remains aggregate-first.
@@ -39,15 +41,9 @@ Validation errors remain restricted below curator/debug access.
 Curator/debug diagnostic detail remains visible.
 ```
 
-## Apply locally
+## Validation used for migration
 
-From the repository root on this branch:
-
-```bash
-python3 scripts/apply_candidate_artifact_diagnostic_access_migration.py
-```
-
-Then validate:
+The source-changing migration was validated before merge with:
 
 ```bash
 make test
@@ -56,12 +52,20 @@ make strict
 make smoke
 ```
 
-If validation passes, commit the resulting source changes back to this branch before merge.
+The smoke workflow includes public-detail blocking checks for:
+
+```text
+CandidateArtifactPlan
+CandidateArtifactPlanEvaluation
+CandidateArtifactProposal
+CandidateArtifactProposalAudit
+```
 
 ## Non-goals
 
 ```text
 No output expansion.
+No runtime behavior change.
 No new access level.
 No public exposure of diagnostic IDs.
 No v29 draft/detail implementation.
@@ -69,3 +73,13 @@ No artifact generation.
 No proposal materialization.
 No persistence.
 ```
+
+## Remaining related target
+
+The remaining diagnostic-access migration candidate is:
+
+```text
+ControlLayerAudit entry detail
+```
+
+Any future migration should remain behavior-preserving and should keep public/scholar output at least as restrictive as the current formatter behavior.
