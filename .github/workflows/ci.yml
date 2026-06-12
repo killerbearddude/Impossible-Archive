@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-cpp20:
+    name: Ubuntu C++20 self-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and test C++20
+        run: |
+          make clean
+          make test
+
+  test-cpp17:
+    name: Ubuntu C++17 self-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and test C++17
+        run: |
+          make clean
+          make CXXSTD=c++17 test
+
+  strict:
+    name: Ubuntu strict warnings self-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Strict build and test
+        run: |
+          make clean
+          make strict

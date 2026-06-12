@@ -1,0 +1,5890 @@
+{
+  "schema_version": "1.1",
+  "catalog_id": "example.civilization_specs.v1_1.40",
+  "civilizations": [
+    {
+      "id": "marsh_citadel",
+      "display_name": "Marsh Citadel Polity",
+      "description": "A canal-and-marsh civilization centered on fortified wetland mounds, grain levies, shrine calendars, and offices that fight over who may command the water gates.",
+      "tags": [
+        "river_delta",
+        "urban",
+        "water_access",
+        "bureaucratic",
+        "artifact_rich",
+        "protected_ambiguity",
+        "truth_partial",
+        "low_real_world_similarity"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "fragment_composition",
+          "language_drift",
+          "artifact_voice"
+        ]
+      },
+      "earliest_year": 180,
+      "latest_year": 880,
+      "geographic_features": [
+        "river_delta",
+        "salt_marsh",
+        "seasonal_floodplain",
+        "raised_citadel_mounds",
+        "canal_grid",
+        "reed_islands"
+      ],
+      "environmental_pressures": [
+        "seasonal_flooding",
+        "canal_silting",
+        "saltwater_intrusion",
+        "marsh_disease",
+        "drought_cycles",
+        "embankment_failures"
+      ],
+      "major_sites": [
+        "central_citadel",
+        "lower_marsh_gate",
+        "reed_shrine",
+        "grain_quay",
+        "southern_embankment",
+        "old_silt_basin"
+      ],
+      "economic_pressures": [
+        "grain_tax",
+        "canal_control",
+        "salt_trade",
+        "reed_harvest",
+        "flood_labor_obligations",
+        "dock_toll_collection"
+      ],
+      "trade_goods": [
+        "grain",
+        "salt",
+        "reed_matting",
+        "dried_fish",
+        "copper_hooks",
+        "dyed_cloth",
+        "clay_seals"
+      ],
+      "institution_archetypes": [
+        "water_office",
+        "ritual_court",
+        "merchant_ledger_house",
+        "embankment_labor_bureau",
+        "citadel_guard",
+        "shrine_archive",
+        "grain_tax_house"
+      ],
+      "social_actor_archetypes": [
+        "marsh_clans",
+        "later_dynastic_scribes",
+        "free_reed_cutters",
+        "dock_labor_families"
+      ],
+      "authority_conflicts": [
+        "water_office_vs_ritual_court",
+        "merchant_ledger_house_vs_grain_tax_house",
+        "citadel_guard_vs_marsh_clans",
+        "shrine_archive_vs_later_dynastic_scribes"
+      ],
+      "religious_or_mythic_archetypes": [
+        "flood_ancestor_cult",
+        "reed_oracle",
+        "drowned_founder_myth",
+        "three_gate_ritual",
+        "silt_burial_ceremony"
+      ],
+      "ritual_pressures": [
+        "annual_gate_opening",
+        "flood_appeasement_rites",
+        "marsh_processions",
+        "ancestor_name_recitations",
+        "ritual_repair_of_embankments"
+      ],
+      "writing_system_archetypes": [
+        "early_reed_notches",
+        "clay_seal_marks",
+        "ledger_script",
+        "late_shrine_cursive"
+      ],
+      "recordkeeping_styles": [
+        "grain_ledger",
+        "canal_labor_roster",
+        "boundary_stone",
+        "ritual_song",
+        "dynastic_copy",
+        "merchant_contract"
+      ],
+      "artifact_media": [
+        "clay_tablet",
+        "reed_ledger",
+        "boundary_stone",
+        "oral_song",
+        "shrine_wall_inscription",
+        "seal_impression",
+        "shrine_copy_tablet"
+      ],
+      "evidence_distortion_modes": [
+        "flood_damage",
+        "ritual_compression",
+        "political_forgery",
+        "calendar_drift",
+        "translation_uncertainty",
+        "title_person_confusion",
+        "later_copyist_interpolation"
+      ],
+      "mystery_archetypes": [
+        "disputed_founder_identity",
+        "missing_water_office_origin",
+        "contradictory_flood_date",
+        "forged_tax_decree",
+        "ritual_title_misread_as_person",
+        "destroyed_citadel_archive",
+        "anachronistic_script_usage"
+      ],
+      "target_hidden_entity_count": 18,
+      "target_hidden_event_count": 24,
+      "target_public_artifact_count": 16,
+      "target_mystery_count": 5,
+      "seed": 4201
+    },
+    {
+      "id": "ash_steppe",
+      "display_name": "Ash Steppe Confederacy",
+      "description": "A mobile pastoral confederacy spread across volcanic grasslands, where seasonal camps, horse herds, oath cloths, and smoke-darkened cairns make authority portable and memory negotiable.",
+      "tags": [
+        "steppe",
+        "pastoral",
+        "mobile_polity",
+        "oath_culture",
+        "oral_archive",
+        "truth_partial",
+        "low_real_world_similarity"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "language_drift",
+          "artifact_voice",
+          "interpreter_model"
+        ]
+      },
+      "earliest_year": 120,
+      "latest_year": 770,
+      "geographic_features": [
+        "volcanic_steppe",
+        "ash_grasslands",
+        "seasonal_lakes",
+        "basalt_cairn_fields",
+        "wind_passes",
+        "winter_grazing_valleys"
+      ],
+      "environmental_pressures": [
+        "volcanic_ashfall",
+        "pasture_exhaustion",
+        "horse_plague",
+        "winter_kill",
+        "seasonal_lake_failure",
+        "grass_fire_cycles"
+      ],
+      "major_sites": [
+        "black_cairn_camp",
+        "summer_horse_plain",
+        "ash_ford",
+        "elder_tent_ring",
+        "bone_tally_ridge",
+        "winter_salt_lake"
+      ],
+      "economic_pressures": [
+        "pasture_rights",
+        "horse_tribute",
+        "caravan_protection_fees",
+        "felt_tax",
+        "salt_lake_access",
+        "hostage_exchange_obligations"
+      ],
+      "trade_goods": [
+        "horses",
+        "wool_felt",
+        "smoked_meat",
+        "salt_cakes",
+        "bone_tallies",
+        "bronze_bits",
+        "ash_black_dye",
+        "hide_armor"
+      ],
+      "institution_archetypes": [
+        "lineage_council",
+        "horse_tally_house",
+        "oath_singer_circle",
+        "seasonal_camp_judges",
+        "caravan_hostage_office",
+        "war_banner_guard"
+      ],
+      "social_actor_archetypes": [
+        "pasture_clans",
+        "young_raid_captains",
+        "winter_market_hosts",
+        "captive_caravan_children"
+      ],
+      "authority_conflicts": [
+        "lineage_council_vs_war_banner_guard",
+        "oath_singer_circle_vs_horse_tally_house",
+        "seasonal_camp_judges_vs_caravan_hostage_office",
+        "elder_tent_ring_vs_young_raid_captains"
+      ],
+      "religious_or_mythic_archetypes": [
+        "sky_mare_myth",
+        "ash_witness_cult",
+        "ancestor_cairn_rites",
+        "fire_grass_omen_cycle",
+        "white_foal_kingship"
+      ],
+      "ritual_pressures": [
+        "spring_herd_counting",
+        "cairn_oath_renewal",
+        "winter_dead_recitation",
+        "first_foal_dedication",
+        "raid_banner_purification"
+      ],
+      "writing_system_archetypes": [
+        "bone_tally_marks",
+        "carved_saddle_signs",
+        "oath_cloth_knots",
+        "late_caravan_script"
+      ],
+      "recordkeeping_styles": [
+        "herd_tally",
+        "lineage_song",
+        "caravan_pass",
+        "oath_witness_list",
+        "tribute_notch_roster",
+        "hostage_register"
+      ],
+      "artifact_media": [
+        "oral_song",
+        "bone_tag",
+        "woven_oath_cloth",
+        "carved_saddle_plate",
+        "bronze_bit_inscription",
+        "cairn_stone_mark",
+        "hide_scroll"
+      ],
+      "evidence_distortion_modes": [
+        "oral_formula_substitution",
+        "camp_name_reuse",
+        "lineage_praise_exaggeration",
+        "ash_abrasion",
+        "seasonal_calendar_drift",
+        "tally_context_loss",
+        "victor_recitation_bias"
+      ],
+      "mystery_archetypes": [
+        "ambiguous_war_banner_holder",
+        "duplicate_camp_name",
+        "missing_lineage_origin",
+        "contradictory_herd_tally",
+        "ritual_title_misread_as_chief",
+        "impossible_caravan_route",
+        "false_confederacy_continuity"
+      ],
+      "target_hidden_entity_count": 17,
+      "target_hidden_event_count": 23,
+      "target_public_artifact_count": 14,
+      "target_mystery_count": 5,
+      "seed": 4202
+    },
+    {
+      "id": "glass_delta",
+      "display_name": "Glass Delta League",
+      "description": "A coastal delta league of harbor towns, glass workshops, pilot guilds, and merchant archives, where shifting sandbars turn trade rights into a permanent political crisis.",
+      "tags": [
+        "coastal_delta",
+        "urban",
+        "merchant_archive",
+        "harbor_trade",
+        "artifact_rich",
+        "truth_partial",
+        "low_real_world_similarity"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "language_drift",
+          "artifact_voice",
+          "public_archive"
+        ]
+      },
+      "earliest_year": 260,
+      "latest_year": 1010,
+      "geographic_features": [
+        "coastal_delta",
+        "tidal_lagoons",
+        "sandbar_channels",
+        "glass_sand_beaches",
+        "mangrove_backwaters",
+        "harbor_islets"
+      ],
+      "environmental_pressures": [
+        "harbor_silting",
+        "storm_surges",
+        "sandbar_migration",
+        "mangrove_fever",
+        "shipwreck_seasons",
+        "brackish_water_intrusion"
+      ],
+      "major_sites": [
+        "north_glass_quay",
+        "pilot_tower",
+        "sunken_customs_house",
+        "green_sand_market",
+        "mangrove_shrine",
+        "outer_beacon_islet",
+        "old_lagoon_port"
+      ],
+      "economic_pressures": [
+        "harbor_tax",
+        "glass_sand_monopoly",
+        "pilotage_dues",
+        "shipwreck_salvage_rights",
+        "mangrove_charcoal_levy",
+        "foreign_merchant_exemptions"
+      ],
+      "trade_goods": [
+        "lapis_glass",
+        "shell_beads",
+        "mangrove_charcoal",
+        "salt_fish",
+        "dyed_sails",
+        "bronze_weights",
+        "foreign_wine",
+        "tin_ingots",
+        "glass_sand"
+      ],
+      "institution_archetypes": [
+        "harbor_toll_house",
+        "pilot_guild",
+        "glass_furnace_college",
+        "merchant_seal_bank",
+        "salvage_court",
+        "lagoon_shrine_archive",
+        "foreign_quarter_council"
+      ],
+      "social_actor_archetypes": [
+        "mangrove_charcoal_cutters",
+        "foreign_sail_leaders",
+        "wreck_salvage_families",
+        "migrant_glassworkers"
+      ],
+      "authority_conflicts": [
+        "harbor_toll_house_vs_pilot_guild",
+        "glass_furnace_college_vs_mangrove_charcoal_cutters",
+        "merchant_seal_bank_vs_salvage_court",
+        "foreign_quarter_council_vs_lagoon_shrine_archive"
+      ],
+      "religious_or_mythic_archetypes": [
+        "tide_mother_liturgy",
+        "glass_sun_cult",
+        "drowned_cargo_offerings",
+        "beacon_spirit_oaths",
+        "salt_bride_myth"
+      ],
+      "ritual_pressures": [
+        "first_tide_opening",
+        "beacon_lighting_vigil",
+        "shipwreck_dead_lament",
+        "glass_furnace_blessing",
+        "lagoon_boundary_procession"
+      ],
+      "writing_system_archetypes": [
+        "harbor_contract_hand",
+        "merchant_tally_marks",
+        "imported_sailor_glyphs",
+        "late_glassmaker_cursive"
+      ],
+      "recordkeeping_styles": [
+        "harbor_manifest",
+        "merchant_contract",
+        "salvage_award",
+        "pilot_route_list",
+        "foreign_exemption_copy",
+        "furnace_inventory",
+        "beacon_maintenance_roster"
+      ],
+      "artifact_media": [
+        "seal_impression",
+        "bronze_weight",
+        "painted_ceramic",
+        "glass_token",
+        "ship_plank_inscription",
+        "merchant_copy_roll",
+        "lime_plaster_text"
+      ],
+      "evidence_distortion_modes": [
+        "salt_corrosion",
+        "shipwreck_fragmentation",
+        "foreign_name_translation",
+        "port_name_reuse",
+        "merchant_forgery",
+        "sandbar_provenance_confusion",
+        "later_copyist_interpolation"
+      ],
+      "mystery_archetypes": [
+        "forged_trade_exemption",
+        "impossible_shipwreck_date",
+        "duplicate_harbor_name",
+        "missing_customs_house_origin",
+        "ambiguous_foreign_merchant",
+        "contradictory_salvage_claim",
+        "anachronistic_contract_hand"
+      ],
+      "target_hidden_entity_count": 20,
+      "target_hidden_event_count": 28,
+      "target_public_artifact_count": 18,
+      "target_mystery_count": 6,
+      "seed": 4203
+    },
+    {
+      "id": "hill_oracle",
+      "display_name": "Hill Oracle City-States",
+      "description": "A highland network of terrace cities whose oracle colleges regulate pasture calendars, burial names, and boundary oaths while secular courts try to pin prophecy to taxable land.",
+      "earliest_year": 90,
+      "latest_year": 760,
+      "geographic_features": [
+        "highland_basin",
+        "limestone_terraces",
+        "goat_pasture_slopes",
+        "oracle_caves",
+        "mist_passes",
+        "spring_fed_ravines"
+      ],
+      "environmental_pressures": [
+        "terrace_collapse",
+        "spring_failure",
+        "landslides",
+        "pasture_overgrazing",
+        "winter_pass_closure",
+        "cave_flooding"
+      ],
+      "major_sites": [
+        "upper_oracle_terrace",
+        "goat_gate_pass",
+        "white_limestone_cave",
+        "name_burial_field",
+        "east_boundary_stone",
+        "spring_court_plaza"
+      ],
+      "economic_pressures": [
+        "terrace_irrigation_dues",
+        "pasture_rights",
+        "oracle_consultation_fees",
+        "goat_tax",
+        "boundary_arbitration_tolls",
+        "spring_access_levies"
+      ],
+      "trade_goods": [
+        "goat_wool",
+        "cheese_cakes",
+        "limestone_lime",
+        "copper_bells",
+        "spring_salt",
+        "dried_herbs",
+        "oracle_knots",
+        "terrace_barley"
+      ],
+      "institution_archetypes": [
+        "oracle_college",
+        "boundary_court",
+        "terrace_inspectors",
+        "spring_keeper_house",
+        "ancestor_name_court",
+        "goat_bell_guild"
+      ],
+      "social_actor_archetypes": [
+        "later_dynastic_scribes",
+        "pasture_clans",
+        "spring_lineage_families",
+        "goat_herder_hosts"
+      ],
+      "authority_conflicts": [
+        "oracle_college_vs_boundary_court",
+        "terrace_inspectors_vs_spring_keeper_house",
+        "ancestor_name_court_vs_later_dynastic_scribes",
+        "goat_bell_guild_vs_pasture_clans"
+      ],
+      "religious_or_mythic_archetypes": [
+        "mountain_breath_oracle",
+        "goat_ancestor_cult",
+        "spring_mirror_prophecy",
+        "unnamed_dead_taboo",
+        "stone_ladder_creation_myth"
+      ],
+      "ritual_pressures": [
+        "oracle_lot_drawing",
+        "ancestor_name_recitations",
+        "oath_before_boundary_stones",
+        "spring_silence_fast",
+        "terrace_first_cut_rite"
+      ],
+      "writing_system_archetypes": [
+        "oracle_knot_script",
+        "boundary_stone_glyphs",
+        "terrace_account_marks",
+        "late_cave_cursive"
+      ],
+      "recordkeeping_styles": [
+        "oracle_transcript",
+        "boundary_stone",
+        "pasture_lease",
+        "burial_register",
+        "terrace_repair_roster",
+        "spring_tax_decree"
+      ],
+      "artifact_media": [
+        "oracle_knot_cord",
+        "stone_terrace_inscription",
+        "shrine_wall_inscription",
+        "bone_tag",
+        "lime_plaster_text",
+        "bronze_bell_mark",
+        "oracle_copy_cord"
+      ],
+      "evidence_distortion_modes": [
+        "prophetic_metaphor_compression",
+        "title_person_confusion",
+        "cave_water_damage",
+        "boundary_stone_reuse",
+        "calendar_drift",
+        "copyist_normalization",
+        "name_taboo_omission"
+      ],
+      "mystery_archetypes": [
+        "ritual_title_misread_as_person",
+        "conflicting_boundary_claims",
+        "missing_oracle_transcript",
+        "ambiguous_burial_name",
+        "false_prophecy_sequence",
+        "anachronistic_cave_cursive",
+        "duplicate_spring_name"
+      ],
+      "target_hidden_entity_count": 18,
+      "target_hidden_event_count": 25,
+      "target_public_artifact_count": 15,
+      "target_mystery_count": 5,
+      "seed": 4204,
+      "tags": [
+        "highland",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy",
+        "fragile_archive",
+        "chronology_dispute"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "drowned_causeway",
+      "display_name": "Drowned Causeway Kingdom",
+      "description": "A low coastal kingdom built around stone causeways and tidal shrines, later remembered through ruins, salvage records, and dynastic reconstructions after the old roads sank beneath the lagoon.",
+      "tags": [
+        "coastal",
+        "disaster_memory",
+        "salvage_archive",
+        "dynastic_reconstruction",
+        "protected_ambiguity",
+        "truth_partial",
+        "low_real_world_similarity"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "mystery_preservation",
+          "chronology"
+        ]
+      },
+      "earliest_year": 310,
+      "latest_year": 980,
+      "geographic_features": [
+        "tidal_causeways",
+        "submerged_roadbeds",
+        "coastal_lagoon",
+        "limestone_islets",
+        "storm_beaches",
+        "brackish_marshes"
+      ],
+      "environmental_pressures": [
+        "coastal_subsidence",
+        "storm_surge_cycles",
+        "causeway_washouts",
+        "lagoon_expansion",
+        "saltwater_crop_loss",
+        "well_contamination"
+      ],
+      "major_sites": [
+        "first_causeway_gate",
+        "drowned_palace_islet",
+        "tide_shrine",
+        "salvage_harbor",
+        "old_road_mile_stone",
+        "new_dynastic_capital"
+      ],
+      "economic_pressures": [
+        "causeway_toll_collection",
+        "salvage_rights",
+        "lagoon_fishery_tribute",
+        "stone_road_labor",
+        "salt_pan_rents",
+        "resettlement_land_grants"
+      ],
+      "trade_goods": [
+        "salt",
+        "dried_fish",
+        "limestone_blocks",
+        "shell_lime",
+        "boat_tar",
+        "reed_rope",
+        "salvaged_bronze",
+        "ceremonial_conch"
+      ],
+      "institution_archetypes": [
+        "causeway_toll_house",
+        "tide_priesthood",
+        "salvage_court",
+        "road_labor_bureau",
+        "resettlement_land_office",
+        "dynastic_copy_house"
+      ],
+      "social_actor_archetypes": [
+        "old_islet_clans",
+        "resettled_road_families",
+        "salvage_diver_lineages",
+        "later_dynastic_scribes"
+      ],
+      "authority_conflicts": [
+        "tide_priesthood_vs_causeway_toll_house",
+        "salvage_court_vs_dynastic_copy_house",
+        "road_labor_bureau_vs_resettlement_land_office",
+        "old_islet_clans_vs_new_dynastic_capital"
+      ],
+      "religious_or_mythic_archetypes": [
+        "drowned_founder_myth",
+        "tide_gate_lament",
+        "road_under_sea_rite",
+        "conch_ancestor_cult",
+        "salt_well_curse"
+      ],
+      "ritual_pressures": [
+        "annual_low_tide_procession",
+        "drowned_road_recitation",
+        "well_purification_fast",
+        "storm_dead_offerings",
+        "new_capital_legitimacy_rites"
+      ],
+      "writing_system_archetypes": [
+        "road_mile_glyphs",
+        "tide_shrine_cursive",
+        "salvage_tally_marks",
+        "late_dynastic_copy_hand"
+      ],
+      "recordkeeping_styles": [
+        "causeway_toll_ledger",
+        "salvage_award",
+        "resettlement_grant",
+        "storm_report",
+        "ritual_lament",
+        "dynastic_copy",
+        "well_purity_register"
+      ],
+      "artifact_media": [
+        "limestone_mile_stone",
+        "water_worn_clay_tablet",
+        "oral_lament",
+        "salvage_tag",
+        "conch_shell_inscription",
+        "causeway_copy_register",
+        "bronze_plaque"
+      ],
+      "evidence_distortion_modes": [
+        "saltwater_erosion",
+        "submerged_provenance_loss",
+        "reconstruction_propaganda",
+        "disaster_date_compression",
+        "site_name_reuse",
+        "salvage_context_loss",
+        "later_copyist_interpolation"
+      ],
+      "mystery_archetypes": [
+        "contradictory_disaster_date",
+        "unexplained_site_abandonment",
+        "false_dynastic_continuity",
+        "duplicate_causeway_name",
+        "missing_resettlement_origin",
+        "ambiguous_salvage_provenance",
+        "impossible_low_tide_route"
+      ],
+      "target_hidden_entity_count": 19,
+      "target_hidden_event_count": 27,
+      "target_public_artifact_count": 17,
+      "target_mystery_count": 6,
+      "seed": 4205
+    },
+    {
+      "id": "salt_terrace_kingdom",
+      "display_name": "Salt Terrace Kingdom",
+      "description": "A dry upland kingdom whose cliff terraces, salt springs, and mule roads let royal inspectors bind food, law, and ritual purity into one taxable landscape.",
+      "earliest_year": 230,
+      "latest_year": 930,
+      "geographic_features": [
+        "arid_highland_terraces",
+        "salt_springs",
+        "mule_switchback_roads",
+        "cliff_granaries",
+        "thorn_scrub_valleys",
+        "dry_riverbeds"
+      ],
+      "environmental_pressures": [
+        "drought_cycles",
+        "terrace_wall_failure",
+        "salt_spring_depletion",
+        "mule_road_landslides",
+        "locust_swarms",
+        "granary_fire"
+      ],
+      "major_sites": [
+        "white_salt_spring",
+        "royal_cliff_granary",
+        "upper_mule_gate",
+        "thorn_valley_market",
+        "dry_river_altar",
+        "terrace_inspector_hall"
+      ],
+      "economic_pressures": [
+        "salt_spring_monopoly",
+        "terrace_grain_tax",
+        "mule_caravan_toll",
+        "granary_quota",
+        "labor_wall_repair",
+        "purity_fine_collection"
+      ],
+      "trade_goods": [
+        "salt_cakes",
+        "terrace_barley",
+        "mule_harness",
+        "dried_figs",
+        "copper_needles",
+        "goat_hair_cloth",
+        "lime_plaster",
+        "thorn_resin"
+      ],
+      "institution_archetypes": [
+        "salt_spring_board",
+        "terrace_inspectors",
+        "royal_granary_house",
+        "mule_road_guard",
+        "purity_law_court",
+        "cliff_shrine_archive"
+      ],
+      "social_actor_archetypes": [
+        "caravan_families",
+        "royal_copyists",
+        "muleteer_clans",
+        "salt_pan_laborers"
+      ],
+      "authority_conflicts": [
+        "salt_spring_board_vs_purity_law_court",
+        "terrace_inspectors_vs_royal_granary_house",
+        "mule_road_guard_vs_caravan_families",
+        "cliff_shrine_archive_vs_royal_copyists"
+      ],
+      "religious_or_mythic_archetypes": [
+        "salt_bride_myth",
+        "dry_river_judge_cult",
+        "white_spring_purity_law",
+        "cliff_ancestor_niches",
+        "thirst_king_lament"
+      ],
+      "ritual_pressures": [
+        "spring_purity_inspection",
+        "granary_seal_festival",
+        "dry_river_oath",
+        "terrace_wall_blessing",
+        "salt_bride_procession"
+      ],
+      "writing_system_archetypes": [
+        "salt_seal_marks",
+        "terrace_account_script",
+        "cliff_niche_glyphs",
+        "late_royal_cursive"
+      ],
+      "recordkeeping_styles": [
+        "salt_quota_ledger",
+        "terrace_repair_roster",
+        "granary_inventory",
+        "mule_pass",
+        "purity_fine_record",
+        "shrine_donation_list"
+      ],
+      "artifact_media": [
+        "salt_seal_impression",
+        "lime_plaster_text",
+        "wooden_tally",
+        "cliff_wall_inscription",
+        "goat_hide_scroll",
+        "ceramic_granary_tag",
+        "cliff_archive_copy"
+      ],
+      "evidence_distortion_modes": [
+        "salt_crystal_damage",
+        "granary_fire_loss",
+        "royal_quota_forgery",
+        "purity_title_confusion",
+        "landslide_provenance_shift",
+        "copyist_standardization",
+        "calendar_drift"
+      ],
+      "mystery_archetypes": [
+        "forged_granary_quota",
+        "missing_salt_spring_origin",
+        "ambiguous_purity_officer",
+        "contradictory_terrace_failure_date",
+        "duplicate_mule_gate_name",
+        "false_royal_grant",
+        "anachronistic_royal_cursive"
+      ],
+      "target_hidden_entity_count": 18,
+      "target_hidden_event_count": 26,
+      "target_public_artifact_count": 16,
+      "target_mystery_count": 5,
+      "seed": 4206,
+      "tags": [
+        "arid_basin",
+        "highland",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy",
+        "fragile_archive"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "obsidian_passage",
+      "display_name": "Obsidian Passage Cities",
+      "description": "A chain of fortified pass cities controls volcanic glass, pilgrim roads, and winter gates, making every blade, toll tablet, and shrine seal a claim over dangerous terrain.",
+      "earliest_year": 150,
+      "latest_year": 840,
+      "geographic_features": [
+        "volcanic_ridge",
+        "mountain_pass",
+        "obsidian_flows",
+        "snow_choked_saddles",
+        "lava_tube_caves",
+        "pine_scree_slopes"
+      ],
+      "environmental_pressures": [
+        "earthquakes",
+        "rockfalls",
+        "winter_pass_closure",
+        "volcanic_fumes",
+        "forest_fire_cycles",
+        "obsidian_quarry_collapse"
+      ],
+      "major_sites": [
+        "black_gate_pass",
+        "mirror_blade_quarry",
+        "smoke_cave_shrine",
+        "upper_toll_bridge",
+        "pine_scree_fort",
+        "winter_hostel_square"
+      ],
+      "economic_pressures": [
+        "obsidian_monopoly",
+        "passage_toll",
+        "pilgrim_hostel_dues",
+        "quarry_labor_obligations",
+        "blade_quality_inspection",
+        "escort_contracts"
+      ],
+      "trade_goods": [
+        "obsidian_blades",
+        "pine_resin",
+        "charcoal",
+        "wool_cloaks",
+        "iron_bloom",
+        "smoked_cheese",
+        "pilgrim_tokens",
+        "copper_rivets"
+      ],
+      "institution_archetypes": [
+        "obsidian_quarry_guild",
+        "pass_gate_court",
+        "pilgrim_hostel_order",
+        "blade_inspector_house",
+        "ridge_fort_guard",
+        "smoke_cave_priesthood"
+      ],
+      "social_actor_archetypes": [
+        "quarry_families",
+        "foreign_caravan_agents",
+        "pilgrim_host_families",
+        "ridge_foragers"
+      ],
+      "authority_conflicts": [
+        "obsidian_quarry_guild_vs_blade_inspector_house",
+        "pass_gate_court_vs_pilgrim_hostel_order",
+        "ridge_fort_guard_vs_smoke_cave_priesthood",
+        "quarry_families_vs_foreign_caravan_agents"
+      ],
+      "religious_or_mythic_archetypes": [
+        "mountain_breath_oracle",
+        "black_mirror_judgment",
+        "smoke_cave_birth_myth",
+        "winter_gate_saint",
+        "blade_ancestor_cult"
+      ],
+      "ritual_pressures": [
+        "first_snow_gate_closing",
+        "quarry_blood_offering",
+        "black_mirror_oath",
+        "pilgrim_token_blessing",
+        "firebreak_procession"
+      ],
+      "writing_system_archetypes": [
+        "quarry_chip_marks",
+        "pass_token_script",
+        "cave_smoke_glyphs",
+        "late_blade_cursive"
+      ],
+      "recordkeeping_styles": [
+        "quarry_quota_list",
+        "pass_toll_tablet",
+        "pilgrim_roster",
+        "blade_quality_certificate",
+        "escort_contract",
+        "earthquake_report"
+      ],
+      "artifact_media": [
+        "obsidian_tablet",
+        "carved_pass_token",
+        "cave_wall_inscription",
+        "bronze_blade_tag",
+        "pine_wood_tally",
+        "seal_impression",
+        "hostel_copy_board"
+      ],
+      "evidence_distortion_modes": [
+        "rockfall_context_loss",
+        "smoke_staining",
+        "token_counterfeit",
+        "quarry_name_reuse",
+        "winter_calendar_drift",
+        "script_anachronism",
+        "earthquake_archive_loss"
+      ],
+      "mystery_archetypes": [
+        "impossible_pass_crossing",
+        "missing_quarry_owner",
+        "forged_blade_certificate",
+        "duplicate_black_gate_name",
+        "ambiguous_pilgrim_identity",
+        "contradictory_earthquake_date",
+        "ritual_title_misread_as_commander"
+      ],
+      "target_hidden_entity_count": 19,
+      "target_hidden_event_count": 25,
+      "target_public_artifact_count": 15,
+      "target_mystery_count": 5,
+      "seed": 4207,
+      "tags": [
+        "highland",
+        "forest_lattice",
+        "tundra",
+        "volcanic",
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "cedar_reef_city",
+      "display_name": "Cedar Reef City-State",
+      "description": "A timber-rich island city balances reef pilots, cedar shipyards, and shell temples, where maritime law depends on wood marks that decay faster than the claims they support.",
+      "earliest_year": 340,
+      "latest_year": 1040,
+      "geographic_features": [
+        "cedar_island",
+        "coral_reef_passages",
+        "deepwater_cove",
+        "monsoon_beaches",
+        "cliff_rookeries",
+        "freshwater_sinkholes"
+      ],
+      "environmental_pressures": [
+        "reef_grounding",
+        "monsoon_storms",
+        "cedar_blight",
+        "sinkhole_salination",
+        "termite_damage",
+        "fishery_collapse"
+      ],
+      "major_sites": [
+        "cedar_shipyard",
+        "reef_pilot_house",
+        "shell_temple",
+        "east_cove_market",
+        "rookery_cliff_beacon",
+        "fresh_sinkhole_court"
+      ],
+      "economic_pressures": [
+        "cedar_ship_quota",
+        "reef_pilotage_dues",
+        "fishery_tribute",
+        "shell_lime_tax",
+        "beacon_maintenance_labor",
+        "foreign_dock_fees"
+      ],
+      "trade_goods": [
+        "cedar_planks",
+        "ship_tar",
+        "reef_fish",
+        "shell_lime",
+        "parrot_feathers",
+        "coconut_fiber_rope",
+        "bronze_nails",
+        "foreign_ceramics"
+      ],
+      "institution_archetypes": [
+        "shipyard_board",
+        "reef_pilot_guild",
+        "shell_temple_court",
+        "beacon_keeper_house",
+        "fishery_tide_council",
+        "foreign_dock_office"
+      ],
+      "social_actor_archetypes": [
+        "cedar_cutters",
+        "foreign_dock_families",
+        "reef_fisher_lineages",
+        "inland_plank_brokers"
+      ],
+      "authority_conflicts": [
+        "reef_pilot_guild_vs_shipyard_board",
+        "shell_temple_court_vs_foreign_dock_office",
+        "fishery_tide_council_vs_beacon_keeper_house",
+        "cedar_cutters_vs_shipyard_board"
+      ],
+      "religious_or_mythic_archetypes": [
+        "reef_serpent_myth",
+        "cedar_mast_ancestor_cult",
+        "shell_mother_liturgy",
+        "beacon_fire_oath",
+        "sinkhole_underworld_rite"
+      ],
+      "ritual_pressures": [
+        "first_monsoon_launch",
+        "reef_pass_blessing",
+        "beacon_fire_renewal",
+        "shell_lime_burial",
+        "cedar_stump_offering"
+      ],
+      "writing_system_archetypes": [
+        "ship_plank_marks",
+        "reef_pilot_notches",
+        "shell_temple_glyphs",
+        "late_dock_contract_hand"
+      ],
+      "recordkeeping_styles": [
+        "shipyard_quota_roll",
+        "pilot_route_list",
+        "dock_manifest",
+        "beacon_oil_roster",
+        "fishery_tribute_ledger",
+        "temple_shell_inventory"
+      ],
+      "artifact_media": [
+        "ship_plank_inscription",
+        "shell_token",
+        "cedar_tally_board",
+        "coral_boundary_marker",
+        "painted_ceramic",
+        "bronze_nail_tag",
+        "harbor_copy_board"
+      ],
+      "evidence_distortion_modes": [
+        "wood_rot",
+        "termite_loss",
+        "reef_scouring",
+        "foreign_name_translation",
+        "pilot_route_secrecy",
+        "dock_ledger_forgery",
+        "storm_fragmentation"
+      ],
+      "mystery_archetypes": [
+        "missing_shipyard_quota",
+        "ambiguous_reef_pass",
+        "forged_dock_manifest",
+        "duplicate_beacon_name",
+        "impossible_voyage_claim",
+        "contradictory_cedar_blight_date",
+        "lost_shell_temple_inventory"
+      ],
+      "target_hidden_entity_count": 18,
+      "target_hidden_event_count": 24,
+      "target_public_artifact_count": 15,
+      "target_mystery_count": 5,
+      "seed": 4208,
+      "tags": [
+        "coastal",
+        "island_polity",
+        "forest_lattice",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "merchant_polity",
+        "urban"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "language_drift",
+          "artifact_voice",
+          "mystery_preservation"
+        ]
+      }
+    },
+    {
+      "id": "frost_mire_accord",
+      "display_name": "Frost Mire Accord",
+      "description": "A cold wetland accord of peat villages, frozen causeways, and oath-bound fishing houses keeps law seasonal, with winter routes that vanish into summer bog and summer rights that freeze into winter precedent.",
+      "earliest_year": 40,
+      "latest_year": 690,
+      "geographic_features": [
+        "peat_mire",
+        "frozen_causeways",
+        "black_spruce_islands",
+        "shallow_fishing_lakes",
+        "permafrost_mounds",
+        "bog_iron_pockets"
+      ],
+      "environmental_pressures": [
+        "thaw_flooding",
+        "permafrost_slump",
+        "peat_fire",
+        "fish_run_failure",
+        "winter_starvation",
+        "bog_path_disappearance"
+      ],
+      "major_sites": [
+        "winter_causeway_court",
+        "peat_oath_hall",
+        "bog_iron_hearth",
+        "spruce_island_shrine",
+        "fish_weir_gate",
+        "old_thaw_basin"
+      ],
+      "economic_pressures": [
+        "fishery_tribute",
+        "bog_iron_smelt_quota",
+        "peat_cutting_rights",
+        "winter_causeway_toll",
+        "spruce_pole_levy",
+        "weir_repair_labor"
+      ],
+      "trade_goods": [
+        "bog_iron",
+        "smoked_fish",
+        "peat_blocks",
+        "spruce_poles",
+        "fur_mittens",
+        "bone_hooks",
+        "amber_resin",
+        "frozen_berry_cakes"
+      ],
+      "institution_archetypes": [
+        "winter_causeway_court",
+        "fish_weir_council",
+        "bog_iron_smelters",
+        "peat_oath_house",
+        "spruce_shrine_archive",
+        "thaw_mediator_circle"
+      ],
+      "social_actor_archetypes": [
+        "summer_villages",
+        "winter_market_hosts",
+        "peat_cutter_families",
+        "thaw_road_guides"
+      ],
+      "authority_conflicts": [
+        "winter_causeway_court_vs_thaw_mediator_circle",
+        "fish_weir_council_vs_bog_iron_smelters",
+        "peat_oath_house_vs_spruce_shrine_archive",
+        "summer_villages_vs_winter_market_hosts"
+      ],
+      "religious_or_mythic_archetypes": [
+        "frozen_breath_ancestor_cult",
+        "mire_lantern_spirit",
+        "bog_iron_birth_myth",
+        "fish_mother_lament",
+        "thaw_judge_taboo"
+      ],
+      "ritual_pressures": [
+        "first_ice_oath",
+        "spring_thaw_reckoning",
+        "fish_run_lament",
+        "peat_fire_purification",
+        "iron_hearth_blessing"
+      ],
+      "writing_system_archetypes": [
+        "bone_hook_notches",
+        "iron_hearth_marks",
+        "winter_causeway_glyphs",
+        "late_thaw_cursive"
+      ],
+      "recordkeeping_styles": [
+        "fish_weir_roster",
+        "bog_iron_quota",
+        "causeway_toll_record",
+        "oath_song",
+        "peat_lot_map",
+        "winter_debt_tally"
+      ],
+      "artifact_media": [
+        "bone_tag",
+        "bog_preserved_wood",
+        "iron_bloom_mark",
+        "oral_song",
+        "causeway_stone",
+        "hide_scroll",
+        "spruce_shrine_copy_board"
+      ],
+      "evidence_distortion_modes": [
+        "peat_staining",
+        "seasonal_route_confusion",
+        "thaw_context_shift",
+        "oral_compression",
+        "iron_corrosion",
+        "place_name_seasonality",
+        "archive_smoke_damage"
+      ],
+      "mystery_archetypes": [
+        "contradictory_winter_route",
+        "ambiguous_oath_house_speaker",
+        "missing_fish_weir_origin",
+        "duplicate_spruce_island_name",
+        "forged_winter_debt",
+        "unexplained_thaw_abandonment",
+        "ritual_title_misread_as_person"
+      ],
+      "target_hidden_entity_count": 17,
+      "target_hidden_event_count": 22,
+      "target_public_artifact_count": 14,
+      "target_mystery_count": 5,
+      "seed": 4209,
+      "tags": [
+        "island_polity",
+        "wetland",
+        "tundra",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "red_wadi_principality",
+      "display_name": "Red Wadi Principality",
+      "description": "A desert wadi principality rules intermittent water, copper caravans, and cliff tomb lineages, so every inscription is both a map of survival and a weapon in inheritance disputes.",
+      "earliest_year": 200,
+      "latest_year": 900,
+      "geographic_features": [
+        "desert_wadi",
+        "red_sandstone_cliffs",
+        "seasonal_pools",
+        "copper_hill_mines",
+        "caravan_defiles",
+        "acacia_groves"
+      ],
+      "environmental_pressures": [
+        "flash_floods",
+        "pool_drying",
+        "sandstorms",
+        "mine_collapse",
+        "acacia_dieoff",
+        "caravan_raid_cycles"
+      ],
+      "major_sites": [
+        "red_pool_fort",
+        "copper_hill_gate",
+        "ancestor_cliff_tombs",
+        "acacia_market",
+        "narrow_defile_toll",
+        "dry_moon_shrine"
+      ],
+      "economic_pressures": [
+        "water_toll",
+        "copper_mine_tribute",
+        "caravan_toll",
+        "acacia_gum_levy",
+        "tomb_inheritance_fees",
+        "raid_ransom_accounting"
+      ],
+      "trade_goods": [
+        "copper_ore",
+        "acacia_gum",
+        "dates",
+        "desert_salt",
+        "goat_leather",
+        "red_ochre",
+        "caravan_beads",
+        "water_jars"
+      ],
+      "institution_archetypes": [
+        "wadi_water_court",
+        "copper_hill_overseers",
+        "caravan_toll_board",
+        "cliff_tomb_name_court",
+        "raid_ransom_house",
+        "dry_moon_priesthood"
+      ],
+      "social_actor_archetypes": [
+        "acacia_grove_clans",
+        "principality_scribes",
+        "ransom_broker_families",
+        "copper_camp_workers"
+      ],
+      "authority_conflicts": [
+        "wadi_water_court_vs_copper_hill_overseers",
+        "caravan_toll_board_vs_raid_ransom_house",
+        "cliff_tomb_name_court_vs_dry_moon_priesthood",
+        "acacia_grove_clans_vs_principality_scribes"
+      ],
+      "religious_or_mythic_archetypes": [
+        "red_pool_creation_myth",
+        "dry_moon_law",
+        "cliff_ancestor_name_cult",
+        "flood_serpent_warning",
+        "copper_blood_taboo"
+      ],
+      "ritual_pressures": [
+        "first_pool_opening",
+        "cliff_name_recitation",
+        "dry_moon_fast",
+        "mine_blood_appeasement",
+        "caravan_defile_oath"
+      ],
+      "writing_system_archetypes": [
+        "sandstone_cliff_glyphs",
+        "copper_tag_marks",
+        "water_jar_script",
+        "late_wadi_cursive"
+      ],
+      "recordkeeping_styles": [
+        "water_toll_ledger",
+        "mine_tribute_list",
+        "caravan_pass",
+        "tomb_inheritance_register",
+        "ransom_contract",
+        "flood_report"
+      ],
+      "artifact_media": [
+        "sandstone_inscription",
+        "copper_scroll",
+        "water_jar_mark",
+        "cliff_tomb_plaque",
+        "leather_contract",
+        "wooden_tally",
+        "wadi_hide_copy"
+      ],
+      "evidence_distortion_modes": [
+        "sand_abrasion",
+        "flash_flood_displacement",
+        "tomb_looting",
+        "inheritance_name_erasure",
+        "caravan_translation_uncertainty",
+        "copper_corrosion",
+        "political_forgery"
+      ],
+      "mystery_archetypes": [
+        "missing_water_right_origin",
+        "conflicting_tomb_inheritance",
+        "forged_caravan_pass",
+        "ambiguous_pool_name",
+        "impossible_mine_shipment",
+        "contradictory_flash_flood_date",
+        "ritual_title_misread_as_prince"
+      ],
+      "target_hidden_entity_count": 18,
+      "target_hidden_event_count": 25,
+      "target_public_artifact_count": 16,
+      "target_mystery_count": 5,
+      "seed": 4210,
+      "tags": [
+        "arid_basin",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "merchant_polity",
+        "artifact_rich",
+        "ledger_heavy",
+        "fragile_archive"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "cloud_forest_lattice",
+      "display_name": "Cloud Forest Lattice",
+      "description": "A humid mountain-forest lattice of rope bridges, orchid shrines, and cacao courts treats travel as sacred infrastructure, while rot and fog make records survive as copied knots and disputed bridge songs.",
+      "tags": [
+        "cloud_forest",
+        "highland",
+        "terrace_landscape",
+        "ritual_calendar",
+        "artifact_rich",
+        "truth_partial",
+        "low_real_world_similarity"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "language_drift",
+          "artifact_voice",
+          "mystery_preservation"
+        ]
+      },
+      "earliest_year": 280,
+      "latest_year": 990,
+      "geographic_features": [
+        "cloud_forest_ridges",
+        "rope_bridge_gorges",
+        "orchid_valleys",
+        "mist_waterfalls",
+        "cacao_clearings",
+        "karst_sinkholes"
+      ],
+      "environmental_pressures": [
+        "monsoon_landslides",
+        "bridge_rot",
+        "fungal_crop_blight",
+        "fog_navigation_loss",
+        "sinkhole_collapse",
+        "jaguar_predation"
+      ],
+      "major_sites": [
+        "great_rope_bridge",
+        "orchid_shrine_valley",
+        "cacao_court_clearance",
+        "mistfall_watch",
+        "sinkhole_burial_cave",
+        "ridge_market_ladder"
+      ],
+      "economic_pressures": [
+        "bridge_labor_obligations",
+        "cacao_tribute",
+        "orchid_resin_monopoly",
+        "ridge_market_toll",
+        "forest_path_guard_fees",
+        "burial_cave_access_dues"
+      ],
+      "trade_goods": [
+        "cacao_beans",
+        "orchid_resin",
+        "feather_cloaks",
+        "jaguar_teeth",
+        "rope_fiber",
+        "obsidian_flakes",
+        "honey_wax",
+        "painted_gourds"
+      ],
+      "institution_archetypes": [
+        "bridge_keeper_guild",
+        "cacao_court",
+        "orchid_shrine_archive",
+        "forest_path_guard",
+        "burial_cave_name_house",
+        "mist_calendar_readers"
+      ],
+      "social_actor_archetypes": [
+        "ridge_market_families",
+        "later_copyists",
+        "bridge_repair_lineages",
+        "cacao_porter_clans"
+      ],
+      "authority_conflicts": [
+        "bridge_keeper_guild_vs_cacao_court",
+        "orchid_shrine_archive_vs_mist_calendar_readers",
+        "forest_path_guard_vs_ridge_market_families",
+        "burial_cave_name_house_vs_later_copyists"
+      ],
+      "religious_or_mythic_archetypes": [
+        "mist_jaguar_oracle",
+        "orchid_rain_mother",
+        "rope_bridge_creation_myth",
+        "cacao_dead_feast",
+        "sinkhole_ancestor_descent"
+      ],
+      "ritual_pressures": [
+        "bridge_reweaving_festival",
+        "first_cacao_offering",
+        "mist_calendar_alignment",
+        "orchid_resin_fast",
+        "burial_cave_song"
+      ],
+      "writing_system_archetypes": [
+        "bridge_knot_script",
+        "painted_gourd_marks",
+        "cacao_token_glyphs",
+        "late_bark_cursive"
+      ],
+      "recordkeeping_styles": [
+        "bridge_labor_roster",
+        "cacao_tribute_list",
+        "ritual_song",
+        "market_toll_record",
+        "burial_name_register",
+        "path_guard_report"
+      ],
+      "artifact_media": [
+        "knotted_bridge_cord",
+        "painted_gourd",
+        "bark_paper_copy",
+        "cave_wall_painting",
+        "ceramic_cacao_token",
+        "oral_song",
+        "stone_ladder_inscription"
+      ],
+      "evidence_distortion_modes": [
+        "humidity_rot",
+        "fungal_staining",
+        "ritual_song_compression",
+        "fog_route_confusion",
+        "copyist_interpolation",
+        "bridge_replacement_context_loss",
+        "animal_damage"
+      ],
+      "mystery_archetypes": [
+        "missing_bridge_origin",
+        "duplicate_ridge_market_name",
+        "contradictory_landslide_date",
+        "ambiguous_orchid_title",
+        "impossible_fog_route",
+        "forged_cacao_tribute",
+        "lost_burial_cave_register"
+      ],
+      "target_hidden_entity_count": 19,
+      "target_hidden_event_count": 27,
+      "target_public_artifact_count": 17,
+      "target_mystery_count": 6,
+      "seed": 4211
+    },
+    {
+      "id": "iron_fen_commune",
+      "display_name": "Iron Fen Commune",
+      "description": "A flat fen commune organizes itself around bog iron, eel traps, and rotating council halls, producing stubborn numeric records but unstable names for offices and places.",
+      "earliest_year": 160,
+      "latest_year": 830,
+      "geographic_features": [
+        "freshwater_fens",
+        "bog_iron_beds",
+        "eel_channels",
+        "alder_coppice",
+        "floating_meadows",
+        "low_causeway_tracks"
+      ],
+      "environmental_pressures": [
+        "fen_flooding",
+        "bog_iron_depletion",
+        "eel_run_failure",
+        "causeway_sinking",
+        "alder_blight",
+        "mosquito_fever"
+      ],
+      "major_sites": [
+        "rotating_council_hall",
+        "eel_gate_weir",
+        "iron_smelter_mound",
+        "alder_coppice_shrine",
+        "floating_meadow_market",
+        "low_causeway_junction"
+      ],
+      "economic_pressures": [
+        "bog_iron_quota",
+        "eel_trap_rights",
+        "causeway_repair_labor",
+        "alder_charcoal_levy",
+        "meadow_grazing_dues",
+        "communal_tool_rent"
+      ],
+      "trade_goods": [
+        "bog_iron_blooms",
+        "eels",
+        "alder_charcoal",
+        "reed_baskets",
+        "wool_cloth",
+        "iron_tools",
+        "fen_honey",
+        "clay_pots"
+      ],
+      "institution_archetypes": [
+        "rotating_council",
+        "iron_smelter_house",
+        "eel_weir_court",
+        "causeway_labor_circle",
+        "alder_shrine_keepers",
+        "tool_rent_ledger_house"
+      ],
+      "social_actor_archetypes": [
+        "floating_meadow_families",
+        "communal_scribes",
+        "eel_fisher_lineages",
+        "bog_charcoal_burners"
+      ],
+      "authority_conflicts": [
+        "rotating_council_vs_iron_smelter_house",
+        "eel_weir_court_vs_causeway_labor_circle",
+        "alder_shrine_keepers_vs_tool_rent_ledger_house",
+        "floating_meadow_families_vs_communal_scribes"
+      ],
+      "religious_or_mythic_archetypes": [
+        "iron_from_mud_myth",
+        "eel_mother_cult",
+        "alder_root_ancestor_rite",
+        "fen_lantern_omens",
+        "sinking_hall_warning"
+      ],
+      "ritual_pressures": [
+        "council_hall_rotation",
+        "eel_first_run_feast",
+        "iron_hearth_renewal",
+        "causeway_mud_oath",
+        "alder_coppice_cutting_rite"
+      ],
+      "writing_system_archetypes": [
+        "iron_bloom_marks",
+        "eel_trap_notches",
+        "fen_ledger_script",
+        "late_commune_cursive"
+      ],
+      "recordkeeping_styles": [
+        "bog_iron_quota",
+        "eel_trap_roster",
+        "causeway_labor_tally",
+        "tool_rent_ledger",
+        "council_vote_mark",
+        "shrine_inventory"
+      ],
+      "artifact_media": [
+        "iron_bloom_mark",
+        "wooden_tally",
+        "reed_ledger",
+        "clay_tablet",
+        "oral_vote_song",
+        "alder_board_inscription",
+        "commune_copy_board"
+      ],
+      "evidence_distortion_modes": [
+        "water_damage",
+        "office_rotation_confusion",
+        "numeric_context_loss",
+        "causeway_context_shift",
+        "communal_title_reuse",
+        "iron_corrosion",
+        "copyist_flattening"
+      ],
+      "mystery_archetypes": [
+        "ambiguous_council_office",
+        "forged_tool_rent_tally",
+        "missing_eel_weir_origin",
+        "contradictory_causeway_sinking_date",
+        "duplicate_hall_name",
+        "unexplained_bog_iron_shortage",
+        "ritual_title_misread_as_person"
+      ],
+      "target_hidden_entity_count": 18,
+      "target_hidden_event_count": 24,
+      "target_public_artifact_count": 16,
+      "target_mystery_count": 5,
+      "seed": 4212,
+      "tags": [
+        "wetland",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy",
+        "fragile_archive",
+        "forgery_pressure"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "originality",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "lunar_grain_basin",
+      "display_name": "Lunar Grain Basin",
+      "description": "A fertile inland basin ties irrigation, moon calendars, and granary courts together, but rival calendar houses keep making the same harvest look like different legal years.",
+      "earliest_year": 70,
+      "latest_year": 790,
+      "geographic_features": [
+        "inland_alluvial_basin",
+        "moon_reflecting_reservoirs",
+        "irrigated_barley_fields",
+        "low_hill_observatories",
+        "clay_loam_plains",
+        "seasonal_creeks"
+      ],
+      "environmental_pressures": [
+        "reservoir_siltation",
+        "moon_calendar_drift",
+        "barley_blight",
+        "creek_diversion_conflicts",
+        "drought_cycles",
+        "storage_mold"
+      ],
+      "major_sites": [
+        "silver_reservoir",
+        "new_moon_granary",
+        "west_observatory_hill",
+        "barley_gate_market",
+        "old_creek_diversion",
+        "calendar_house_court"
+      ],
+      "economic_pressures": [
+        "grain_tax",
+        "reservoir_maintenance_labor",
+        "calendar_fee_collection",
+        "barley_seed_debt",
+        "creek_diversion_rights",
+        "granary_mold_fines"
+      ],
+      "trade_goods": [
+        "barley",
+        "sesame_oil",
+        "clay_jars",
+        "linen",
+        "moon_silver_tokens",
+        "plow_wood",
+        "dried_lentils",
+        "copper_sickles"
+      ],
+      "institution_archetypes": [
+        "granary_court",
+        "moon_calendar_house",
+        "reservoir_engineers",
+        "seed_debt_office",
+        "creek_boundary_court",
+        "observatory_priesthood"
+      ],
+      "social_actor_archetypes": [
+        "barley_village_elders",
+        "later_royal_scribes",
+        "reservoir_migrant_laborers",
+        "seed_debt_families"
+      ],
+      "authority_conflicts": [
+        "moon_calendar_house_vs_granary_court",
+        "reservoir_engineers_vs_creek_boundary_court",
+        "seed_debt_office_vs_barley_village_elders",
+        "observatory_priesthood_vs_later_royal_scribes"
+      ],
+      "religious_or_mythic_archetypes": [
+        "moon_harvest_cult",
+        "silver_reservoir_myth",
+        "barley_child_liturgy",
+        "dark_moon_debt_taboo",
+        "creek_serpent_boundary"
+      ],
+      "ritual_pressures": [
+        "new_moon_tax_release",
+        "harvest_moon_procession",
+        "reservoir_mirror_cleansing",
+        "seed_blessing_lot",
+        "dark_moon_debt_silence"
+      ],
+      "writing_system_archetypes": [
+        "early_clay_seed_marks",
+        "granary_ledger_script",
+        "moon_tablet_notation",
+        "late_observatory_cursive"
+      ],
+      "recordkeeping_styles": [
+        "grain_ledger",
+        "calendar_table",
+        "reservoir_labor_roster",
+        "seed_debt_contract",
+        "boundary_stone",
+        "mold_fine_record"
+      ],
+      "artifact_media": [
+        "clay_tablet",
+        "moon_tablet",
+        "boundary_stone",
+        "ceramic_seed_token",
+        "linen_account_strip",
+        "shrine_wall_inscription",
+        "royal_moon_copy_tablet"
+      ],
+      "evidence_distortion_modes": [
+        "calendar_drift",
+        "mold_damage",
+        "clay_tablet_breakage",
+        "royal_date_normalization",
+        "creek_name_reuse",
+        "debt_record_forgery",
+        "translation_uncertainty"
+      ],
+      "mystery_archetypes": [
+        "contradictory_harvest_year",
+        "forged_seed_debt_contract",
+        "missing_reservoir_origin",
+        "ambiguous_calendar_officer",
+        "duplicate_creek_name",
+        "anachronistic_observatory_cursive",
+        "false_tax_release_claim"
+      ],
+      "target_hidden_entity_count": 20,
+      "target_hidden_event_count": 29,
+      "target_public_artifact_count": 18,
+      "target_mystery_count": 6,
+      "seed": 4213,
+      "tags": [
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy",
+        "fragile_archive",
+        "forgery_pressure",
+        "chronology_dispute",
+        "protected_ambiguity"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "originality",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "black_sand_thalassocracy",
+      "display_name": "Black Sand Thalassocracy",
+      "description": "A volcanic island sea-power taxes black-sand beaches, canoe fleets, and shrine harbors, preserving power in basalt markers while storms scatter the wooden records that explain them.",
+      "earliest_year": 410,
+      "latest_year": 1120,
+      "geographic_features": [
+        "volcanic_islands",
+        "black_sand_beaches",
+        "reef_harbors",
+        "lava_fields",
+        "breadfruit_groves",
+        "deep_ocean_channels"
+      ],
+      "environmental_pressures": [
+        "cyclone_landfall",
+        "lava_flow_disruption",
+        "reef_bleaching",
+        "canoe_loss_storms",
+        "breadfruit_blight",
+        "freshwater_lens_failure"
+      ],
+      "major_sites": [
+        "black_sand_harbor",
+        "basalt_chief_platform",
+        "canoe_fleet_house",
+        "lava_shrine",
+        "breadfruit_tax_grove",
+        "outer_reef_watch"
+      ],
+      "economic_pressures": [
+        "canoe_fleet_levy",
+        "beach_iron_sand_tax",
+        "breadfruit_tribute",
+        "reef_fishery_rights",
+        "storm_repair_labor",
+        "harbor_shelter_dues"
+      ],
+      "trade_goods": [
+        "iron_sand",
+        "breadfruit_paste",
+        "reef_fish",
+        "canoe_lashings",
+        "basalt_adzes",
+        "red_feathers",
+        "coconut_oil",
+        "shell_currency"
+      ],
+      "institution_archetypes": [
+        "canoe_fleet_council",
+        "basalt_platform_court",
+        "lava_shrine_priesthood",
+        "beach_tax_house",
+        "reef_watch_guard",
+        "breadfruit_grove_wardens",
+        "storm_repair_bureau"
+      ],
+      "social_actor_archetypes": [
+        "foreign_sail_leaders",
+        "storm_repair_crews",
+        "breadfruit_grove_families",
+        "canoe_kin_groups"
+      ],
+      "authority_conflicts": [
+        "canoe_fleet_council_vs_basalt_platform_court",
+        "lava_shrine_priesthood_vs_beach_tax_house",
+        "reef_watch_guard_vs_foreign_sail_leaders",
+        "breadfruit_grove_wardens_vs_storm_repair_bureau"
+      ],
+      "religious_or_mythic_archetypes": [
+        "lava_mother_cult",
+        "black_sand_birth_myth",
+        "storm_canoe_lament",
+        "reef_shark_ancestor",
+        "breadfruit_first_feast"
+      ],
+      "ritual_pressures": [
+        "canoe_launch_blessing",
+        "lava_field_avoidance_rite",
+        "storm_dead_recitation",
+        "breadfruit_first_cut",
+        "reef_watch_oath"
+      ],
+      "writing_system_archetypes": [
+        "basalt_platform_glyphs",
+        "canoe_lashing_knots",
+        "shell_currency_marks",
+        "late_harbor_cursive"
+      ],
+      "recordkeeping_styles": [
+        "fleet_roster",
+        "beach_tax_record",
+        "breadfruit_tribute_list",
+        "reef_watch_report",
+        "storm_damage_lament",
+        "harbor_shelter_contract"
+      ],
+      "artifact_media": [
+        "basalt_marker",
+        "canoe_plank_mark",
+        "shell_token",
+        "woven_oath_cloth",
+        "oral_lament",
+        "wooden_tally",
+        "canoe_house_copy_board"
+      ],
+      "evidence_distortion_modes": [
+        "storm_fragmentation",
+        "wood_rot",
+        "oral_formula_substitution",
+        "lava_overburial",
+        "island_name_duplication",
+        "shell_token_context_loss",
+        "foreign_translation_uncertainty"
+      ],
+      "mystery_archetypes": [
+        "missing_canoe_fleet_origin",
+        "contradictory_cyclone_date",
+        "ambiguous_basalt_title",
+        "impossible_island_voyage",
+        "forged_beach_tax_record",
+        "duplicate_reef_name",
+        "unexplained_lava_site_abandonment"
+      ],
+      "target_hidden_entity_count": 18,
+      "target_hidden_event_count": 26,
+      "target_public_artifact_count": 16,
+      "target_mystery_count": 5,
+      "seed": 4214,
+      "tags": [
+        "coastal",
+        "island_polity",
+        "volcanic",
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy",
+        "oral_archive"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "language_drift",
+          "interpreter_model",
+          "mystery_preservation"
+        ]
+      }
+    },
+    {
+      "id": "cavern_lime_synod",
+      "display_name": "Cavern Lime Synod",
+      "description": "A subterranean limestone synod governs sinkhole farms, cave water, and whitewash inscriptions, creating records that are durable in stone but unstable in route, layer, and ritual interpretation.",
+      "earliest_year": 100,
+      "latest_year": 810,
+      "geographic_features": [
+        "limestone_caves",
+        "karst_sinkholes",
+        "underground_streams",
+        "white_lime_cliffs",
+        "fungus_gardens",
+        "bat_roost_chambers"
+      ],
+      "environmental_pressures": [
+        "cave_flooding",
+        "sinkhole_collapse",
+        "lime_dust_lung",
+        "fungus_blight",
+        "bat_plague",
+        "underground_stream_diversion"
+      ],
+      "major_sites": [
+        "white_synod_chamber",
+        "deep_stream_gate",
+        "bat_roost_shrine",
+        "upper_sinkhole_farm",
+        "lime_kiln_court",
+        "blind_path_crossing"
+      ],
+      "economic_pressures": [
+        "lime_kiln_tax",
+        "cave_water_allocation",
+        "fungus_garden_quota",
+        "bat_guano_tribute",
+        "sinkhole_farm_dues",
+        "guide_fee_collection"
+      ],
+      "trade_goods": [
+        "lime_plaster",
+        "bat_guano",
+        "fungus_cakes",
+        "cave_salt",
+        "white_chalk",
+        "clay_lamps",
+        "blind_fish",
+        "hemp_rope"
+      ],
+      "institution_archetypes": [
+        "lime_synod",
+        "deep_water_wardens",
+        "cave_guide_guild",
+        "fungus_garden_overseers",
+        "bat_roost_priesthood",
+        "sinkhole_boundary_court"
+      ],
+      "social_actor_archetypes": [
+        "upper_farm_clans",
+        "deep_path_families",
+        "lime_kiln_workers",
+        "sinkhole_tenant_households"
+      ],
+      "authority_conflicts": [
+        "lime_synod_vs_deep_water_wardens",
+        "cave_guide_guild_vs_sinkhole_boundary_court",
+        "fungus_garden_overseers_vs_bat_roost_priesthood",
+        "upper_farm_clans_vs_white_synod_chamber"
+      ],
+      "religious_or_mythic_archetypes": [
+        "blind_stream_oracle",
+        "white_lime_purification",
+        "bat_ancestor_wing_cult",
+        "understone_creation_myth",
+        "echo_judgment_liturgy"
+      ],
+      "ritual_pressures": [
+        "whitewash_renewal",
+        "echo_oath_trial",
+        "deep_stream_silence",
+        "first_fungus_cutting",
+        "bat_roost_offering"
+      ],
+      "writing_system_archetypes": [
+        "whitewash_wall_script",
+        "lamp_smoke_glyphs",
+        "rope_path_knots",
+        "late_synod_cursive"
+      ],
+      "recordkeeping_styles": [
+        "water_allocation_table",
+        "lime_tax_ledger",
+        "guide_route_list",
+        "fungus_quota_record",
+        "echo_trial_transcript",
+        "sinkhole_boundary_map"
+      ],
+      "artifact_media": [
+        "lime_plaster_text",
+        "cave_wall_inscription",
+        "rope_knot_record",
+        "clay_lamp_mark",
+        "bone_tag",
+        "stone_basin_glyph",
+        "synod_copy_leaf"
+      ],
+      "evidence_distortion_modes": [
+        "whitewash_overwriting",
+        "cave_flood_damage",
+        "route_layer_confusion",
+        "echo_formula_compression",
+        "guide_secrecy",
+        "lamp_smoke_staining",
+        "sinkhole_provenance_loss"
+      ],
+      "mystery_archetypes": [
+        "missing_deep_stream_origin",
+        "contradictory_cave_route",
+        "ambiguous_synod_title",
+        "forged_water_allocation",
+        "duplicate_sinkhole_name",
+        "lost_echo_trial_transcript",
+        "anachronistic_synod_cursive"
+      ],
+      "target_hidden_entity_count": 19,
+      "target_hidden_event_count": 28,
+      "target_public_artifact_count": 17,
+      "target_mystery_count": 6,
+      "seed": 4215,
+      "tags": [
+        "highland",
+        "volcanic",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy",
+        "fragile_archive"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "monsoon_canal_republic",
+      "display_name": "Monsoon Canal Republic",
+      "description": "A humid canal republic elects lock speakers, rice assessors, and guild judges, but monsoon timing and factional vote ledgers make civic memory as unstable as the embankments.",
+      "earliest_year": 360,
+      "latest_year": 1090,
+      "geographic_features": [
+        "monsoon_river_plain",
+        "rice_polders",
+        "canal_lock_network",
+        "mangrove_edge",
+        "raised_market_wards",
+        "silted_backchannels"
+      ],
+      "environmental_pressures": [
+        "monsoon_failure",
+        "embankment_breach",
+        "rice_blight",
+        "canal_lock_jamming",
+        "river_avulsion",
+        "mangrove_encroachment"
+      ],
+      "major_sites": [
+        "republic_lock_square",
+        "rice_assessor_hall",
+        "mangrove_edge_shrine",
+        "old_backchannel_gate",
+        "raised_vote_market",
+        "eastern_embankment_watch"
+      ],
+      "economic_pressures": [
+        "rice_tax_assessment",
+        "canal_lock_fees",
+        "embankment_labor_lottery",
+        "guild_vote_patronage",
+        "mangrove_fuel_levy",
+        "market_scale_rent"
+      ],
+      "trade_goods": [
+        "rice",
+        "fish_sauce",
+        "mangrove_charcoal",
+        "bamboo_poles",
+        "ceramic_jars",
+        "silk_thread",
+        "salted_duck",
+        "bronze_scales"
+      ],
+      "institution_archetypes": [
+        "lock_speaker_assembly",
+        "rice_assessor_house",
+        "guild_judges",
+        "embankment_labor_lottery",
+        "mangrove_shrine_archive",
+        "market_scale_office",
+        "ward_councils"
+      ],
+      "social_actor_archetypes": [
+        "republic_copyists",
+        "canal_ward_families",
+        "rice_tenant_households",
+        "boat_labor_crews"
+      ],
+      "authority_conflicts": [
+        "lock_speaker_assembly_vs_rice_assessor_house",
+        "guild_judges_vs_market_scale_office",
+        "embankment_labor_lottery_vs_ward_councils",
+        "mangrove_shrine_archive_vs_republic_copyists"
+      ],
+      "religious_or_mythic_archetypes": [
+        "monsoon_dragon_liturgy",
+        "rice_mother_cult",
+        "lock_gate_spirit_oath",
+        "mangrove_dead_procession",
+        "silt_serpent_warning"
+      ],
+      "ritual_pressures": [
+        "monsoon_arrival_vote",
+        "rice_first_cut_offering",
+        "lock_gate_washing",
+        "embankment_labor_lot_drawing",
+        "market_scale_blessing"
+      ],
+      "writing_system_archetypes": [
+        "bamboo_tally_marks",
+        "rice_ledger_script",
+        "lock_vote_notation",
+        "late_republic_cursive"
+      ],
+      "recordkeeping_styles": [
+        "rice_tax_ledger",
+        "lock_fee_register",
+        "vote_tally",
+        "embankment_labor_roster",
+        "market_scale_contract",
+        "flood_report"
+      ],
+      "artifact_media": [
+        "bamboo_tally",
+        "clay_tablet",
+        "reed_ledger",
+        "bronze_scale_mark",
+        "shrine_wall_inscription",
+        "oral_vote_chant",
+        "republic_copy_register"
+      ],
+      "evidence_distortion_modes": [
+        "monsoon_water_damage",
+        "vote_tally_forgery",
+        "calendar_drift",
+        "ward_name_reuse",
+        "silted_site_confusion",
+        "copyist_faction_bias",
+        "ritual_compression"
+      ],
+      "mystery_archetypes": [
+        "forged_vote_tally",
+        "contradictory_monsoon_date",
+        "missing_lock_speaker_origin",
+        "ambiguous_ward_boundary",
+        "duplicate_backchannel_name",
+        "false_embankment_labor_exemption",
+        "anachronistic_republic_cursive"
+      ],
+      "target_hidden_entity_count": 21,
+      "target_hidden_event_count": 30,
+      "target_public_artifact_count": 18,
+      "target_mystery_count": 6,
+      "seed": 4216,
+      "tags": [
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy",
+        "fragile_archive",
+        "forgery_pressure",
+        "chronology_dispute"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "originality",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "amber_pine_marches",
+      "display_name": "Amber Pine Marches",
+      "description": "A forest borderland of resin groves, amber streams, and palisade shrines turns frontier defense into a trade bureaucracy where every family archive is also a border claim.",
+      "earliest_year": 190,
+      "latest_year": 870,
+      "geographic_features": [
+        "pine_forest_marches",
+        "amber_streambeds",
+        "boggy_border_paths",
+        "palisade_clearings",
+        "wolf_ridges",
+        "resin_groves"
+      ],
+      "environmental_pressures": [
+        "forest_fire_cycles",
+        "pine_beetle_blight",
+        "border_path_flooding",
+        "wolf_predation",
+        "amber_stream_depletion",
+        "palisade_rot"
+      ],
+      "major_sites": [
+        "amber_stream_ford",
+        "palisade_shrine",
+        "resin_grove_market",
+        "wolf_ridge_watch",
+        "border_oath_hall",
+        "old_firebreak_line"
+      ],
+      "economic_pressures": [
+        "amber_claim_tax",
+        "resin_harvest_levy",
+        "border_watch_labor",
+        "palisade_repair_dues",
+        "fur_trade_toll",
+        "firebreak_obligations"
+      ],
+      "trade_goods": [
+        "amber",
+        "pine_resin",
+        "furs",
+        "charcoal",
+        "honey_wax",
+        "wooden_bowstaves",
+        "dried_mushrooms",
+        "iron_axes"
+      ],
+      "institution_archetypes": [
+        "amber_claim_court",
+        "resin_grove_guild",
+        "border_watch_house",
+        "palisade_shrine_archive",
+        "firebreak_labor_circle",
+        "fur_toll_office"
+      ],
+      "social_actor_archetypes": [
+        "marcher_families",
+        "central_tax_scribes",
+        "resin_tapper_households",
+        "fur_hunter_bands"
+      ],
+      "authority_conflicts": [
+        "amber_claim_court_vs_resin_grove_guild",
+        "border_watch_house_vs_fur_toll_office",
+        "palisade_shrine_archive_vs_firebreak_labor_circle",
+        "marcher_families_vs_central_tax_scribes"
+      ],
+      "religious_or_mythic_archetypes": [
+        "amber_tears_myth",
+        "pine_ancestor_grove",
+        "wolf_boundary_spirit",
+        "firebreak_purification",
+        "palisade_oath_saint"
+      ],
+      "ritual_pressures": [
+        "resin_first_cut",
+        "border_oath_renewal",
+        "wolf_ridge_vigil",
+        "firebreak_burning_rite",
+        "amber_stream_offering"
+      ],
+      "writing_system_archetypes": [
+        "amber_token_marks",
+        "palisade_post_glyphs",
+        "resin_tally_script",
+        "late_march_cursive"
+      ],
+      "recordkeeping_styles": [
+        "amber_claim_register",
+        "resin_harvest_tally",
+        "border_watch_roster",
+        "fur_trade_contract",
+        "firebreak_labor_list",
+        "shrine_oath_copy"
+      ],
+      "artifact_media": [
+        "amber_token",
+        "wooden_post_inscription",
+        "birch_bark_copy",
+        "iron_axe_mark",
+        "oral_border_song",
+        "palisade_plaque",
+        "march_copy_birch_roll"
+      ],
+      "evidence_distortion_modes": [
+        "forest_fire_loss",
+        "wood_rot",
+        "border_name_duplication",
+        "central_scribal_renaming",
+        "amber_token_counterfeit",
+        "oral_boundary_compression",
+        "palisade_reuse"
+      ],
+      "mystery_archetypes": [
+        "conflicting_amber_claim",
+        "missing_border_oath_origin",
+        "forged_resin_tally",
+        "duplicate_wolf_ridge_name",
+        "ambiguous_watch_officer",
+        "contradictory_firebreak_date",
+        "false_frontier_grant"
+      ],
+      "target_hidden_entity_count": 18,
+      "target_hidden_event_count": 25,
+      "target_public_artifact_count": 16,
+      "target_mystery_count": 5,
+      "seed": 4217,
+      "tags": [
+        "wetland",
+        "forest_lattice",
+        "bureaucratic",
+        "ritual_legal",
+        "merchant_polity",
+        "artifact_rich",
+        "ledger_heavy",
+        "oral_archive"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "language_drift",
+          "interpreter_model",
+          "mystery_preservation"
+        ]
+      }
+    },
+    {
+      "id": "ivory_savanna_courts",
+      "display_name": "Ivory Savanna Courts",
+      "description": "A savanna court culture controls elephant corridors, seasonal wells, and praise-name law, preserving power in ivory tags and bardic archives that make office, person, and lineage hard to separate.",
+      "earliest_year": 250,
+      "latest_year": 950,
+      "geographic_features": [
+        "open_savanna",
+        "seasonal_wells",
+        "elephant_corridors",
+        "acacia_parks",
+        "termite_mound_plains",
+        "dry_grass_river"
+      ],
+      "environmental_pressures": [
+        "well_drying",
+        "grass_fire_cycles",
+        "elephant_crop_damage",
+        "tsetse_fever",
+        "drought_migration",
+        "termite_archive_damage"
+      ],
+      "major_sites": [
+        "ivory_court_enclosure",
+        "great_well_gate",
+        "elephant_corridor_shrine",
+        "acacia_praise_ground",
+        "termite_mound_archive",
+        "dry_river_market"
+      ],
+      "economic_pressures": [
+        "ivory_tribute",
+        "well_access_fees",
+        "cattle_bridewealth_tax",
+        "elephant_corridor_tolls",
+        "bardic_patronage_dues",
+        "firebreak_labor"
+      ],
+      "trade_goods": [
+        "ivory",
+        "cattle",
+        "sorghum",
+        "honey_mead",
+        "acacia_gum",
+        "ostrich_feathers",
+        "iron_spearheads",
+        "leather_shields"
+      ],
+      "institution_archetypes": [
+        "ivory_court",
+        "well_keeper_council",
+        "praise_name_bards",
+        "elephant_corridor_wardens",
+        "cattle_bridewealth_court",
+        "firebreak_labor_house"
+      ],
+      "social_actor_archetypes": [
+        "dry_river_merchants",
+        "acacia_park_clans",
+        "praise_name_lineages",
+        "cattle_client_households"
+      ],
+      "authority_conflicts": [
+        "ivory_court_vs_praise_name_bards",
+        "well_keeper_council_vs_cattle_bridewealth_court",
+        "elephant_corridor_wardens_vs_dry_river_merchants",
+        "firebreak_labor_house_vs_acacia_park_clans"
+      ],
+      "religious_or_mythic_archetypes": [
+        "elephant_ancestor_kingship",
+        "great_well_mother",
+        "fire_grass_judgment",
+        "praise_name_soul_law",
+        "ivory_moon_liturgy"
+      ],
+      "ritual_pressures": [
+        "first_well_opening",
+        "ivory_tag_dedication",
+        "praise_name_recitation",
+        "firebreak_hunt_rite",
+        "elephant_corridor_silence"
+      ],
+      "writing_system_archetypes": [
+        "ivory_tag_glyphs",
+        "well_post_notches",
+        "bardic_memory_knots",
+        "late_court_cursive"
+      ],
+      "recordkeeping_styles": [
+        "ivory_tribute_list",
+        "well_access_register",
+        "bridewealth_contract",
+        "praise_name_song",
+        "corridor_toll_record",
+        "firebreak_roster"
+      ],
+      "artifact_media": [
+        "ivory_tag",
+        "well_post_inscription",
+        "woven_memory_cord",
+        "oral_praise_song",
+        "leather_contract",
+        "iron_spear_mark",
+        "bardic_copy_hide"
+      ],
+      "evidence_distortion_modes": [
+        "termite_damage",
+        "praise_name_person_confusion",
+        "ivory_recarving",
+        "well_name_reuse",
+        "oral_formula_substitution",
+        "drought_migration_context_loss",
+        "court_propaganda"
+      ],
+      "mystery_archetypes": [
+        "ambiguous_praise_name",
+        "missing_well_right_origin",
+        "forged_bridewealth_contract",
+        "duplicate_elephant_corridor_name",
+        "contradictory_drought_migration_date",
+        "false_ivory_tribute_claim",
+        "ritual_title_misread_as_king"
+      ],
+      "target_hidden_entity_count": 19,
+      "target_hidden_event_count": 27,
+      "target_public_artifact_count": 16,
+      "target_mystery_count": 5,
+      "seed": 4218,
+      "tags": [
+        "water_access",
+        "bureaucratic",
+        "artifact_rich",
+        "ledger_heavy",
+        "oral_archive",
+        "fragile_archive",
+        "forgery_pressure",
+        "chronology_dispute"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "originality",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "mirror_salt_lake",
+      "display_name": "Mirror Salt Lake Compact",
+      "description": "A high desert salt-lake compact survives on mirrored brine pans, migratory bird harvests, and caravan treaties, with optical ritual language that turns practical water claims into celestial law.",
+      "earliest_year": 300,
+      "latest_year": 1000,
+      "geographic_features": [
+        "high_desert_salt_lake",
+        "brine_pans",
+        "mirage_flats",
+        "bird_migration_marsh",
+        "basalt_islands",
+        "dry_caravan_rims"
+      ],
+      "environmental_pressures": [
+        "lake_level_fluctuation",
+        "brine_crust_collapse",
+        "bird_migration_failure",
+        "mirage_navigation_error",
+        "salt_storms",
+        "caravan_well_souring"
+      ],
+      "major_sites": [
+        "mirror_pan_shrine",
+        "basalt_island_court",
+        "bird_net_camp",
+        "caravan_rim_gate",
+        "old_brine_well",
+        "salt_reflection_observatory"
+      ],
+      "economic_pressures": [
+        "salt_pan_rent",
+        "brine_water_rights",
+        "bird_net_tribute",
+        "caravan_treaty_toll",
+        "observatory_calendar_fees",
+        "well_repair_obligations"
+      ],
+      "trade_goods": [
+        "salt_slabs",
+        "brine_dye",
+        "bird_feathers",
+        "dried_waterfowl",
+        "obsidian_flakes",
+        "caravan_wool",
+        "mirrored_mica",
+        "date_wine"
+      ],
+      "institution_archetypes": [
+        "salt_pan_board",
+        "basalt_island_court",
+        "bird_net_guild",
+        "caravan_treaty_house",
+        "reflection_observatory",
+        "well_repair_labor_circle"
+      ],
+      "social_actor_archetypes": [
+        "brine_pan_families",
+        "foreign_caravan_agents",
+        "bird_net_families",
+        "mirage_route_guides"
+      ],
+      "authority_conflicts": [
+        "salt_pan_board_vs_caravan_treaty_house",
+        "reflection_observatory_vs_basalt_island_court",
+        "bird_net_guild_vs_well_repair_labor_circle",
+        "brine_pan_families_vs_foreign_caravan_agents"
+      ],
+      "religious_or_mythic_archetypes": [
+        "mirror_sky_liturgy",
+        "salt_crust_creation_myth",
+        "bird_messenger_cult",
+        "basalt_island_dead",
+        "mirage_judge_omen"
+      ],
+      "ritual_pressures": [
+        "first_reflection_rite",
+        "salt_crust_crossing_oath",
+        "bird_return_festival",
+        "caravan_treaty_recitation",
+        "well_souring_purification"
+      ],
+      "writing_system_archetypes": [
+        "salt_slab_glyphs",
+        "caravan_treaty_marks",
+        "bird_net_knots",
+        "late_reflection_cursive"
+      ],
+      "recordkeeping_styles": [
+        "salt_pan_lease",
+        "caravan_treaty_copy",
+        "bird_net_roster",
+        "well_repair_tally",
+        "reflection_calendar_table",
+        "brine_water_decree"
+      ],
+      "artifact_media": [
+        "salt_slab_inscription",
+        "basalt_marker",
+        "woven_bird_net_tag",
+        "caravan_hide_contract",
+        "mica_token",
+        "oral_treaty_song",
+        "treaty_copy_mica_sheet"
+      ],
+      "evidence_distortion_modes": [
+        "salt_crystal_damage",
+        "mirage_route_confusion",
+        "calendar_optical_metaphor",
+        "treaty_translation_uncertainty",
+        "bird_migration_date_drift",
+        "salt_slab_recarving",
+        "well_name_reuse"
+      ],
+      "mystery_archetypes": [
+        "impossible_lake_crossing",
+        "contradictory_bird_return_date",
+        "forged_caravan_treaty",
+        "ambiguous_reflection_title",
+        "missing_brine_water_origin",
+        "duplicate_basalt_island_name",
+        "anachronistic_reflection_cursive"
+      ],
+      "target_hidden_entity_count": 18,
+      "target_hidden_event_count": 25,
+      "target_public_artifact_count": 15,
+      "target_mystery_count": 5,
+      "seed": 4219,
+      "tags": [
+        "island_polity",
+        "wetland",
+        "arid_basin",
+        "water_access",
+        "bureaucratic",
+        "nomadic",
+        "artifact_rich",
+        "ledger_heavy"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "windbreak_oasis_league",
+      "display_name": "Windbreak Oasis League",
+      "description": "A league of desert oases survives by maintaining palm windbreaks, qanat tunnels, and marriage treaties, so the archive grows from water ledgers, dowry copies, and sand-scoured boundary stones.",
+      "earliest_year": 220,
+      "latest_year": 940,
+      "geographic_features": [
+        "chain_oases",
+        "palm_windbreaks",
+        "qanat_tunnels",
+        "dune_seas",
+        "caravan_crossroads",
+        "gypsum_ridges"
+      ],
+      "environmental_pressures": [
+        "dune_encroachment",
+        "qanat_collapse",
+        "palm_blight",
+        "well_poisoning",
+        "sandstorms",
+        "caravan_route_shift"
+      ],
+      "major_sites": [
+        "seven_palms_oasis",
+        "qanat_mother_well",
+        "gypsum_boundary_stone",
+        "windbreak_labor_camp",
+        "caravan_marriage_house",
+        "dune_watch_tower"
+      ],
+      "economic_pressures": [
+        "qanat_water_shares",
+        "date_palm_tax",
+        "windbreak_labor_dues",
+        "caravan_marriage_tolls",
+        "gypsum_plaster_rent",
+        "well_guard_fees"
+      ],
+      "trade_goods": [
+        "dates",
+        "palm_fiber",
+        "gypsum_plaster",
+        "camel_saddles",
+        "indigo_cloth",
+        "salt",
+        "silver_rings",
+        "dried_melons"
+      ],
+      "institution_archetypes": [
+        "qanat_share_court",
+        "palm_windbreak_guild",
+        "caravan_marriage_house",
+        "well_guard_captains",
+        "gypsum_boundary_court",
+        "dune_watch_priesthood"
+      ],
+      "social_actor_archetypes": [
+        "oasis_matriarchs",
+        "route_tax_scribes",
+        "dowry_lineage_brokers",
+        "qanat_digging_families"
+      ],
+      "authority_conflicts": [
+        "qanat_share_court_vs_palm_windbreak_guild",
+        "caravan_marriage_house_vs_well_guard_captains",
+        "gypsum_boundary_court_vs_dune_watch_priesthood",
+        "oasis_matriarchs_vs_route_tax_scribes"
+      ],
+      "religious_or_mythic_archetypes": [
+        "mother_well_myth",
+        "palm_shadow_blessing",
+        "dune_wind_judge",
+        "marriage_caravan_liturgy",
+        "buried_water_taboo"
+      ],
+      "ritual_pressures": [
+        "qanat_cleaning_festival",
+        "first_date_offering",
+        "windbreak_replanting_oath",
+        "marriage_caravan_procession",
+        "well_guard_night_vigil"
+      ],
+      "writing_system_archetypes": [
+        "water_share_notches",
+        "dowry_contract_hand",
+        "gypsum_boundary_glyphs",
+        "late_oasis_cursive"
+      ],
+      "recordkeeping_styles": [
+        "water_share_ledger",
+        "date_tax_list",
+        "dowry_contract",
+        "windbreak_labor_roster",
+        "caravan_pass",
+        "boundary_stone",
+        "well_guard_report"
+      ],
+      "artifact_media": [
+        "gypsum_boundary_stone",
+        "palm_leaf_ledger",
+        "leather_dowry_contract",
+        "wooden_water_tally",
+        "silver_ring_mark",
+        "shrine_wall_inscription",
+        "oasis_copy_palm_leaf"
+      ],
+      "evidence_distortion_modes": [
+        "sand_abrasion",
+        "palm_leaf_decay",
+        "dowry_clause_interpolation",
+        "oasis_name_reuse",
+        "qanat_collapse_context_loss",
+        "route_tax_forgery",
+        "translation_uncertainty"
+      ],
+      "mystery_archetypes": [
+        "missing_qanat_share_origin",
+        "forged_dowry_contract",
+        "contradictory_oasis_boundary",
+        "duplicate_mother_well_name",
+        "ambiguous_well_guard_title",
+        "impossible_caravan_treaty_route",
+        "anachronistic_oasis_cursive"
+      ],
+      "target_hidden_entity_count": 20,
+      "target_hidden_event_count": 28,
+      "target_public_artifact_count": 17,
+      "target_mystery_count": 6,
+      "seed": 4220,
+      "tags": [
+        "arid_basin",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "nomadic",
+        "artifact_rich",
+        "ledger_heavy",
+        "fragile_archive"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "sky_reef_atolls",
+      "display_name": "Sky Reef Atoll Confederation",
+      "description": "A chain of low coral atolls survives through breadfruit groves, storm wells, canoe astronomy, and reef tolls. Authority shifts between navigators who know the star paths and well houses that decide which islands endure drought.",
+      "earliest_year": 140,
+      "latest_year": 790,
+      "geographic_features": [
+        "coral_atolls",
+        "shallow_reef_lagoons",
+        "storm_cut_channels",
+        "breadfruit_islets",
+        "freshwater_lens_wells",
+        "outer_canoe_passages"
+      ],
+      "environmental_pressures": [
+        "cyclone_seasons",
+        "freshwater_lens_salting",
+        "reef_channel_shift",
+        "breadfruit_blight",
+        "sea_level_creep",
+        "canoe_loss_storms"
+      ],
+      "major_sites": [
+        "star_canoe_beach",
+        "deep_lens_well",
+        "outer_reef_toll",
+        "breadfruit_mother_grove",
+        "storm_bone_shrine",
+        "shell_beacon_ring"
+      ],
+      "economic_pressures": [
+        "reef_passage_toll",
+        "breadfruit_grove_quota",
+        "storm_well_rationing",
+        "canoe_labor_obligations",
+        "shell_currency_debts",
+        "interislet_hostage_feasts"
+      ],
+      "trade_goods": [
+        "breadfruit_flour",
+        "dried_octopus",
+        "cowrie_strings",
+        "canoe_lashings",
+        "sharkskin",
+        "pearl_shell",
+        "coconut_oil",
+        "red_coral"
+      ],
+      "institution_archetypes": [
+        "star_navigator_house",
+        "storm_well_court",
+        "reef_toll_wardens",
+        "breadfruit_grove_council",
+        "canoe_lashing_guild",
+        "shell_debt_archive"
+      ],
+      "social_actor_archetypes": [
+        "outer_islet_families",
+        "storm_refuge_hosts",
+        "foreign_canoe_crews",
+        "reef_fisher_lineages"
+      ],
+      "authority_conflicts": [
+        "star_navigator_house_vs_storm_well_court",
+        "reef_toll_wardens_vs_foreign_canoe_crews",
+        "breadfruit_grove_council_vs_outer_islet_families",
+        "canoe_lashing_guild_vs_shell_debt_archive"
+      ],
+      "religious_or_mythic_archetypes": [
+        "sky_reef_creation_song",
+        "well_mother_taboo",
+        "storm_bone_ancestor_cult",
+        "shark_path_omen_cycle",
+        "fallen_star_canoe_myth"
+      ],
+      "ritual_pressures": [
+        "first_cyclone_lashing",
+        "new_star_path_recitation",
+        "well_silence_fast",
+        "breadfruit_first_bake",
+        "reef_dead_offerings"
+      ],
+      "writing_system_archetypes": [
+        "shell_string_notation",
+        "canoe_rib_marks",
+        "star_path_knot_script",
+        "late_lagoon_cursive"
+      ],
+      "recordkeeping_styles": [
+        "well_ration_roster",
+        "canoe_passage_list",
+        "shell_debt_tally",
+        "breadfruit_quota_song",
+        "reef_toll_mark",
+        "storm_loss_lament"
+      ],
+      "artifact_media": [
+        "shell_string",
+        "canoe_rib_inscription",
+        "coral_marker",
+        "oral_navigation_song",
+        "shark_tooth_tag",
+        "lagoon_copy_mat",
+        "bone_storm_charm"
+      ],
+      "evidence_distortion_modes": [
+        "cyclone_scatter",
+        "salt_bleaching",
+        "star_name_translation",
+        "islet_name_drift",
+        "ritual_compression",
+        "shell_string_rethreading",
+        "survivor_bias"
+      ],
+      "mystery_archetypes": [
+        "impossible_star_route",
+        "missing_well_founder",
+        "contradictory_cyclone_year",
+        "ambiguous_shell_debt_owner",
+        "duplicate_islet_name",
+        "ritual_title_misread_as_navigator",
+        "forged_reef_toll_right"
+      ],
+      "target_hidden_entity_count": 18,
+      "target_hidden_event_count": 25,
+      "target_public_artifact_count": 15,
+      "target_mystery_count": 5,
+      "seed": 4301,
+      "tags": [
+        "coastal",
+        "island_polity",
+        "water_access",
+        "bureaucratic",
+        "merchant_polity",
+        "artifact_rich",
+        "ledger_heavy",
+        "oral_archive"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "language_drift",
+          "interpreter_model",
+          "mystery_preservation"
+        ]
+      }
+    },
+    {
+      "id": "ochre_canyon_priory",
+      "display_name": "Ochre Canyon Priory States",
+      "description": "A canyon civilization binds cliff dwellings, pigment mines, spring ledges, and penitential archives into a sacred economy of color. Its priests claim ochre remembers sin, while quarry families treat the same pigment as taxable labor.",
+      "earliest_year": 60,
+      "latest_year": 710,
+      "geographic_features": [
+        "red_canyon_walls",
+        "hanging_spring_ledges",
+        "dry_slot_passages",
+        "ochre_mine_galleries",
+        "cliff_dwelling_shelves",
+        "echo_chamber_caves"
+      ],
+      "environmental_pressures": [
+        "spring_ledge_drying",
+        "rockfall_seasons",
+        "flash_flood_chutes",
+        "pigment_gallery_collapse",
+        "wind_sand_abrasion",
+        "smoke_choked_dwellings"
+      ],
+      "major_sites": [
+        "red_wall_priory",
+        "hanging_spring_stair",
+        "deep_ochre_gallery",
+        "echo_confession_cave",
+        "cliff_granary_shelf",
+        "broken_rope_bridge"
+      ],
+      "economic_pressures": [
+        "ochre_tribute",
+        "spring_stair_access",
+        "cliff_granary_quota",
+        "rope_bridge_labor",
+        "pilgrim_penance_fees",
+        "pigment_export_control"
+      ],
+      "trade_goods": [
+        "red_ochre",
+        "yellow_ochre",
+        "cliff_barley",
+        "goat_hide",
+        "rope_fiber",
+        "painted_pots",
+        "dried_herbs",
+        "canyon_salt"
+      ],
+      "institution_archetypes": [
+        "red_wall_priory",
+        "ochre_quarry_board",
+        "spring_stair_court",
+        "confession_archive",
+        "cliff_granary_house",
+        "rope_bridge_watch"
+      ],
+      "social_actor_archetypes": [
+        "quarry_families",
+        "penitent_pilgrim_bands",
+        "cliff_dwelling_lineages",
+        "later_priory_copyists"
+      ],
+      "authority_conflicts": [
+        "red_wall_priory_vs_ochre_quarry_board",
+        "spring_stair_court_vs_cliff_dwelling_lineages",
+        "confession_archive_vs_later_priory_copyists",
+        "rope_bridge_watch_vs_quarry_families"
+      ],
+      "religious_or_mythic_archetypes": [
+        "color_sin_doctrine",
+        "echo_ancestor_confession",
+        "spring_ledge_miracle",
+        "red_hand_origin_myth",
+        "stone_mouth_oracle"
+      ],
+      "ritual_pressures": [
+        "annual_wall_repainting",
+        "spring_stair_silence",
+        "confession_echo_recitation",
+        "first_ochre_washing",
+        "rope_bridge_oath"
+      ],
+      "writing_system_archetypes": [
+        "painted_hand_glyphs",
+        "ochre_stroke_script",
+        "rope_tag_notches",
+        "late_priory_copy_hand"
+      ],
+      "recordkeeping_styles": [
+        "pigment_tribute_list",
+        "confession_summary",
+        "spring_access_roll",
+        "granary_shelf_inventory",
+        "pilgrim_penance_mark",
+        "bridge_repair_roster"
+      ],
+      "artifact_media": [
+        "painted_canyon_wall",
+        "ochre_tablet",
+        "rope_tag",
+        "goat_hide_scroll",
+        "ceramic_paint_pot",
+        "priory_copy_panel",
+        "cliff_granary_token"
+      ],
+      "evidence_distortion_modes": [
+        "wall_overpainting",
+        "confession_redaction",
+        "rockfall_context_loss",
+        "echo_formula_substitution",
+        "pigment_fading",
+        "copyist_moralizing",
+        "site_access_gap"
+      ],
+      "mystery_archetypes": [
+        "overpainted_founder_name",
+        "missing_confession_origin",
+        "contradictory_spring_miracle_date",
+        "forged_penance_release",
+        "ambiguous_color_title",
+        "unexplained_gallery_closure",
+        "duplicate_cliff_granary_name"
+      ],
+      "target_hidden_entity_count": 19,
+      "target_hidden_event_count": 26,
+      "target_public_artifact_count": 16,
+      "target_mystery_count": 5,
+      "seed": 4302,
+      "tags": [
+        "highland",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy",
+        "fragile_archive",
+        "forgery_pressure"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "originality",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "stepwell_indigo_rajanate",
+      "display_name": "Stepwell Indigo Rajanate",
+      "description": "A dry plain polity centers power on stepped reservoirs, indigo vats, caravan courtyards, and marriage-water contracts. Its rulers measure legitimacy in who descends the well first when the rains fail.",
+      "earliest_year": 210,
+      "latest_year": 980,
+      "geographic_features": [
+        "semiarid_alluvial_plain",
+        "deep_stepwells",
+        "indigo_vat_quarters",
+        "dust_caravan_yards",
+        "thorn_fenced_fields",
+        "seasonal_monsoon_tanks"
+      ],
+      "environmental_pressures": [
+        "monsoon_variability",
+        "well_stair_silting",
+        "indigo_vat_poisoning",
+        "field_salt_crusts",
+        "caravan_dust_plagues",
+        "tank_embankment_breach"
+      ],
+      "major_sites": [
+        "queen_stepwell",
+        "blue_vat_quarter",
+        "thorn_field_gate",
+        "marriage_courtyard",
+        "dust_caravan_serai",
+        "rain_tank_shrine"
+      ],
+      "economic_pressures": [
+        "stepwell_water_shares",
+        "indigo_dye_tax",
+        "marriage_water_dowries",
+        "caravan_yard_rent",
+        "tank_repair_labor",
+        "thorn_field_assessment"
+      ],
+      "trade_goods": [
+        "indigo_cakes",
+        "millet",
+        "cotton_thread",
+        "brass_lamps",
+        "camel_bells",
+        "sesame_oil",
+        "lac_dye",
+        "salted_limes"
+      ],
+      "institution_archetypes": [
+        "stepwell_share_court",
+        "indigo_vat_guild",
+        "marriage_contract_house",
+        "rain_tank_priesthood",
+        "caravan_serai_board",
+        "thorn_field_assessors"
+      ],
+      "social_actor_archetypes": [
+        "well_dowry_families",
+        "vat_worker_lineages",
+        "foreign_dye_brokers",
+        "dry_field_tenants"
+      ],
+      "authority_conflicts": [
+        "stepwell_share_court_vs_marriage_contract_house",
+        "indigo_vat_guild_vs_foreign_dye_brokers",
+        "rain_tank_priesthood_vs_thorn_field_assessors",
+        "caravan_serai_board_vs_well_dowry_families"
+      ],
+      "religious_or_mythic_archetypes": [
+        "deep_well_serpent_myth",
+        "blue_hand_purity_law",
+        "rain_bride_lament",
+        "stair_descent_kingship",
+        "tank_moon_offering"
+      ],
+      "ritual_pressures": [
+        "first_rain_descent",
+        "indigo_vat_blessing",
+        "marriage_water_exchange",
+        "tank_silt_clearing_festival",
+        "dry_month_lamp_vigil"
+      ],
+      "writing_system_archetypes": [
+        "stepwell_stair_script",
+        "indigo_seal_marks",
+        "dowry_cord_notation",
+        "late_courtyard_cursive"
+      ],
+      "recordkeeping_styles": [
+        "water_share_ledger",
+        "indigo_vat_account",
+        "dowry_contract",
+        "caravan_yard_manifest",
+        "tank_labor_roster",
+        "field_assessment_roll"
+      ],
+      "artifact_media": [
+        "stair_wall_inscription",
+        "dyed_cotton_contract",
+        "brass_lamp_mark",
+        "ceramic_vat_tag",
+        "courtyard_copy_roll",
+        "cord_dowry_tally",
+        "rain_tank_plaque"
+      ],
+      "evidence_distortion_modes": [
+        "dye_staining",
+        "well_silt_burial",
+        "marriage_name_substitution",
+        "monsoon_calendar_drift",
+        "contract_recopying_bias",
+        "stairstone_reuse",
+        "merchant_translation_uncertainty"
+      ],
+      "mystery_archetypes": [
+        "missing_first_descent_record",
+        "forged_water_dowry",
+        "contradictory_monsoon_failure",
+        "ambiguous_blue_hand_title",
+        "duplicate_stepwell_name",
+        "unexplained_vat_poisoning",
+        "anachronistic_dowry_cursive"
+      ],
+      "target_hidden_entity_count": 21,
+      "target_hidden_event_count": 29,
+      "target_public_artifact_count": 17,
+      "target_mystery_count": 6,
+      "seed": 4303,
+      "tags": [
+        "wetland",
+        "steppe_ecology",
+        "arid_basin",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "jade_bamboo_highlands",
+      "display_name": "Jade Bamboo Highland Lattice",
+      "description": "A humid highland society joins bamboo bridge wards, jade stream claims, lacquered leaf records, and ancestor drums. Landslides make every river-right temporary and every copied record politically dangerous.",
+      "earliest_year": 170,
+      "latest_year": 860,
+      "geographic_features": [
+        "bamboo_highland_ridges",
+        "jade_stream_gorges",
+        "mist_terrace_fields",
+        "suspension_bridge_paths",
+        "lacquer_forest_slopes",
+        "waterfall_shrine_basins"
+      ],
+      "environmental_pressures": [
+        "monsoon_landslides",
+        "bridge_rot",
+        "jade_stream_diversion",
+        "terrace_mud_slump",
+        "lacquer_tree_blight",
+        "mist_crop_mildew"
+      ],
+      "major_sites": [
+        "green_stream_cut",
+        "bamboo_bridge_gate",
+        "drum_ancestor_house",
+        "lacquer_leaf_archive",
+        "mist_terrace_market",
+        "waterfall_oath_basin"
+      ],
+      "economic_pressures": [
+        "jade_stream_claims",
+        "bridge_crossing_toll",
+        "bamboo_labor_levy",
+        "terrace_rice_assessment",
+        "lacquer_resin_quota",
+        "drum_feast_obligations"
+      ],
+      "trade_goods": [
+        "jade_pebbles",
+        "bamboo_poles",
+        "lacquer_resin",
+        "terrace_rice",
+        "tea_bricks",
+        "drum_hides",
+        "woven_rain_cloaks",
+        "salted_fern"
+      ],
+      "institution_archetypes": [
+        "jade_stream_court",
+        "bridge_wardens",
+        "lacquer_archive_house",
+        "ancestor_drum_council",
+        "terrace_rice_board",
+        "waterfall_oath_judges"
+      ],
+      "social_actor_archetypes": [
+        "bridge_builder_clans",
+        "jade_panner_families",
+        "ridge_marriage_hosts",
+        "late_lacquer_copyists"
+      ],
+      "authority_conflicts": [
+        "jade_stream_court_vs_jade_panner_families",
+        "bridge_wardens_vs_bridge_builder_clans",
+        "lacquer_archive_house_vs_late_lacquer_copyists",
+        "ancestor_drum_council_vs_terrace_rice_board"
+      ],
+      "religious_or_mythic_archetypes": [
+        "green_bone_ancestor_myth",
+        "waterfall_oath_spirit",
+        "bamboo_bridge_soul_doctrine",
+        "drum_thunder_liturgy",
+        "mist_child_origin_song"
+      ],
+      "ritual_pressures": [
+        "bridge_rebinding_day",
+        "jade_stream_washing",
+        "ancestor_drum_feast",
+        "waterfall_oath_plunge",
+        "terrace_first_rice_rite"
+      ],
+      "writing_system_archetypes": [
+        "lacquer_leaf_script",
+        "bamboo_slip_notches",
+        "jade_marker_glyphs",
+        "late_ridge_cursive"
+      ],
+      "recordkeeping_styles": [
+        "jade_claim_register",
+        "bridge_repair_roster",
+        "terrace_rice_ledger",
+        "drum_genealogy",
+        "oath_basin_transcript",
+        "lacquer_resin_account"
+      ],
+      "artifact_media": [
+        "lacquered_leaf_book",
+        "bamboo_slip_bundle",
+        "jade_marker_stone",
+        "drum_skin_painting",
+        "waterfall_basin_inscription",
+        "ridge_copy_leaf",
+        "woven_rain_cloak_mark"
+      ],
+      "evidence_distortion_modes": [
+        "humidity_rot",
+        "landslide_provenance_loss",
+        "stream_course_confusion",
+        "drum_name_compression",
+        "copyist_lacquer_overcoat",
+        "bridge_site_reuse",
+        "jade_color_misclassification"
+      ],
+      "mystery_archetypes": [
+        "missing_jade_claim_origin",
+        "contradictory_landslide_date",
+        "ambiguous_drum_ancestor",
+        "forged_bridge_toll_right",
+        "duplicate_waterfall_name",
+        "unexplained_archive_rebinding",
+        "ritual_title_misread_as_site"
+      ],
+      "target_hidden_entity_count": 20,
+      "target_hidden_event_count": 27,
+      "target_public_artifact_count": 16,
+      "target_mystery_count": 5,
+      "seed": 4304,
+      "tags": [
+        "highland",
+        "forest_lattice",
+        "water_access",
+        "bureaucratic",
+        "artifact_rich",
+        "ledger_heavy",
+        "oral_archive",
+        "fragile_archive"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "language_drift",
+          "interpreter_model",
+          "mystery_preservation"
+        ]
+      }
+    },
+    {
+      "id": "whale_bone_fjord",
+      "display_name": "Whale Bone Fjord Jarldoms",
+      "description": "Cold fjord jarldoms organize winter harbors, whale drives, cliff pastures, and bone-law assemblies around short sailing seasons. Their archive is durable in bone but fragile in names, because praise titles travel faster than ships.",
+      "earliest_year": 300,
+      "latest_year": 1030,
+      "geographic_features": [
+        "deep_fjords",
+        "sea_ice_mouths",
+        "cliff_pastures",
+        "winter_harbors",
+        "whale_drive_bays",
+        "glacier_fed_rivers"
+      ],
+      "environmental_pressures": [
+        "sea_ice_closure",
+        "whale_migration_shift",
+        "winter_fodder_shortage",
+        "glacier_outburst_floods",
+        "harbor_freeze_damage",
+        "cliff_pasture_slides"
+      ],
+      "major_sites": [
+        "bone_law_thing",
+        "north_whale_bay",
+        "ice_mouth_beacon",
+        "winter_ship_shed",
+        "cliff_pasture_ring",
+        "glacier_river_ford"
+      ],
+      "economic_pressures": [
+        "whale_meat_division",
+        "bone_carving_tax",
+        "winter_harbor_rent",
+        "cliff_pasture_dues",
+        "seal_oil_tribute",
+        "ship_shed_labor"
+      ],
+      "trade_goods": [
+        "whale_bone",
+        "seal_oil",
+        "dried_cod",
+        "wool_cloaks",
+        "iron_rivets",
+        "carved_ivory_substitute",
+        "tarred_rope",
+        "glacier_salt"
+      ],
+      "institution_archetypes": [
+        "bone_law_assembly",
+        "whale_drive_masters",
+        "winter_harbor_court",
+        "ship_shed_guild",
+        "beacon_watch_house",
+        "cliff_pasture_judges"
+      ],
+      "social_actor_archetypes": [
+        "bay_kin_crews",
+        "wandering_praise_singers",
+        "winter_foster_families",
+        "foreign_iron_traders"
+      ],
+      "authority_conflicts": [
+        "bone_law_assembly_vs_whale_drive_masters",
+        "winter_harbor_court_vs_bay_kin_crews",
+        "ship_shed_guild_vs_foreign_iron_traders",
+        "beacon_watch_house_vs_wandering_praise_singers"
+      ],
+      "religious_or_mythic_archetypes": [
+        "whale_road_afterlife",
+        "ice_mouth_warning_spirit",
+        "bone_law_ancestor_cult",
+        "storm_bride_lament",
+        "glacier_giant_oath"
+      ],
+      "ritual_pressures": [
+        "first_whale_division",
+        "winter_harbor_sealing",
+        "beacon_fire_vigil",
+        "bone_law_recitation",
+        "ship_keel_blessing"
+      ],
+      "writing_system_archetypes": [
+        "bone_rune_marks",
+        "keel_tally_notches",
+        "beacon_stone_glyphs",
+        "late_harbor_copy_hand"
+      ],
+      "recordkeeping_styles": [
+        "whale_share_tally",
+        "harbor_rent_mark",
+        "ship_shed_roster",
+        "pasture_judgment",
+        "praise_genealogy",
+        "beacon_watch_list"
+      ],
+      "artifact_media": [
+        "whale_bone_tablet",
+        "carved_keel_plank",
+        "beacon_stone",
+        "oral_praise_song",
+        "seal_hide_scroll",
+        "harbor_copy_board",
+        "iron_rivet_mark"
+      ],
+      "evidence_distortion_modes": [
+        "bone_recarving",
+        "praise_name_confusion",
+        "sea_ice_route_compression",
+        "shipwreck_context_loss",
+        "smoke_darkening",
+        "winter_calendar_drift",
+        "foreign_name_translation"
+      ],
+      "mystery_archetypes": [
+        "ambiguous_praise_name",
+        "contradictory_whale_division",
+        "missing_bone_law_origin",
+        "forged_harbor_rent_mark",
+        "impossible_ice_route",
+        "duplicate_bay_name",
+        "anachronistic_keel_notch"
+      ],
+      "target_hidden_entity_count": 18,
+      "target_hidden_event_count": 24,
+      "target_public_artifact_count": 15,
+      "target_mystery_count": 5,
+      "seed": 4305,
+      "tags": [
+        "coastal",
+        "water_access",
+        "bureaucratic",
+        "merchant_polity",
+        "artifact_rich",
+        "ledger_heavy",
+        "fragile_archive",
+        "forgery_pressure"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "originality",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "cinnabar_karst_hegemony",
+      "display_name": "Cinnabar Karst Hegemony",
+      "description": "A karst upland hegemony controls sinkhole towns, toxic cinnabar galleries, cave-water courts, and red funerary seals. Its rulers monopolize danger itself: the mines poison bodies, names, and documents.",
+      "earliest_year": 250,
+      "latest_year": 950,
+      "geographic_features": [
+        "limestone_karst_towers",
+        "sinkhole_towns",
+        "cinnabar_mine_galleries",
+        "underground_rivers",
+        "misty_pocket_valleys",
+        "bat_cave_shrines"
+      ],
+      "environmental_pressures": [
+        "sinkhole_collapse",
+        "mine_poisoning",
+        "underground_river_flooding",
+        "bat_guano_fever",
+        "valley_crop_blight",
+        "toxic_smelter_smoke"
+      ],
+      "major_sites": [
+        "red_mercury_gate",
+        "sinkhole_capital",
+        "bat_cave_oracle",
+        "underground_river_court",
+        "white_tower_granary",
+        "smoke_seal_foundry"
+      ],
+      "economic_pressures": [
+        "cinnabar_mine_quota",
+        "toxic_labor_rotation",
+        "cave_water_rents",
+        "funerary_seal_tax",
+        "smelter_charcoal_levy",
+        "valley_grain_subsidy"
+      ],
+      "trade_goods": [
+        "cinnabar",
+        "red_seal_pigment",
+        "bat_guano_fertilizer",
+        "limestone_lime",
+        "charcoal",
+        "valley_rice",
+        "bronze_mirrors",
+        "medicinal_roots"
+      ],
+      "institution_archetypes": [
+        "cinnabar_quota_bureau",
+        "cave_water_court",
+        "funerary_seal_college",
+        "smelter_smoke_office",
+        "bat_oracle_house",
+        "valley_grain_board"
+      ],
+      "social_actor_archetypes": [
+        "mine_labor_lineages",
+        "poison_healer_families",
+        "sinkhole_town_hosts",
+        "later_red_seal_copyists"
+      ],
+      "authority_conflicts": [
+        "cinnabar_quota_bureau_vs_mine_labor_lineages",
+        "cave_water_court_vs_sinkhole_town_hosts",
+        "funerary_seal_college_vs_later_red_seal_copyists",
+        "smelter_smoke_office_vs_poison_healer_families"
+      ],
+      "religious_or_mythic_archetypes": [
+        "red_breath_afterlife_doctrine",
+        "bat_oracle_descent",
+        "underground_river_judge",
+        "poison_ancestor_purity_law",
+        "sinkhole_birth_myth"
+      ],
+      "ritual_pressures": [
+        "red_seal_burial",
+        "mine_entry_appeasement",
+        "bat_oracle_night",
+        "river_cup_oath",
+        "smoke_mask_purification"
+      ],
+      "writing_system_archetypes": [
+        "red_seal_script",
+        "mine_gallery_notches",
+        "cave_water_glyphs",
+        "late_hegemony_cursive"
+      ],
+      "recordkeeping_styles": [
+        "mine_quota_ledger",
+        "toxic_labor_roster",
+        "funerary_seal_register",
+        "cave_water_judgment",
+        "smelter_charcoal_account",
+        "healer_case_list"
+      ],
+      "artifact_media": [
+        "cinnabar_seal",
+        "limestone_cave_inscription",
+        "bamboo_mine_tally",
+        "funerary_plaque",
+        "smoke_darkened_tablet",
+        "red_seal_copy_leaf",
+        "bronze_mirror_text"
+      ],
+      "evidence_distortion_modes": [
+        "toxic_pigment_decay",
+        "sealed_tomb_recontextualization",
+        "sinkhole_site_loss",
+        "mine_labor_name_erasure",
+        "oracle_formula_obscurity",
+        "copyist_funeral_bias",
+        "smoke_damage"
+      ],
+      "mystery_archetypes": [
+        "missing_mine_quota_origin",
+        "contradictory_poison_death_date",
+        "ambiguous_red_seal_title",
+        "forged_funeral_rank",
+        "unexplained_sinkhole_abandonment",
+        "duplicate_underground_river_name",
+        "anachronistic_seal_script"
+      ],
+      "target_hidden_entity_count": 22,
+      "target_hidden_event_count": 31,
+      "target_public_artifact_count": 18,
+      "target_mystery_count": 6,
+      "seed": 4306,
+      "tags": [
+        "highland",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "urban",
+        "artifact_rich",
+        "ledger_heavy",
+        "fragile_archive"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "thunder_millet_mounds",
+      "display_name": "Thunder Millet Mound Kingdoms",
+      "description": "A grassland mound society stores millet in raised earthen platforms and treats lightning strikes as legal verdicts. Herd camps, rain callers, and mound surveyors fight over whether land belongs to ancestors, storms, or granary accounts.",
+      "earliest_year": 110,
+      "latest_year": 820,
+      "geographic_features": [
+        "open_grassland_plains",
+        "earthen_granary_mounds",
+        "seasonal_rain_pans",
+        "termite_clay_ridges",
+        "cattle_drift_paths",
+        "lightning_struck_hills"
+      ],
+      "environmental_pressures": [
+        "erratic_rainfall",
+        "grass_fire_cycles",
+        "millet_storage_rot",
+        "cattle_tick_plague",
+        "termite_mound_undermining",
+        "lightning_fatalities"
+      ],
+      "major_sites": [
+        "high_millet_mound",
+        "thunder_judgment_hill",
+        "rain_pan_camp",
+        "cattle_drift_gate",
+        "termite_clay_shrine",
+        "east_granary_ring"
+      ],
+      "economic_pressures": [
+        "millet_granary_quota",
+        "cattle_drift_fees",
+        "rain_pan_grazing_rights",
+        "mound_repair_labor",
+        "firebreak_obligations",
+        "thunder_fine_collection"
+      ],
+      "trade_goods": [
+        "millet",
+        "cattle_hides",
+        "smoked_beef",
+        "termite_clay",
+        "honey_beer",
+        "iron_spears",
+        "grass_mats",
+        "storm_beads"
+      ],
+      "institution_archetypes": [
+        "mound_survey_office",
+        "rain_caller_court",
+        "granary_ring_house",
+        "cattle_drift_judges",
+        "thunder_fine_archive",
+        "firebreak_labor_circle"
+      ],
+      "social_actor_archetypes": [
+        "herd_camp_families",
+        "millet_brewer_women",
+        "storm_struck_lineages",
+        "wandering_praise_drummer_bands"
+      ],
+      "authority_conflicts": [
+        "mound_survey_office_vs_granary_ring_house",
+        "rain_caller_court_vs_cattle_drift_judges",
+        "thunder_fine_archive_vs_storm_struck_lineages",
+        "firebreak_labor_circle_vs_herd_camp_families"
+      ],
+      "religious_or_mythic_archetypes": [
+        "thunder_judge_cult",
+        "millet_mother_mound_myth",
+        "rain_pan_spirit_oath",
+        "fire_grass_ancestor_lament",
+        "termite_builder_origin"
+      ],
+      "ritual_pressures": [
+        "first_millet_pounding",
+        "rain_pan_drum_call",
+        "lightning_verdict_recitation",
+        "firebreak_oath_cutting",
+        "cattle_drift_blessing"
+      ],
+      "writing_system_archetypes": [
+        "mound_stake_marks",
+        "drum_pattern_notation",
+        "granary_pot_seals",
+        "late_millet_cursive"
+      ],
+      "recordkeeping_styles": [
+        "granary_quota_mark",
+        "cattle_drift_roster",
+        "rain_pan_oath_song",
+        "firebreak_labor_tally",
+        "thunder_fine_list",
+        "mound_boundary_stake"
+      ],
+      "artifact_media": [
+        "clay_granary_seal",
+        "wooden_boundary_stake",
+        "drum_skin_record",
+        "oral_thunder_song",
+        "termite_clay_tablet",
+        "mound_copy_pot",
+        "iron_spear_mark"
+      ],
+      "evidence_distortion_modes": [
+        "mound_erosion",
+        "fire_damage",
+        "drum_pattern_loss",
+        "praise_name_expansion",
+        "rain_calendar_drift",
+        "cattle_brand_confusion",
+        "termite_reworking"
+      ],
+      "mystery_archetypes": [
+        "contradictory_lightning_verdict",
+        "missing_first_mound_survey",
+        "ambiguous_praise_drummer_name",
+        "forged_granary_quota",
+        "duplicate_rain_pan_name",
+        "unexplained_firebreak_failure",
+        "ritual_title_misread_as_king"
+      ],
+      "target_hidden_entity_count": 19,
+      "target_hidden_event_count": 26,
+      "target_public_artifact_count": 16,
+      "target_mystery_count": 5,
+      "seed": 4307,
+      "tags": [
+        "steppe_ecology",
+        "bureaucratic",
+        "nomadic",
+        "artifact_rich",
+        "ledger_heavy",
+        "oral_archive",
+        "fragile_archive",
+        "forgery_pressure"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "originality",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "tin_mist_isles",
+      "display_name": "Tin Mist Isle Cantons",
+      "description": "Fog-bound rocky islands derive power from tin lodes, kelp fires, seal coves, and toll beacons. Their cantons preserve law in harbor chants and mine tablets, making visibility itself a political resource.",
+      "earliest_year": 180,
+      "latest_year": 890,
+      "geographic_features": [
+        "foggy_granite_islands",
+        "tin_lode_cliffs",
+        "kelp_fire_beaches",
+        "seal_cove_harbors",
+        "mist_beacon_peaks",
+        "tidal_cave_storehouses"
+      ],
+      "environmental_pressures": [
+        "dense_sea_fog",
+        "tin_lode_depletion",
+        "kelp_bed_collapse",
+        "seal_cove_overhunt",
+        "beacon_storm_damage",
+        "tidal_cave_flooding"
+      ],
+      "major_sites": [
+        "high_mist_beacon",
+        "blue_tin_cliff",
+        "kelp_ash_beach",
+        "seal_cove_court",
+        "canton_harbor_ring",
+        "tidal_store_cave"
+      ],
+      "economic_pressures": [
+        "tin_lode_quota",
+        "beacon_toll_collection",
+        "kelp_ash_fuel_levy",
+        "seal_cove_rights",
+        "harbor_canton_dues",
+        "cave_storage_rent"
+      ],
+      "trade_goods": [
+        "tin_ingots",
+        "kelp_ash",
+        "seal_oil",
+        "smoked_limpets",
+        "granite_weights",
+        "wool_sails",
+        "bronze_pins",
+        "mist_beacon_glass"
+      ],
+      "institution_archetypes": [
+        "tin_lode_court",
+        "beacon_toll_house",
+        "kelp_fire_guild",
+        "seal_cove_judges",
+        "canton_harbor_assembly",
+        "tidal_store_archive"
+      ],
+      "social_actor_archetypes": [
+        "cliff_miner_families",
+        "fog_pilot_lineages",
+        "foreign_bronze_buyers",
+        "seal_hunter_crews"
+      ],
+      "authority_conflicts": [
+        "tin_lode_court_vs_cliff_miner_families",
+        "beacon_toll_house_vs_fog_pilot_lineages",
+        "kelp_fire_guild_vs_foreign_bronze_buyers",
+        "seal_cove_judges_vs_canton_harbor_assembly"
+      ],
+      "religious_or_mythic_archetypes": [
+        "mist_bride_navigation_myth",
+        "tin_blood_mountain_cult",
+        "seal_cove_ancestor_law",
+        "beacon_star_liturgy",
+        "tide_cave_underworld"
+      ],
+      "ritual_pressures": [
+        "first_fog_beacon_lighting",
+        "tin_lode_opening_rite",
+        "seal_cove_abstinence",
+        "kelp_fire_blessing",
+        "harbor_chant_renewal"
+      ],
+      "writing_system_archetypes": [
+        "granite_beacon_glyphs",
+        "tin_ingot_marks",
+        "harbor_chant_notation",
+        "late_canton_cursive"
+      ],
+      "recordkeeping_styles": [
+        "tin_quota_tablet",
+        "beacon_toll_mark",
+        "seal_cove_roster",
+        "kelp_fuel_account",
+        "harbor_vote_chant",
+        "cave_storage_tag"
+      ],
+      "artifact_media": [
+        "granite_beacon_stone",
+        "tin_ingot_stamp",
+        "seal_hide_scroll",
+        "kelp_ash_tablet",
+        "oral_harbor_chant",
+        "canton_copy_slate",
+        "bronze_pin_inscription"
+      ],
+      "evidence_distortion_modes": [
+        "fog_route_confusion",
+        "salt_corrosion",
+        "tide_cave_scatter",
+        "harbor_chant_compression",
+        "ingot_recasting",
+        "beacon_name_reuse",
+        "foreign_weight_translation"
+      ],
+      "mystery_archetypes": [
+        "impossible_fog_voyage",
+        "missing_tin_lode_origin",
+        "forged_beacon_toll",
+        "ambiguous_harbor_chant_speaker",
+        "duplicate_seal_cove_name",
+        "contradictory_lode_depletion_date",
+        "anachronistic_canton_cursive"
+      ],
+      "target_hidden_entity_count": 20,
+      "target_hidden_event_count": 28,
+      "target_public_artifact_count": 17,
+      "target_mystery_count": 6,
+      "seed": 4308,
+      "tags": [
+        "coastal",
+        "island_polity",
+        "volcanic",
+        "bureaucratic",
+        "merchant_polity",
+        "artifact_rich",
+        "ledger_heavy",
+        "fragile_archive"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "shell_mesa_commonwealth",
+      "display_name": "Shell Mesa Commonwealth",
+      "description": "A dry mesa commonwealth ties cliff granaries, rain ladders, shell-inlaid courts, and maize terraces into federated oath towns. Sea shells travel far inland, so distance becomes a permanent problem for provenance.",
+      "earliest_year": 80,
+      "latest_year": 760,
+      "geographic_features": [
+        "sandstone_mesas",
+        "cliff_granary_caves",
+        "rain_ladder_canyons",
+        "maize_terrace_benches",
+        "dry_wash_paths",
+        "painted_plaza_towns"
+      ],
+      "environmental_pressures": [
+        "multi_year_drought",
+        "cliff_granary_collapse",
+        "terrace_soil_loss",
+        "rain_ladder_decay",
+        "wash_path_erosion",
+        "maize_pest_cycles"
+      ],
+      "major_sites": [
+        "shell_inlay_plaza",
+        "north_cliff_granary",
+        "rain_ladder_canyon",
+        "turquoise_watch_mesa",
+        "dry_wash_market",
+        "maize_first_field"
+      ],
+      "economic_pressures": [
+        "maize_storage_quota",
+        "shell_inlay_tribute",
+        "rain_ladder_maintenance",
+        "plaza_federation_dues",
+        "dry_wash_caravan_toll",
+        "turquoise_watch_labor"
+      ],
+      "trade_goods": [
+        "maize",
+        "beans",
+        "turquoise_chips",
+        "shell_inlay",
+        "cotton_cloth",
+        "painted_ceramics",
+        "obsidian_scraps",
+        "dried_squash"
+      ],
+      "institution_archetypes": [
+        "plaza_federation_council",
+        "cliff_granary_keepers",
+        "rain_ladder_priesthood",
+        "shell_inlay_court",
+        "dry_wash_toll_house",
+        "turquoise_watch_office"
+      ],
+      "social_actor_archetypes": [
+        "maize_matrilineages",
+        "long_path_trader_families",
+        "plaza_host_towns",
+        "later_mesa_copyists"
+      ],
+      "authority_conflicts": [
+        "plaza_federation_council_vs_plaza_host_towns",
+        "cliff_granary_keepers_vs_maize_matrilineages",
+        "rain_ladder_priesthood_vs_shell_inlay_court",
+        "dry_wash_toll_house_vs_long_path_trader_families"
+      ],
+      "religious_or_mythic_archetypes": [
+        "rain_ladder_descent_myth",
+        "maize_grandmother_cult",
+        "shell_ocean_memory_liturgy",
+        "turquoise_eye_watch_spirit",
+        "dry_wash_coyote_law"
+      ],
+      "ritual_pressures": [
+        "rain_ladder_climb",
+        "first_maize_grinding",
+        "shell_plaza_oath",
+        "granary_smoke_cleansing",
+        "turquoise_watch_vigil"
+      ],
+      "writing_system_archetypes": [
+        "painted_ceramic_glyphs",
+        "shell_inlay_notation",
+        "granary_tally_marks",
+        "late_mesa_copy_hand"
+      ],
+      "recordkeeping_styles": [
+        "maize_quota_pot",
+        "plaza_oath_roll",
+        "shell_tribute_mark",
+        "rain_ladder_roster",
+        "dry_wash_pass",
+        "granary_smoke_lament"
+      ],
+      "artifact_media": [
+        "painted_ceramic_bowl",
+        "shell_inlay_panel",
+        "cliff_wall_inscription",
+        "cotton_oath_strip",
+        "wooden_granary_tally",
+        "mesa_copy_pot",
+        "turquoise_token"
+      ],
+      "evidence_distortion_modes": [
+        "ceramic_sherd_scatter",
+        "shell_trade_provenance_confusion",
+        "drought_memory_compression",
+        "plaza_name_reuse",
+        "copyist_federation_bias",
+        "granary_smoke_damage",
+        "ocean_metaphor_misread"
+      ],
+      "mystery_archetypes": [
+        "impossible_shell_origin",
+        "missing_plaza_federation_founder",
+        "contradictory_drought_sequence",
+        "forged_maize_quota_pot",
+        "ambiguous_rain_ladder_title",
+        "duplicate_cliff_granary_name",
+        "unexplained_plaza_abandonment"
+      ],
+      "target_hidden_entity_count": 19,
+      "target_hidden_event_count": 25,
+      "target_public_artifact_count": 16,
+      "target_mystery_count": 5,
+      "seed": 4309,
+      "tags": [
+        "highland",
+        "volcanic",
+        "bureaucratic",
+        "ritual_legal",
+        "merchant_polity",
+        "artifact_rich",
+        "ledger_heavy",
+        "oral_archive"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "language_drift",
+          "interpreter_model",
+          "mystery_preservation"
+        ]
+      }
+    },
+    {
+      "id": "resin_jungle_mandala",
+      "display_name": "Resin Jungle Mandala Cities",
+      "description": "Lowland rainforest cities organize canal gardens, resin groves, feather tribute, and bark-book temples into a shifting mandala of sacred roads. Rot, regrowth, and dynastic overpainting make their archive aggressively unstable.",
+      "earliest_year": 260,
+      "latest_year": 1040,
+      "geographic_features": [
+        "rainforest_lowlands",
+        "raised_canal_gardens",
+        "resin_tree_groves",
+        "sacred_causeway_roads",
+        "jaguar_ridge_shrines",
+        "flooded_forest_basins"
+      ],
+      "environmental_pressures": [
+        "seasonal_forest_flooding",
+        "bark_book_mold",
+        "resin_tree_disease",
+        "causeway_root_heave",
+        "jaguar_predation",
+        "garden_canal_choking"
+      ],
+      "major_sites": [
+        "resin_palace_court",
+        "green_causeway_crossing",
+        "bark_book_temple",
+        "jaguar_ridge_shrine",
+        "feather_tribute_plaza",
+        "canal_garden_quay"
+      ],
+      "economic_pressures": [
+        "resin_grove_quota",
+        "feather_tribute",
+        "canal_garden_labor",
+        "causeway_clearing_obligations",
+        "bark_book_copy_tax",
+        "ritual_hunt_fees"
+      ],
+      "trade_goods": [
+        "tree_resin",
+        "bright_feathers",
+        "cacao_beans",
+        "manioc_flour",
+        "jaguar_pelts",
+        "bark_books",
+        "greenstone_beads",
+        "smoked_peppers"
+      ],
+      "institution_archetypes": [
+        "resin_quota_house",
+        "bark_book_temple",
+        "feather_tribute_court",
+        "canal_garden_board",
+        "causeway_clearance_office",
+        "jaguar_rite_lodge"
+      ],
+      "social_actor_archetypes": [
+        "forest_grove_clans",
+        "feather_hunter_bands",
+        "canal_garden_households",
+        "late_temple_overpainters"
+      ],
+      "authority_conflicts": [
+        "resin_quota_house_vs_forest_grove_clans",
+        "bark_book_temple_vs_late_temple_overpainters",
+        "feather_tribute_court_vs_feather_hunter_bands",
+        "canal_garden_board_vs_causeway_clearance_office"
+      ],
+      "religious_or_mythic_archetypes": [
+        "resin_blood_world_tree",
+        "jaguar_night_sun_myth",
+        "green_causeway_afterlife",
+        "feather_breath_kingship",
+        "flooded_forest_ancestor_cult"
+      ],
+      "ritual_pressures": [
+        "resin_blood_smearing",
+        "jaguar_ridge_vigil",
+        "bark_book_repainting",
+        "feather_plaza_submission",
+        "causeway_root_cutting"
+      ],
+      "writing_system_archetypes": [
+        "bark_book_pictographs",
+        "resin_seal_marks",
+        "feather_knot_notation",
+        "late_mandala_overpaint_hand"
+      ],
+      "recordkeeping_styles": [
+        "resin_quota_book",
+        "feather_tribute_roll",
+        "canal_garden_roster",
+        "causeway_clearance_list",
+        "ritual_hunt_lament",
+        "dynastic_bark_copy"
+      ],
+      "artifact_media": [
+        "bark_book",
+        "resin_seal_lump",
+        "painted_plaster_wall",
+        "feather_knot_cord",
+        "greenstone_token",
+        "mandala_copy_bark",
+        "jaguar_bone_tag"
+      ],
+      "evidence_distortion_modes": [
+        "tropical_mold",
+        "dynastic_overpainting",
+        "root_displacement",
+        "animal_damage",
+        "ritual_name_substitution",
+        "causeway_direction_confusion",
+        "copy_tax_interpolation"
+      ],
+      "mystery_archetypes": [
+        "overpainted_dynastic_name",
+        "missing_resin_grove_origin",
+        "contradictory_flooded_forest_date",
+        "forged_feather_submission",
+        "ambiguous_jaguar_title",
+        "duplicate_causeway_crossing",
+        "anachronistic_bark_hand"
+      ],
+      "target_hidden_entity_count": 22,
+      "target_hidden_event_count": 32,
+      "target_public_artifact_count": 18,
+      "target_mystery_count": 6,
+      "seed": 4310,
+      "tags": [
+        "forest_lattice",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy",
+        "oral_archive",
+        "fragile_archive"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "language_drift",
+          "interpreter_model",
+          "mystery_preservation"
+        ]
+      }
+    },
+    {
+      "id": "silver_tundra_portage",
+      "display_name": "Silver Tundra Portage League",
+      "description": "A tundra river league survives on portage routes, winter sledges, silver creek claims, and reindeer corrals. Its records freeze well but thaw poorly, producing archives where seasons masquerade as places.",
+      "earliest_year": 190,
+      "latest_year": 840,
+      "geographic_features": [
+        "tundra_river_branches",
+        "permafrost_bluffs",
+        "silver_creek_beds",
+        "lichen_grazing_flats",
+        "winter_sledge_routes",
+        "summer_portage_necks"
+      ],
+      "environmental_pressures": [
+        "permafrost_thaw_slump",
+        "river_ice_breakup",
+        "reindeer_lichen_crash",
+        "silver_creek_flooding",
+        "mosquito_plague_summers",
+        "sledge_route_drift"
+      ],
+      "major_sites": [
+        "silver_creek_ford",
+        "winter_sledge_court",
+        "lichen_flat_corral",
+        "permafrost_cache_bluff",
+        "summer_portage_gate",
+        "north_smoke_tent_ring"
+      ],
+      "economic_pressures": [
+        "silver_nugget_quota",
+        "portage_carry_toll",
+        "reindeer_herd_tally",
+        "frozen_cache_rent",
+        "sledge_route_maintenance",
+        "fish_drying_tribute"
+      ],
+      "trade_goods": [
+        "silver_nuggets",
+        "reindeer_hides",
+        "dried_fish",
+        "bone_sled_runners",
+        "lichen_dye",
+        "fur_boots",
+        "river_amber",
+        "smoked_marrow"
+      ],
+      "institution_archetypes": [
+        "silver_creek_assay_house",
+        "portage_toll_court",
+        "reindeer_tally_circle",
+        "frozen_cache_archive",
+        "sledge_route_wardens",
+        "fish_drying_board"
+      ],
+      "social_actor_archetypes": [
+        "migrating_herd_families",
+        "summer_portage_hosts",
+        "winter_sledge_crews",
+        "foreign_fur_brokers"
+      ],
+      "authority_conflicts": [
+        "silver_creek_assay_house_vs_foreign_fur_brokers",
+        "portage_toll_court_vs_summer_portage_hosts",
+        "reindeer_tally_circle_vs_migrating_herd_families",
+        "frozen_cache_archive_vs_sledge_route_wardens"
+      ],
+      "religious_or_mythic_archetypes": [
+        "frozen_river_soul_path",
+        "silver_fish_origin_myth",
+        "reindeer_moon_mother",
+        "permafrost_dead_taboo",
+        "smoke_tent_sky_law"
+      ],
+      "ritual_pressures": [
+        "ice_breakup_offering",
+        "first_sledge_oath",
+        "reindeer_antler_count",
+        "cache_bluff_silence",
+        "summer_portage_smoke_rite"
+      ],
+      "writing_system_archetypes": [
+        "bone_runner_notches",
+        "silver_assay_marks",
+        "hide_map_script",
+        "late_portage_cursive"
+      ],
+      "recordkeeping_styles": [
+        "silver_assay_record",
+        "portage_toll_list",
+        "reindeer_herd_tally",
+        "frozen_cache_tag",
+        "sledge_route_map",
+        "fish_drying_quota"
+      ],
+      "artifact_media": [
+        "bone_sled_runner",
+        "silver_nugget_stamp",
+        "hide_map",
+        "frozen_wood_tag",
+        "oral_smoke_song",
+        "portage_copy_hide",
+        "antler_tally"
+      ],
+      "evidence_distortion_modes": [
+        "thaw_warping",
+        "seasonal_place_confusion",
+        "river_channel_migration",
+        "hide_map_shrinkage",
+        "foreign_weight_conversion",
+        "oral_route_compression",
+        "cache_reuse_context_loss"
+      ],
+      "mystery_archetypes": [
+        "impossible_winter_portage",
+        "missing_silver_assay_origin",
+        "contradictory_ice_breakup_date",
+        "ambiguous_reindeer_owner",
+        "forged_cache_tag",
+        "duplicate_seasonal_camp_name",
+        "unexplained_sledge_route_abandonment"
+      ],
+      "target_hidden_entity_count": 18,
+      "target_hidden_event_count": 25,
+      "target_public_artifact_count": 15,
+      "target_mystery_count": 5,
+      "seed": 4311,
+      "tags": [
+        "tundra",
+        "water_access",
+        "bureaucratic",
+        "merchant_polity",
+        "urban",
+        "artifact_rich",
+        "ledger_heavy",
+        "fragile_archive"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "pumice_crater_city",
+      "display_name": "Pumice Crater Lake Cities",
+      "description": "A lacustrine volcanic civilization builds dock temples around crater lakes, pumice rafts, steam vents, and floating gardens. Eruptions reset the landscape, but priestly lake levels pretend continuity never broke.",
+      "earliest_year": 130,
+      "latest_year": 910,
+      "geographic_features": [
+        "volcanic_crater_lakes",
+        "pumice_shore_fields",
+        "steam_vent_terraces",
+        "floating_garden_beds",
+        "basalt_rim_paths",
+        "ash_buried_harbors"
+      ],
+      "environmental_pressures": [
+        "limnic_gas_release",
+        "pumice_raft_blockage",
+        "steam_vent_shift",
+        "ashfall_burial",
+        "lake_level_swing",
+        "floating_garden_rot"
+      ],
+      "major_sites": [
+        "blue_crater_dock",
+        "pumice_raft_gate",
+        "steam_vent_oracle",
+        "floating_garden_quay",
+        "basalt_rim_watch",
+        "ash_buried_old_harbor"
+      ],
+      "economic_pressures": [
+        "floating_garden_quota",
+        "pumice_stone_toll",
+        "steam_bath_fees",
+        "lake_fishery_tax",
+        "basalt_rim_labor",
+        "ash_clearance_obligations"
+      ],
+      "trade_goods": [
+        "pumice_blocks",
+        "lake_fish",
+        "floating_garden_tubers",
+        "obsidian_dust",
+        "steam_dyed_cloth",
+        "basalt_tools",
+        "sulfur_salts",
+        "reed_floats"
+      ],
+      "institution_archetypes": [
+        "lake_level_priesthood",
+        "pumice_gate_court",
+        "floating_garden_board",
+        "steam_vent_oracle_house",
+        "basalt_rim_watch",
+        "old_harbor_copy_office"
+      ],
+      "social_actor_archetypes": [
+        "raft_pusher_crews",
+        "garden_bed_families",
+        "ash_clearance_workers",
+        "later_lake_copyists"
+      ],
+      "authority_conflicts": [
+        "lake_level_priesthood_vs_floating_garden_board",
+        "pumice_gate_court_vs_raft_pusher_crews",
+        "steam_vent_oracle_house_vs_later_lake_copyists",
+        "basalt_rim_watch_vs_ash_clearance_workers"
+      ],
+      "religious_or_mythic_archetypes": [
+        "blue_lake_womb_myth",
+        "steam_breath_oracle",
+        "pumice_raft_afterlife",
+        "ash_sleeping_ancestor_cult",
+        "rim_watcher_sun_law"
+      ],
+      "ritual_pressures": [
+        "lake_level_measurement",
+        "pumice_gate_opening",
+        "steam_bath_purification",
+        "floating_garden_blessing",
+        "ash_dead_recitation"
+      ],
+      "writing_system_archetypes": [
+        "pumice_incised_marks",
+        "dock_plank_script",
+        "steam_oracle_glyphs",
+        "late_crater_cursive"
+      ],
+      "recordkeeping_styles": [
+        "lake_level_table",
+        "garden_bed_ledger",
+        "pumice_toll_mark",
+        "steam_oracle_transcript",
+        "ash_clearance_roster",
+        "old_harbor_copy"
+      ],
+      "artifact_media": [
+        "pumice_tablet",
+        "dock_plank_inscription",
+        "basalt_rim_marker",
+        "reed_float_tag",
+        "steam_stained_cloth",
+        "crater_copy_board",
+        "fish_bone_tally"
+      ],
+      "evidence_distortion_modes": [
+        "ash_layer_confusion",
+        "pumice_surface_wear",
+        "gas_disaster_silencing",
+        "lake_level_calendar_drift",
+        "harbor_burial_context_loss",
+        "oracle_vapor_metaphor",
+        "copyist_continuity_bias"
+      ],
+      "mystery_archetypes": [
+        "contradictory_eruption_date",
+        "missing_old_harbor_origin",
+        "ambiguous_lake_level_title",
+        "forged_garden_bed_claim",
+        "impossible_pumice_blockage_route",
+        "duplicate_crater_dock_name",
+        "unexplained_gas_death_cluster"
+      ],
+      "target_hidden_entity_count": 21,
+      "target_hidden_event_count": 30,
+      "target_public_artifact_count": 17,
+      "target_mystery_count": 6,
+      "seed": 4312,
+      "tags": [
+        "coastal",
+        "highland",
+        "volcanic",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "merchant_polity",
+        "artifact_rich"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "lotus_blacksoil_diarchy",
+      "display_name": "Lotus Blacksoil Diarchy",
+      "description": "A blacksoil basin diarchy divides sovereignty between lotus temple kitchens and ox-plow tax halls. Its evidence problems come from rich soil: documents rot, fields shift, and ritual food names become political titles.",
+      "earliest_year": 220,
+      "latest_year": 1020,
+      "geographic_features": [
+        "blacksoil_basin",
+        "lotus_pond_fields",
+        "ox_plow_ridges",
+        "seasonal_backswamps",
+        "silt_road_causeways",
+        "reed_walled_temple_lakes"
+      ],
+      "environmental_pressures": [
+        "blacksoil_cracking",
+        "pond_eutrophication",
+        "ox_plague",
+        "silt_road_sinking",
+        "monsoon_backswamp_spread",
+        "grain_mold_outbreaks"
+      ],
+      "major_sites": [
+        "twin_lotus_kitchen",
+        "ox_plow_tax_hall",
+        "blacksoil_boundary_field",
+        "reed_temple_lake",
+        "silt_road_crossing",
+        "backswamp_refuge_mound"
+      ],
+      "economic_pressures": [
+        "ox_plow_tax",
+        "lotus_root_quota",
+        "temple_kitchen_rations",
+        "silt_road_cart_toll",
+        "pond_fishery_dues",
+        "backswamp_refuge_labor"
+      ],
+      "trade_goods": [
+        "lotus_roots",
+        "blacksoil_wheat",
+        "pond_fish",
+        "ox_yokes",
+        "reed_baskets",
+        "sesame_cakes",
+        "temple_salt",
+        "clay_cooking_jars"
+      ],
+      "institution_archetypes": [
+        "lotus_kitchen_temple",
+        "ox_plow_tax_hall",
+        "pond_fishery_court",
+        "silt_road_cart_office",
+        "reed_lake_archive",
+        "backswamp_refuge_board"
+      ],
+      "social_actor_archetypes": [
+        "plow_ox_families",
+        "lotus_cook_lineages",
+        "backswamp_settler_clans",
+        "late_diarchy_copyists"
+      ],
+      "authority_conflicts": [
+        "lotus_kitchen_temple_vs_ox_plow_tax_hall",
+        "pond_fishery_court_vs_lotus_cook_lineages",
+        "silt_road_cart_office_vs_plow_ox_families",
+        "reed_lake_archive_vs_late_diarchy_copyists"
+      ],
+      "religious_or_mythic_archetypes": [
+        "lotus_bowl_creation_myth",
+        "blacksoil_dead_return",
+        "ox_twin_kingship_law",
+        "pond_fish_ancestor_cult",
+        "backswamp_exile_lament"
+      ],
+      "ritual_pressures": [
+        "first_lotus_boiling",
+        "ox_yoke_blessing",
+        "blacksoil_crack_offering",
+        "pond_lamp_floating",
+        "silt_road_reopening"
+      ],
+      "writing_system_archetypes": [
+        "cooking_jar_marks",
+        "ox_yoke_notches",
+        "lotus_leaf_script",
+        "late_basin_cursive"
+      ],
+      "recordkeeping_styles": [
+        "lotus_quota_list",
+        "ox_tax_ledger",
+        "kitchen_ration_roll",
+        "pond_fishery_roster",
+        "cart_toll_record",
+        "backswamp_refuge_register"
+      ],
+      "artifact_media": [
+        "clay_cooking_jar",
+        "lotus_leaf_record",
+        "ox_yoke_tally",
+        "reed_lake_tablet",
+        "oral_kitchen_song",
+        "diarchy_copy_roll",
+        "silt_road_marker"
+      ],
+      "evidence_distortion_modes": [
+        "soil_acid_rot",
+        "food_title_confusion",
+        "field_boundary_shift",
+        "pond_silt_context_loss",
+        "copyist_diarchy_balance",
+        "mold_damage",
+        "ox_name_reuse"
+      ],
+      "mystery_archetypes": [
+        "missing_diarchy_foundation",
+        "ambiguous_lotus_title",
+        "forged_ox_tax_exemption",
+        "contradictory_backswamp_flood_date",
+        "duplicate_boundary_field",
+        "unexplained_temple_kitchen_closure",
+        "anachronistic_lotus_leaf_script"
+      ],
+      "target_hidden_entity_count": 20,
+      "target_hidden_event_count": 28,
+      "target_public_artifact_count": 16,
+      "target_mystery_count": 5,
+      "seed": 4313,
+      "tags": [
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy",
+        "fragile_archive",
+        "forgery_pressure",
+        "chronology_dispute"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "originality",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "bone_dune_houses",
+      "display_name": "Bone Dune House Leagues",
+      "description": "A mobile dune league claims authority through fossil beds, buried waystones, camel-milk houses, and night-road courts. Wind constantly rewrites the map, so every legal record is also a wager against burial.",
+      "earliest_year": 150,
+      "latest_year": 830,
+      "geographic_features": [
+        "shifting_dune_seas",
+        "fossil_bone_fields",
+        "buried_waystone_lines",
+        "dry_well_hollows",
+        "camel_milk_camps",
+        "night_star_roads"
+      ],
+      "environmental_pressures": [
+        "dune_migration",
+        "dry_well_failure",
+        "sandstorm_burial",
+        "camel_milk_disease",
+        "fossil_field_looting",
+        "night_road_disorientation"
+      ],
+      "major_sites": [
+        "white_bone_field",
+        "buried_waystone_gate",
+        "milk_tent_court",
+        "night_road_cairn",
+        "dry_well_hollow",
+        "sand_covered_market"
+      ],
+      "economic_pressures": [
+        "fossil_bone_tribute",
+        "night_road_guide_fees",
+        "camel_milk_tithe",
+        "waystone_recovery_labor",
+        "dry_well_access_rights",
+        "sand_market_debt"
+      ],
+      "trade_goods": [
+        "fossil_bone",
+        "camel_milk_cheese",
+        "salted_dates",
+        "glass_beads",
+        "goat_hide_tents",
+        "star_charts",
+        "desert_incense",
+        "sand_polished_agate"
+      ],
+      "institution_archetypes": [
+        "bone_field_court",
+        "night_road_guides",
+        "milk_tent_council",
+        "waystone_recovery_office",
+        "dry_well_judges",
+        "sand_market_debt_house"
+      ],
+      "social_actor_archetypes": [
+        "dune_house_lineages",
+        "foreign_bead_caravans",
+        "well_herder_families",
+        "later_sand_copyists"
+      ],
+      "authority_conflicts": [
+        "bone_field_court_vs_dune_house_lineages",
+        "night_road_guides_vs_foreign_bead_caravans",
+        "milk_tent_council_vs_dry_well_judges",
+        "waystone_recovery_office_vs_later_sand_copyists"
+      ],
+      "religious_or_mythic_archetypes": [
+        "bone_giant_sleep_myth",
+        "milk_moon_house_law",
+        "buried_star_road_cult",
+        "dry_well_ancestor_taboo",
+        "sand_market_trickster"
+      ],
+      "ritual_pressures": [
+        "night_road_star_count",
+        "bone_field_silence",
+        "milk_tent_adoption",
+        "waystone_uncovering_rite",
+        "dry_well_fast"
+      ],
+      "writing_system_archetypes": [
+        "bone_scratch_marks",
+        "hide_star_map_script",
+        "waystone_glyphs",
+        "late_sand_cursive"
+      ],
+      "recordkeeping_styles": [
+        "fossil_tribute_mark",
+        "night_road_pass",
+        "milk_house_lineage",
+        "waystone_recovery_log",
+        "dry_well_judgment",
+        "sand_market_debt_tally"
+      ],
+      "artifact_media": [
+        "fossil_bone_tag",
+        "goat_hide_star_map",
+        "buried_waystone",
+        "milk_tent_oath_cloth",
+        "oral_night_song",
+        "sand_copy_hide",
+        "agate_token"
+      ],
+      "evidence_distortion_modes": [
+        "sand_abrasion",
+        "dune_provenance_shift",
+        "fossil_misidentification",
+        "star_road_metaphor_confusion",
+        "copyist_route_guessing",
+        "well_name_duplication",
+        "oral_lineage_compression"
+      ],
+      "mystery_archetypes": [
+        "impossible_night_road",
+        "missing_bone_field_origin",
+        "forged_waystone_recovery",
+        "ambiguous_milk_house_founder",
+        "contradictory_dune_burial_date",
+        "duplicate_dry_well_name",
+        "ritual_title_misread_as_giant"
+      ],
+      "target_hidden_entity_count": 18,
+      "target_hidden_event_count": 24,
+      "target_public_artifact_count": 15,
+      "target_mystery_count": 5,
+      "seed": 4314,
+      "tags": [
+        "arid_basin",
+        "water_access",
+        "bureaucratic",
+        "nomadic",
+        "artifact_rich",
+        "fragile_archive",
+        "forgery_pressure",
+        "chronology_dispute"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "originality",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "copper_cloud_plateau",
+      "display_name": "Copper Cloud Plateau Polity",
+      "description": "A high plateau polity captures fog water, mines copper shelves, and keeps llama-like pack trains under cloud shrine law. Fog-harvest rights make weather a taxable institution rather than a background condition.",
+      "earliest_year": 270,
+      "latest_year": 990,
+      "geographic_features": [
+        "high_cloud_plateau",
+        "fog_harvest_nets",
+        "copper_shelf_mines",
+        "steep_switchback_fields",
+        "sky_lagoon_pools",
+        "wind_cut_passes"
+      ],
+      "environmental_pressures": [
+        "fog_failure_cycles",
+        "copper_shelf_collapse",
+        "altitude_sickness",
+        "switchback_washouts",
+        "pack_beast_epidemics",
+        "lagoon_pool_evaporation"
+      ],
+      "major_sites": [
+        "cloud_net_court",
+        "copper_shelf_gate",
+        "sky_lagoon_shrine",
+        "switchback_pack_market",
+        "wind_pass_watch",
+        "high_storehouse_terrace"
+      ],
+      "economic_pressures": [
+        "fog_water_allocation",
+        "copper_ore_quota",
+        "pack_train_toll",
+        "switchback_field_tax",
+        "lagoon_salt_rent",
+        "high_storehouse_inventory"
+      ],
+      "trade_goods": [
+        "copper_ore",
+        "fog_salt",
+        "quinoa_grain",
+        "pack_beast_wool",
+        "dried_potatoes",
+        "green_malachite",
+        "wind_cured_meat",
+        "woven_cloud_cloth"
+      ],
+      "institution_archetypes": [
+        "fog_water_court",
+        "copper_shelf_overseers",
+        "pack_train_board",
+        "sky_lagoon_priesthood",
+        "switchback_field_assessors",
+        "high_storehouse_archive"
+      ],
+      "social_actor_archetypes": [
+        "fog_net_families",
+        "pack_beast_herders",
+        "mine_shelf_workers",
+        "foreign_malachite_brokers"
+      ],
+      "authority_conflicts": [
+        "fog_water_court_vs_fog_net_families",
+        "copper_shelf_overseers_vs_mine_shelf_workers",
+        "pack_train_board_vs_foreign_malachite_brokers",
+        "sky_lagoon_priesthood_vs_switchback_field_assessors"
+      ],
+      "religious_or_mythic_archetypes": [
+        "cloud_milk_creation_myth",
+        "copper_sun_wound_cult",
+        "sky_lagoon_mirror_law",
+        "wind_pass_dead_road",
+        "pack_beast_ancestor_oath"
+      ],
+      "ritual_pressures": [
+        "first_fog_net_wringing",
+        "copper_shelf_bloodless_oath",
+        "sky_lagoon_mirror_fast",
+        "pack_train_bell_blessing",
+        "wind_pass_dead_recitation"
+      ],
+      "writing_system_archetypes": [
+        "woven_cloud_knot_script",
+        "copper_plate_marks",
+        "storehouse_quipu_knots",
+        "late_plateau_cursive"
+      ],
+      "recordkeeping_styles": [
+        "fog_water_share",
+        "copper_quota_plate",
+        "pack_train_manifest",
+        "switchback_tax_roster",
+        "lagoon_salt_register",
+        "storehouse_inventory_knot"
+      ],
+      "artifact_media": [
+        "woven_knot_cord",
+        "copper_plate",
+        "stone_pass_marker",
+        "pack_bell_inscription",
+        "cloud_cloth_record",
+        "plateau_copy_cord",
+        "malachite_token"
+      ],
+      "evidence_distortion_modes": [
+        "fog_metaphor_ambiguity",
+        "copper_corrosion",
+        "knot_retying",
+        "altitude_route_compression",
+        "foreign_trade_name_shift",
+        "storehouse_fire_loss",
+        "lagoon_reflection_title_confusion"
+      ],
+      "mystery_archetypes": [
+        "missing_fog_water_origin",
+        "forged_copper_quota_plate",
+        "contradictory_pack_train_route",
+        "ambiguous_cloud_title",
+        "duplicate_sky_lagoon_name",
+        "unexplained_shelf_collapse",
+        "anachronistic_knot_sequence"
+      ],
+      "target_hidden_entity_count": 21,
+      "target_hidden_event_count": 29,
+      "target_public_artifact_count": 17,
+      "target_mystery_count": 6,
+      "seed": 4315,
+      "tags": [
+        "coastal",
+        "highland",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy",
+        "fragile_archive"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "blue_clay_lakes",
+      "display_name": "Blue Clay Lake Principalities",
+      "description": "An inland lake culture bases power on blue clay pits, reed-ferry tolls, carp ponds, and kiln temples. Kiln collapses and lake retreats turn pottery into the best archive and the most misleading one.",
+      "earliest_year": 100,
+      "latest_year": 780,
+      "geographic_features": [
+        "inland_freshwater_lakes",
+        "blue_clay_pits",
+        "reed_ferry_channels",
+        "carp_pond_dikes",
+        "kiln_hill_slopes",
+        "drying_lake_margins"
+      ],
+      "environmental_pressures": [
+        "lake_retreat_cycles",
+        "clay_pit_flooding",
+        "kiln_hill_collapse",
+        "carp_pond_disease",
+        "reed_channel_choking",
+        "dike_rat_damage"
+      ],
+      "major_sites": [
+        "blue_clay_pit",
+        "reed_ferry_gate",
+        "carp_pond_court",
+        "kiln_temple_hill",
+        "old_lake_margin_market",
+        "dike_rat_watch"
+      ],
+      "economic_pressures": [
+        "clay_pit_monopoly",
+        "reed_ferry_toll",
+        "carp_pond_rent",
+        "kiln_fuel_quota",
+        "lake_margin_land_grants",
+        "dike_repair_labor"
+      ],
+      "trade_goods": [
+        "blue_clay_ceramics",
+        "carp_sauce",
+        "reed_boats",
+        "kiln_charcoal",
+        "lake_salt",
+        "duck_feathers",
+        "glazed_tiles",
+        "pond_lotus_seeds"
+      ],
+      "institution_archetypes": [
+        "blue_clay_board",
+        "reed_ferry_court",
+        "carp_pond_lease_house",
+        "kiln_temple_college",
+        "lake_margin_grant_office",
+        "dike_repair_bureau"
+      ],
+      "social_actor_archetypes": [
+        "clay_pit_worker_families",
+        "reed_ferry_lineages",
+        "kiln_fuel_gatherers",
+        "later_tile_copyists"
+      ],
+      "authority_conflicts": [
+        "blue_clay_board_vs_clay_pit_worker_families",
+        "reed_ferry_court_vs_reed_ferry_lineages",
+        "carp_pond_lease_house_vs_dike_repair_bureau",
+        "kiln_temple_college_vs_later_tile_copyists"
+      ],
+      "religious_or_mythic_archetypes": [
+        "blue_clay_body_myth",
+        "kiln_fire_rebirth_cult",
+        "carp_ancestor_liturgy",
+        "reed_ferry_dead_crossing",
+        "retreating_lake_lament"
+      ],
+      "ritual_pressures": [
+        "first_kiln_firing",
+        "carp_release_day",
+        "reed_ferry_dead_crossing",
+        "blue_clay_washing",
+        "lake_margin_procession"
+      ],
+      "writing_system_archetypes": [
+        "ceramic_rim_marks",
+        "tile_stamp_script",
+        "reed_ferry_notches",
+        "late_lake_cursive"
+      ],
+      "recordkeeping_styles": [
+        "clay_pit_quota",
+        "ferry_toll_tag",
+        "carp_pond_lease",
+        "kiln_fuel_account",
+        "lake_margin_grant",
+        "dike_repair_roster"
+      ],
+      "artifact_media": [
+        "ceramic_rim_tablet",
+        "glazed_tile_record",
+        "reed_boat_tag",
+        "kiln_brick_inscription",
+        "oral_lake_lament",
+        "tile_copy_tablet",
+        "carp_bone_tally"
+      ],
+      "evidence_distortion_modes": [
+        "sherd_context_scatter",
+        "kiln_warping",
+        "lake_margin_shift",
+        "tile_reuse",
+        "reed_decay",
+        "lease_name_duplication",
+        "ritual_fish_metaphor"
+      ],
+      "mystery_archetypes": [
+        "missing_blue_clay_monopoly_origin",
+        "forged_lake_margin_grant",
+        "contradictory_kiln_collapse_date",
+        "ambiguous_carp_ancestor",
+        "duplicate_reed_ferry_name",
+        "unexplained_lake_retreat",
+        "anachronistic_tile_stamp"
+      ],
+      "target_hidden_entity_count": 18,
+      "target_hidden_event_count": 25,
+      "target_public_artifact_count": 16,
+      "target_mystery_count": 5,
+      "seed": 4316,
+      "tags": [
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy",
+        "forgery_pressure",
+        "chronology_dispute",
+        "protected_ambiguity"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "originality",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "star_archipelago_lighthouses",
+      "display_name": "Star Archipelago Lighthouse League",
+      "description": "A rocky archipelago league relies on lighthouse temples, astronomer pilots, seaweed farms, and cliff cemeteries. It differs from merchant sea powers by making celestial calibration, not cargo volume, the center of law.",
+      "earliest_year": 240,
+      "latest_year": 960,
+      "geographic_features": [
+        "rocky_archipelago",
+        "cliff_lighthouse_peaks",
+        "seaweed_farm_bays",
+        "black_reef_passes",
+        "wind_scoured_cemeteries",
+        "deep_anchor_sounds"
+      ],
+      "environmental_pressures": [
+        "starless_storm_weeks",
+        "lighthouse_fire_failures",
+        "seaweed_blight",
+        "reef_pass_wreckage",
+        "cliff_cemetery_erosion",
+        "anchor_sound_silting"
+      ],
+      "major_sites": [
+        "first_star_lighthouse",
+        "astronomer_pilot_hall",
+        "seaweed_farm_bay",
+        "black_reef_pass",
+        "cliff_dead_terrace",
+        "deep_anchor_toll"
+      ],
+      "economic_pressures": [
+        "lighthouse_oil_tax",
+        "pilot_star_fee",
+        "seaweed_farm_quota",
+        "reef_pass_salvage_rights",
+        "anchor_sound_toll",
+        "cemetery_cliff_rent"
+      ],
+      "trade_goods": [
+        "lamp_oil",
+        "dried_seaweed",
+        "fish_bone_glue",
+        "black_reef_coral",
+        "star_charts",
+        "woven_sailcloth",
+        "bronze_lamps",
+        "salted_mussels"
+      ],
+      "institution_archetypes": [
+        "lighthouse_temple_order",
+        "astronomer_pilot_hall",
+        "seaweed_farm_court",
+        "reef_salvage_board",
+        "anchor_toll_house",
+        "cliff_dead_archive"
+      ],
+      "social_actor_archetypes": [
+        "island_lampkeeper_families",
+        "reef_salvage_crews",
+        "foreign_anchor_captains",
+        "seaweed_farm_households"
+      ],
+      "authority_conflicts": [
+        "lighthouse_temple_order_vs_astronomer_pilot_hall",
+        "seaweed_farm_court_vs_seaweed_farm_households",
+        "reef_salvage_board_vs_foreign_anchor_captains",
+        "anchor_toll_house_vs_island_lampkeeper_families"
+      ],
+      "religious_or_mythic_archetypes": [
+        "star_lamp_creation_liturgy",
+        "black_reef_dead_myth",
+        "seaweed_braid_ancestor_cult",
+        "cliff_soul_release",
+        "storm_blindness_taboo"
+      ],
+      "ritual_pressures": [
+        "new_star_calibration",
+        "lighthouse_fire_renewal",
+        "reef_dead_lament",
+        "seaweed_first_braiding",
+        "cliff_burial_lamp_vigil"
+      ],
+      "writing_system_archetypes": [
+        "star_chart_glyphs",
+        "lamp_base_marks",
+        "seaweed_knot_notation",
+        "late_lighthouse_cursive"
+      ],
+      "recordkeeping_styles": [
+        "lighthouse_oil_ledger",
+        "pilot_star_chart",
+        "seaweed_quota_knot",
+        "salvage_award",
+        "anchor_toll_list",
+        "cliff_dead_register"
+      ],
+      "artifact_media": [
+        "bronze_lamp_inscription",
+        "star_chart_skin",
+        "seaweed_knot_cord",
+        "cliff_grave_marker",
+        "reef_salvage_tag",
+        "lighthouse_copy_chart",
+        "fish_bone_token"
+      ],
+      "evidence_distortion_modes": [
+        "star_calendar_precession",
+        "salt_corrosion",
+        "lamp_soot_damage",
+        "reef_wreck_context_loss",
+        "cliff_erosion",
+        "foreign_ship_name_translation",
+        "chart_recalibration_overwrite"
+      ],
+      "mystery_archetypes": [
+        "impossible_star_calibration",
+        "missing_first_lighthouse_builder",
+        "forged_pilot_star_fee",
+        "contradictory_reef_wreck_date",
+        "ambiguous_lampkeeper_title",
+        "duplicate_anchor_sound_name",
+        "unexplained_cemetery_erosion_gap"
+      ],
+      "target_hidden_entity_count": 20,
+      "target_hidden_event_count": 28,
+      "target_public_artifact_count": 17,
+      "target_mystery_count": 6,
+      "seed": 4317,
+      "tags": [
+        "coastal",
+        "island_polity",
+        "highland",
+        "bureaucratic",
+        "ritual_legal",
+        "merchant_polity",
+        "artifact_rich",
+        "ledger_heavy"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "yew_chalk_downs",
+      "display_name": "Yew Chalk Downs Electorate",
+      "description": "A temperate chalk-downs polity uses yew groves, sheep folds, white hill figures, and election stones to regulate grazing and sacred office. Its contradictions arise because living hedges outlast some dynasties but not their boundaries.",
+      "earliest_year": 40,
+      "latest_year": 720,
+      "geographic_features": [
+        "chalk_downs",
+        "ancient_yew_groves",
+        "sheep_fold_valleys",
+        "white_hill_figures",
+        "flint_streambeds",
+        "hedged_election_fields"
+      ],
+      "environmental_pressures": [
+        "chalk_soil_exhaustion",
+        "yew_grove_dieback",
+        "sheep_scab_outbreaks",
+        "hill_figure_weathering",
+        "flint_stream_drying",
+        "hedge_boundary_creep"
+      ],
+      "major_sites": [
+        "old_yew_election_grove",
+        "white_horse_hill",
+        "flint_stream_court",
+        "great_sheep_fold",
+        "hedge_oath_field",
+        "chalk_cut_archive"
+      ],
+      "economic_pressures": [
+        "sheep_grazing_dues",
+        "wool_clip_tax",
+        "flint_tool_toll",
+        "hedge_maintenance_labor",
+        "hill_figure_cutting_obligation",
+        "yew_bow_monopoly"
+      ],
+      "trade_goods": [
+        "wool_fleece",
+        "flint_blades",
+        "yew_bows",
+        "chalk_lime",
+        "cheese_wheels",
+        "dyed_wool",
+        "honey_mead",
+        "bone_combs"
+      ],
+      "institution_archetypes": [
+        "yew_election_college",
+        "sheep_fold_court",
+        "flint_stream_toll_house",
+        "hill_figure_wardens",
+        "hedge_boundary_judges",
+        "chalk_cut_archive"
+      ],
+      "social_actor_archetypes": [
+        "downland_shepherd_families",
+        "bowyer_lineages",
+        "hedge_keeping_villages",
+        "later_chalk_copyists"
+      ],
+      "authority_conflicts": [
+        "yew_election_college_vs_sheep_fold_court",
+        "flint_stream_toll_house_vs_bowyer_lineages",
+        "hill_figure_wardens_vs_hedge_boundary_judges",
+        "chalk_cut_archive_vs_later_chalk_copyists"
+      ],
+      "religious_or_mythic_archetypes": [
+        "yew_root_rebirth_cult",
+        "white_horse_sun_law",
+        "sheep_fold_ancestor_blessing",
+        "flint_spark_origin_myth",
+        "hedge_witness_oath"
+      ],
+      "ritual_pressures": [
+        "yew_election_lot",
+        "hill_figure_recutting",
+        "first_wool_clip_feast",
+        "hedge_oath_walking",
+        "flint_stream_spark_rite"
+      ],
+      "writing_system_archetypes": [
+        "chalk_cut_glyphs",
+        "flint_token_marks",
+        "yew_bark_notches",
+        "late_downs_cursive"
+      ],
+      "recordkeeping_styles": [
+        "election_stone_mark",
+        "grazing_due_list",
+        "wool_clip_ledger",
+        "hedge_boundary_walk",
+        "hill_figure_roster",
+        "flint_toll_tag"
+      ],
+      "artifact_media": [
+        "chalk_cut_stone",
+        "flint_token",
+        "yew_bark_record",
+        "wool_oath_cloth",
+        "hill_figure_marker",
+        "downs_copy_board",
+        "bone_comb_inscription"
+      ],
+      "evidence_distortion_modes": [
+        "chalk_weathering",
+        "hedge_boundary_drift",
+        "election_title_confusion",
+        "bark_decay",
+        "hill_figure_recutting",
+        "shepherd_praise_bias",
+        "copyist_antiquarian_guessing"
+      ],
+      "mystery_archetypes": [
+        "missing_first_election",
+        "ambiguous_yew_title",
+        "forged_grazing_due",
+        "contradictory_hill_figure_recuts",
+        "duplicate_hedge_field_name",
+        "unexplained_yew_dieback",
+        "anachronistic_chalk_cut_glyph"
+      ],
+      "target_hidden_entity_count": 17,
+      "target_hidden_event_count": 24,
+      "target_public_artifact_count": 15,
+      "target_mystery_count": 5,
+      "seed": 4318,
+      "tags": [
+        "forest_lattice",
+        "bureaucratic",
+        "merchant_polity",
+        "artifact_rich",
+        "ledger_heavy",
+        "forgery_pressure",
+        "protected_ambiguity",
+        "truth_partial"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "originality",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "mica_sun_desert",
+      "display_name": "Mica Sun Desert Principalities",
+      "description": "A bright desert polity controls mica quarries, mirror courts, heat-road wells, and sun-blind rituals. Unlike salt or caravan states, its core resource is reflected authority: documents are designed to shine, fracture, and deceive.",
+      "earliest_year": 200,
+      "latest_year": 900,
+      "geographic_features": [
+        "bright_stone_desert",
+        "mica_quarry_slopes",
+        "heat_mirage_flats",
+        "sunken_day_wells",
+        "shade_colonnade_towns",
+        "mirror_road_markers"
+      ],
+      "environmental_pressures": [
+        "extreme_heat_waves",
+        "mica_quarry_shear",
+        "mirage_route_error",
+        "day_well_evaporation",
+        "shade_colonnade_collapse",
+        "sun_blindness_outbreaks"
+      ],
+      "major_sites": [
+        "great_mica_slope",
+        "mirror_court_plaza",
+        "sunken_day_well",
+        "shade_colonnade_gate",
+        "heat_road_marker",
+        "blind_oracle_chamber"
+      ],
+      "economic_pressures": [
+        "mica_sheet_quota",
+        "mirror_road_toll",
+        "day_well_access_fee",
+        "shade_colonnade_market_rent",
+        "blind_oracle_consultation",
+        "quarry_guard_labor"
+      ],
+      "trade_goods": [
+        "mica_sheets",
+        "polished_copper_mirrors",
+        "desert_glass",
+        "date_syrup",
+        "white_linen",
+        "cooling_clay_jars",
+        "sun_beads",
+        "quarry_goat_leather"
+      ],
+      "institution_archetypes": [
+        "mica_quarry_board",
+        "mirror_court",
+        "day_well_judges",
+        "shade_market_office",
+        "blind_oracle_college",
+        "heat_road_wardens"
+      ],
+      "social_actor_archetypes": [
+        "quarry_guard_families",
+        "sun_blind_pilgrims",
+        "mirror_polisher_lineages",
+        "foreign_desert_glass_brokers"
+      ],
+      "authority_conflicts": [
+        "mica_quarry_board_vs_quarry_guard_families",
+        "mirror_court_vs_blind_oracle_college",
+        "day_well_judges_vs_sun_blind_pilgrims",
+        "shade_market_office_vs_foreign_desert_glass_brokers"
+      ],
+      "religious_or_mythic_archetypes": [
+        "sun_blind_truth_doctrine",
+        "mica_skin_creation_myth",
+        "mirror_double_judge",
+        "day_well_shadow_law",
+        "heat_road_spirit_warning"
+      ],
+      "ritual_pressures": [
+        "mirror_unveiling_day",
+        "mica_sheet_first_cut",
+        "day_well_shadow_fast",
+        "blind_oracle_lot_drawing",
+        "heat_road_noon_silence"
+      ],
+      "writing_system_archetypes": [
+        "mica_scratch_script",
+        "mirror_back_glyphs",
+        "well_cool_jar_marks",
+        "late_sun_cursive"
+      ],
+      "recordkeeping_styles": [
+        "mica_quota_sheet",
+        "mirror_court_judgment",
+        "day_well_access_list",
+        "shade_market_rent",
+        "oracle_reflection_note",
+        "heat_road_pass"
+      ],
+      "artifact_media": [
+        "mica_sheet_record",
+        "copper_mirror_back",
+        "cooling_jar_tag",
+        "shade_colonnade_inscription",
+        "linen_oath_strip",
+        "sun_copy_sheet",
+        "desert_glass_token"
+      ],
+      "evidence_distortion_modes": [
+        "mica_flaking",
+        "reflection_metaphor_confusion",
+        "mirage_route_layering",
+        "heat_cracking",
+        "oracle_blindness_title_confusion",
+        "mirror_repolishing_erasure",
+        "foreign_glass_name_shift"
+      ],
+      "mystery_archetypes": [
+        "missing_mica_quarry_origin",
+        "ambiguous_mirror_judge",
+        "forged_day_well_access",
+        "contradictory_heat_road_route",
+        "duplicate_shade_colonnade_name",
+        "unexplained_oracle_blinding",
+        "anachronistic_mica_script"
+      ],
+      "target_hidden_entity_count": 19,
+      "target_hidden_event_count": 26,
+      "target_public_artifact_count": 16,
+      "target_mystery_count": 5,
+      "seed": 4319,
+      "tags": [
+        "arid_basin",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "artifact_rich",
+        "ledger_heavy",
+        "forgery_pressure",
+        "protected_ambiguity"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "originality",
+          "chronology"
+        ]
+      }
+    },
+    {
+      "id": "kelp_iron_coast",
+      "display_name": "Kelp Iron Coast Boroughs",
+      "description": "A cold storm coast forges bog-free iron from beach sands, kelp charcoal, and tide-mill hammers. Borough records survive as slag marks and harbor songs, with every storm tide threatening to move the legal shoreline.",
+      "earliest_year": 280,
+      "latest_year": 1070,
+      "geographic_features": [
+        "cold_storm_coast",
+        "iron_sand_beaches",
+        "kelp_charcoal_flats",
+        "tide_mill_coves",
+        "cliff_harbor_boroughs",
+        "storm_shingle_banks"
+      ],
+      "environmental_pressures": [
+        "storm_tide_overwash",
+        "iron_sand_depletion",
+        "kelp_forest_crash",
+        "tide_mill_jam",
+        "harbor_cliff_fall",
+        "shingle_bank_migration"
+      ],
+      "major_sites": [
+        "iron_sand_beach",
+        "kelp_charcoal_yard",
+        "tide_mill_hammer_cove",
+        "cliff_borough_hall",
+        "storm_shingle_marker",
+        "black_slag_shrine"
+      ],
+      "economic_pressures": [
+        "iron_sand_quota",
+        "kelp_charcoal_levy",
+        "tide_mill_hammer_rent",
+        "borough_harbor_toll",
+        "storm_shore_salvage",
+        "slag_offering_tax"
+      ],
+      "trade_goods": [
+        "iron_bars",
+        "kelp_charcoal",
+        "storm_salt",
+        "herring_barrels",
+        "wool_sailcloth",
+        "black_slag_beads",
+        "tide_mill_gears",
+        "sea_clay_pots"
+      ],
+      "institution_archetypes": [
+        "iron_sand_assay_office",
+        "kelp_charcoal_guild",
+        "tide_mill_hammer_court",
+        "borough_harbor_board",
+        "storm_shore_salvage_house",
+        "slag_shrine_archive"
+      ],
+      "social_actor_archetypes": [
+        "beach_smelter_families",
+        "kelp_cutting_crews",
+        "storm_salvage_lineages",
+        "foreign_herring_captains"
+      ],
+      "authority_conflicts": [
+        "iron_sand_assay_office_vs_beach_smelter_families",
+        "kelp_charcoal_guild_vs_kelp_cutting_crews",
+        "tide_mill_hammer_court_vs_borough_harbor_board",
+        "storm_shore_salvage_house_vs_foreign_herring_captains"
+      ],
+      "religious_or_mythic_archetypes": [
+        "black_slag_birth_myth",
+        "tide_hammer_sea_god",
+        "kelp_fire_ancestor_cult",
+        "storm_shore_judgment",
+        "iron_sand_blood_taboo"
+      ],
+      "ritual_pressures": [
+        "first_tide_hammer_strike",
+        "kelp_charcoal_burning",
+        "storm_shore_boundary_walk",
+        "slag_shrine_offering",
+        "iron_bar_cooling_oath"
+      ],
+      "writing_system_archetypes": [
+        "slag_mark_script",
+        "tide_mill_notches",
+        "harbor_song_notation",
+        "late_borough_cursive"
+      ],
+      "recordkeeping_styles": [
+        "iron_sand_quota_mark",
+        "kelp_charcoal_account",
+        "tide_mill_rent_list",
+        "harbor_toll_song",
+        "storm_salvage_award",
+        "slag_offering_register"
+      ],
+      "artifact_media": [
+        "black_slag_mark",
+        "iron_bar_stamp",
+        "tide_mill_beam_inscription",
+        "harbor_song",
+        "sea_clay_tablet",
+        "borough_copy_board",
+        "storm_shingle_marker"
+      ],
+      "evidence_distortion_modes": [
+        "storm_tide_scatter",
+        "slag_reuse",
+        "shoreline_migration",
+        "iron_corrosion",
+        "harbor_song_compression",
+        "foreign_captain_name_translation",
+        "mill_rebuild_context_loss"
+      ],
+      "mystery_archetypes": [
+        "missing_iron_sand_origin",
+        "forged_storm_salvage_award",
+        "contradictory_tide_mill_rebuild",
+        "ambiguous_slag_shrine_title",
+        "duplicate_shingle_marker_name",
+        "impossible_harbor_toll_song",
+        "unexplained_kelp_forest_crash"
+      ],
+      "target_hidden_entity_count": 20,
+      "target_hidden_event_count": 28,
+      "target_public_artifact_count": 17,
+      "target_mystery_count": 6,
+      "seed": 4320,
+      "tags": [
+        "coastal",
+        "wetland",
+        "water_access",
+        "bureaucratic",
+        "ritual_legal",
+        "merchant_polity",
+        "artifact_rich",
+        "ledger_heavy"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "artifact_voice",
+          "public_archive",
+          "chronology"
+        ]
+      }
+    }
+  ]
+}

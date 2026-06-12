@@ -1,0 +1,62 @@
+# CivilizationSpec Tag Registry
+
+**Status:** v27.3 controlled registry derived from the bundled v1.1 catalog
+**Scope:** design/content readiness and catalog inspection only
+**Runtime effect:** none
+
+This registry is derived from the tags present in `examples/40_civilization_specs_v1_1.json` in v27.2/v27.3. It is a controlled authoring reference for v1.1.x metadata and a planning input for future v1.2 design work. It is not a hard runtime schema and it must not drive generation behavior in v27.3.
+
+- Catalog specs inspected: 40
+- Unique catalog tags: 38
+- Catalog cardinality remains dynamic; these counts describe the bundled example catalog only.
+
+## Registry table
+
+| Tag | Family | Count | Intended meaning | Bundled specs |
+|---|---:|---:|---|---|
+| `arid_basin` | geography / ecology | 7 | Dry-basin or salt/upland environment creates scarcity, preservation, and tax pressure. | salt_terrace_kingdom, red_wadi_principality, mirror_salt_lake, windbreak_oasis_league, stepwell_indigo_rajanate, bone_dune_houses, mica_sun_desert |
+| `artifact_rich` | artifact ecology | 37 | Spec is expected to support many artifact-bearing institutions, media, or archive traces. | marsh_citadel, glass_delta, hill_oracle, salt_terrace_kingdom, obsidian_passage, frost_mire_accord, red_wadi_principality, cloud_forest_lattice, iron_fen_commune, lunar_grain_basin, black_sand_thalassocracy, cavern_lime_synod, monsoon_canal_republic, amber_pine_marches, ivory_savanna_courts, mirror_salt_lake, windbreak_oasis_league, sky_reef_atolls, ochre_canyon_priory, stepwell_indigo_rajanate, jade_bamboo_highlands, whale_bone_fjord, cinnabar_karst_hegemony, thunder_millet_mounds, tin_mist_isles, shell_mesa_commonwealth, resin_jungle_mandala, silver_tundra_portage, pumice_crater_city, lotus_blacksoil_diarchy, bone_dune_houses, copper_cloud_plateau, blue_clay_lakes, star_archipelago_lighthouses, yew_chalk_downs, mica_sun_desert, kelp_iron_coast |
+| `bureaucratic` | settlement / polity | 36 | Political life is strongly mediated through offices, ledgers, courts, or administrative roles. | marsh_citadel, hill_oracle, salt_terrace_kingdom, obsidian_passage, cedar_reef_city, frost_mire_accord, red_wadi_principality, iron_fen_commune, lunar_grain_basin, black_sand_thalassocracy, cavern_lime_synod, monsoon_canal_republic, amber_pine_marches, ivory_savanna_courts, mirror_salt_lake, windbreak_oasis_league, sky_reef_atolls, ochre_canyon_priory, stepwell_indigo_rajanate, jade_bamboo_highlands, whale_bone_fjord, cinnabar_karst_hegemony, thunder_millet_mounds, tin_mist_isles, shell_mesa_commonwealth, resin_jungle_mandala, silver_tundra_portage, pumice_crater_city, lotus_blacksoil_diarchy, bone_dune_houses, copper_cloud_plateau, blue_clay_lakes, star_archipelago_lighthouses, yew_chalk_downs, mica_sun_desert, kelp_iron_coast |
+| `chronology_dispute` | truth and mystery | 7 | The civilization has recurring date, calendar, sequence, or event-order uncertainty. | hill_oracle, lunar_grain_basin, monsoon_canal_republic, ivory_savanna_courts, lotus_blacksoil_diarchy, bone_dune_houses, blue_clay_lakes |
+| `cloud_forest` | geography / ecology | 1 | Cloud-forest ecology shapes settlement, preservation, and ritual practice. | cloud_forest_lattice |
+| `coastal` | geography / ecology | 10 | Coastal ecology, trade, storm exposure, or lagoon/harbor politics are central. | drowned_causeway, cedar_reef_city, black_sand_thalassocracy, sky_reef_atolls, whale_bone_fjord, tin_mist_isles, pumice_crater_city, copper_cloud_plateau, star_archipelago_lighthouses, kelp_iron_coast |
+| `coastal_delta` | geography / ecology | 1 | A deltaic coast shapes water access, trade, silting, and political disputes. | glass_delta |
+| `disaster_memory` | truth and mystery | 1 | Public evidence is strongly mediated by remembered disaster or catastrophe. | drowned_causeway |
+| `dynastic_reconstruction` | truth and mystery | 1 | Later dynastic narratives reconstruct, sanitize, or normalize older history. | drowned_causeway |
+| `forest_lattice` | geography / ecology | 6 | Forest routes, canopy settlements, or dispersed ecological corridors shape authority. | obsidian_passage, cedar_reef_city, amber_pine_marches, jade_bamboo_highlands, resin_jungle_mandala, yew_chalk_downs |
+| `forgery_pressure` | truth and mystery | 12 | Public archive is expected to include incentive for forged or interpolated evidence. | iron_fen_commune, lunar_grain_basin, monsoon_canal_republic, ivory_savanna_courts, ochre_canyon_priory, whale_bone_fjord, thunder_millet_mounds, lotus_blacksoil_diarchy, bone_dune_houses, blue_clay_lakes, yew_chalk_downs, mica_sun_desert |
+| `fragile_archive` | artifact ecology | 20 | Primary media, preservation context, or archive survival is unstable or easily damaged. | hill_oracle, salt_terrace_kingdom, red_wadi_principality, iron_fen_commune, lunar_grain_basin, cavern_lime_synod, monsoon_canal_republic, ivory_savanna_courts, windbreak_oasis_league, ochre_canyon_priory, jade_bamboo_highlands, whale_bone_fjord, cinnabar_karst_hegemony, thunder_millet_mounds, tin_mist_isles, resin_jungle_mandala, silver_tundra_portage, lotus_blacksoil_diarchy, bone_dune_houses, copper_cloud_plateau |
+| `harbor_trade` | artifact ecology | 1 | Harbor tolls, pilotage, merchant traffic, or port records are central. | glass_delta |
+| `highland` | geography / ecology | 12 | Highland ecology, passes, terraces, or mountain ritual shape public evidence. | hill_oracle, salt_terrace_kingdom, obsidian_passage, cloud_forest_lattice, cavern_lime_synod, ochre_canyon_priory, jade_bamboo_highlands, cinnabar_karst_hegemony, shell_mesa_commonwealth, pumice_crater_city, copper_cloud_plateau, star_archipelago_lighthouses |
+| `island_polity` | geography / ecology | 7 | Island constraints, sea routes, reef/coastal exchange, or isolation shape authority. | cedar_reef_city, frost_mire_accord, black_sand_thalassocracy, mirror_salt_lake, sky_reef_atolls, tin_mist_isles, star_archipelago_lighthouses |
+| `ledger_heavy` | artifact ecology | 32 | Routine ledgers, rosters, tallies, quotas, or manifests are prominent evidence sources. | hill_oracle, salt_terrace_kingdom, obsidian_passage, frost_mire_accord, red_wadi_principality, iron_fen_commune, lunar_grain_basin, black_sand_thalassocracy, cavern_lime_synod, monsoon_canal_republic, amber_pine_marches, ivory_savanna_courts, mirror_salt_lake, windbreak_oasis_league, sky_reef_atolls, ochre_canyon_priory, stepwell_indigo_rajanate, jade_bamboo_highlands, whale_bone_fjord, cinnabar_karst_hegemony, thunder_millet_mounds, tin_mist_isles, shell_mesa_commonwealth, resin_jungle_mandala, silver_tundra_portage, lotus_blacksoil_diarchy, copper_cloud_plateau, blue_clay_lakes, star_archipelago_lighthouses, yew_chalk_downs, mica_sun_desert, kelp_iron_coast |
+| `low_real_world_similarity` | strangeness / constraints | 5 | Spec intentionally leans away from obvious real-world analogues. | marsh_citadel, ash_steppe, glass_delta, drowned_causeway, cloud_forest_lattice |
+| `merchant_archive` | artifact ecology | 1 | Merchant contracts, seals, manifests, or trade-house archives are central. | glass_delta |
+| `merchant_polity` | settlement / polity | 12 | Merchant institutions or trade-law disputes are major political drivers. | cedar_reef_city, red_wadi_principality, amber_pine_marches, sky_reef_atolls, whale_bone_fjord, tin_mist_isles, shell_mesa_commonwealth, silver_tundra_portage, pumice_crater_city, star_archipelago_lighthouses, yew_chalk_downs, kelp_iron_coast |
+| `mobile_polity` | settlement / polity | 1 | Authority is portable across camps, routes, herds, or seasonal movement. | ash_steppe |
+| `nomadic` | settlement / polity | 4 | Mobile pastoral, migratory, or non-sedentary settlement patterns are central. | mirror_salt_lake, windbreak_oasis_league, thunder_millet_mounds, bone_dune_houses |
+| `oath_culture` | truth and mystery | 1 | Oaths, witness rituals, obligation records, or oath-bearing artifacts shape evidence. | ash_steppe |
+| `oral_archive` | artifact ecology | 9 | Songs, recitations, formulae, or oral testimony are central public evidence. | ash_steppe, black_sand_thalassocracy, amber_pine_marches, ivory_savanna_courts, sky_reef_atolls, jade_bamboo_highlands, thunder_millet_mounds, shell_mesa_commonwealth, resin_jungle_mandala |
+| `pastoral` | settlement / polity | 1 | Herding, grazing, animal tribute, or pasture politics are central. | ash_steppe |
+| `protected_ambiguity` | truth and mystery | 6 | The spec intentionally preserves ambiguity that should not be over-resolved. | marsh_citadel, drowned_causeway, lunar_grain_basin, blue_clay_lakes, yew_chalk_downs, mica_sun_desert |
+| `ritual_calendar` | truth and mystery | 1 | Calendar ritual and timed ceremonial cycles shape authority or records. | cloud_forest_lattice |
+| `ritual_legal` | settlement / polity | 25 | Law and ritual overlap; valid records may be symbolic, formulaic, or non-literal. | hill_oracle, salt_terrace_kingdom, obsidian_passage, cedar_reef_city, frost_mire_accord, red_wadi_principality, iron_fen_commune, lunar_grain_basin, black_sand_thalassocracy, cavern_lime_synod, monsoon_canal_republic, amber_pine_marches, windbreak_oasis_league, ochre_canyon_priory, stepwell_indigo_rajanate, cinnabar_karst_hegemony, shell_mesa_commonwealth, resin_jungle_mandala, pumice_crater_city, lotus_blacksoil_diarchy, copper_cloud_plateau, blue_clay_lakes, star_archipelago_lighthouses, mica_sun_desert, kelp_iron_coast |
+| `river_delta` | geography / ecology | 1 | River-delta ecology and water control shape settlement and authority. | marsh_citadel |
+| `salvage_archive` | artifact ecology | 1 | Salvage, ruins, recovery contexts, or reused material shape the archive. | drowned_causeway |
+| `steppe` | geography / ecology | 1 | Open grassland or steppe geography shapes mobility and memory. | ash_steppe |
+| `steppe_ecology` | geography / ecology | 2 | Steppe ecology contributes to routes, pastoral pressure, or seasonal authority. | stepwell_indigo_rajanate, thunder_millet_mounds |
+| `terrace_landscape` | geography / ecology | 1 | Terraces, slopes, or engineered highland landscapes shape politics and evidence. | cloud_forest_lattice |
+| `truth_partial` | truth and mystery | 6 | The public record should remain incomplete even when hidden truth is coherent. | marsh_citadel, ash_steppe, glass_delta, drowned_causeway, cloud_forest_lattice, yew_chalk_downs |
+| `tundra` | geography / ecology | 3 | Cold, peat, permafrost, or seasonal freeze contexts shape survival of evidence. | obsidian_passage, frost_mire_accord, silver_tundra_portage |
+| `urban` | settlement / polity | 5 | Dense settlement, city institutions, or civic archive pressures are central. | marsh_citadel, glass_delta, cedar_reef_city, cinnabar_karst_hegemony, silver_tundra_portage |
+| `volcanic` | geography / ecology | 6 | Volcanic landscape, ash, obsidian, fumes, or seismic risk shape culture and evidence. | obsidian_passage, black_sand_thalassocracy, cavern_lime_synod, tin_mist_isles, shell_mesa_commonwealth, pumice_crater_city |
+| `water_access` | geography / ecology | 27 | Control of water, canals, wells, tides, rivers, or irrigation drives conflict. | marsh_citadel, hill_oracle, salt_terrace_kingdom, cedar_reef_city, frost_mire_accord, red_wadi_principality, iron_fen_commune, cavern_lime_synod, monsoon_canal_republic, ivory_savanna_courts, mirror_salt_lake, windbreak_oasis_league, sky_reef_atolls, ochre_canyon_priory, stepwell_indigo_rajanate, jade_bamboo_highlands, whale_bone_fjord, cinnabar_karst_hegemony, resin_jungle_mandala, silver_tundra_portage, pumice_crater_city, lotus_blacksoil_diarchy, bone_dune_houses, copper_cloud_plateau, blue_clay_lakes, mica_sun_desert, kelp_iron_coast |
+| `wetland` | geography / ecology | 6 | Wetland ecology, marsh travel, peat, reeds, or flood cycles shape the archive. | frost_mire_accord, iron_fen_commune, amber_pine_marches, mirror_salt_lake, stepwell_indigo_rajanate, kelp_iron_coast |
+
+## Registry policy
+
+- Tags should remain lowercase `snake_case`.
+- New tags may be added to catalogs before the registry is final, but they should be reviewed here in the next quality pass.
+- Duplicate tags remain validation warnings, not hard errors.
+- Tags are descriptive metadata only; they must not change target resolution, generated IDs, evaluation, materialization gates, or redaction behavior.
+- If v1.2 fragment composition is later implemented, this registry should be treated as an input to design review, not as executable resolver logic.

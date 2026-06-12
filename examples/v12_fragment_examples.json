@@ -1,0 +1,341 @@
+{
+  "schema_version": "1.2",
+  "catalog_id": "example.civilization_fragments.v1_2.intake",
+  "civilizations": [
+    {
+      "id": "marsh_citadel",
+      "display_name": "Marsh Citadel Polity",
+      "description": "A canal-and-marsh civilization centered on fortified wetland mounds, grain levies, shrine calendars, and offices that fight over who may command the water gates.",
+      "tags": [
+        "river_delta",
+        "urban",
+        "water_access",
+        "bureaucratic",
+        "artifact_rich",
+        "protected_ambiguity",
+        "truth_partial",
+        "low_real_world_similarity"
+      ],
+      "profile": {
+        "target_depth": "prototype",
+        "future_modules": [
+          "fragment_composition",
+          "language_drift",
+          "artifact_voice"
+        ]
+      },
+      "earliest_year": 180,
+      "latest_year": 880,
+      "geographic_features": [
+        "river_delta",
+        "salt_marsh",
+        "seasonal_floodplain",
+        "raised_citadel_mounds",
+        "canal_grid",
+        "reed_islands"
+      ],
+      "environmental_pressures": [
+        "seasonal_flooding",
+        "canal_silting",
+        "saltwater_intrusion",
+        "marsh_disease",
+        "drought_cycles",
+        "embankment_failures"
+      ],
+      "major_sites": [
+        "central_citadel",
+        "lower_marsh_gate",
+        "reed_shrine",
+        "grain_quay",
+        "southern_embankment",
+        "old_silt_basin"
+      ],
+      "economic_pressures": [
+        "grain_tax",
+        "canal_control",
+        "salt_trade",
+        "reed_harvest",
+        "flood_labor_obligations",
+        "dock_toll_collection"
+      ],
+      "trade_goods": [
+        "grain",
+        "salt",
+        "reed_matting",
+        "dried_fish",
+        "copper_hooks",
+        "dyed_cloth",
+        "clay_seals"
+      ],
+      "institution_archetypes": [
+        "water_office",
+        "ritual_court",
+        "merchant_ledger_house",
+        "embankment_labor_bureau",
+        "citadel_guard",
+        "shrine_archive",
+        "grain_tax_house"
+      ],
+      "social_actor_archetypes": [
+        "marsh_clans",
+        "later_dynastic_scribes",
+        "free_reed_cutters",
+        "dock_labor_families"
+      ],
+      "authority_conflicts": [
+        "water_office_vs_ritual_court",
+        "merchant_ledger_house_vs_grain_tax_house",
+        "citadel_guard_vs_marsh_clans",
+        "shrine_archive_vs_later_dynastic_scribes"
+      ],
+      "religious_or_mythic_archetypes": [
+        "flood_ancestor_cult",
+        "reed_oracle",
+        "drowned_founder_myth",
+        "three_gate_ritual",
+        "silt_burial_ceremony"
+      ],
+      "ritual_pressures": [
+        "annual_gate_opening",
+        "flood_appeasement_rites",
+        "marsh_processions",
+        "ancestor_name_recitations",
+        "ritual_repair_of_embankments"
+      ],
+      "writing_system_archetypes": [
+        "early_reed_notches",
+        "clay_seal_marks",
+        "ledger_script",
+        "late_shrine_cursive"
+      ],
+      "recordkeeping_styles": [
+        "grain_ledger",
+        "canal_labor_roster",
+        "boundary_stone",
+        "ritual_song",
+        "dynastic_copy",
+        "merchant_contract"
+      ],
+      "artifact_media": [
+        "clay_tablet",
+        "reed_ledger",
+        "boundary_stone",
+        "oral_song",
+        "shrine_wall_inscription",
+        "seal_impression",
+        "shrine_copy_tablet"
+      ],
+      "evidence_distortion_modes": [
+        "flood_damage",
+        "ritual_compression",
+        "political_forgery",
+        "calendar_drift",
+        "translation_uncertainty",
+        "title_person_confusion",
+        "later_copyist_interpolation"
+      ],
+      "mystery_archetypes": [
+        "disputed_founder_identity",
+        "missing_water_office_origin",
+        "contradictory_flood_date",
+        "forged_tax_decree",
+        "ritual_title_misread_as_person",
+        "destroyed_citadel_archive",
+        "anachronistic_script_usage"
+      ],
+      "target_hidden_entity_count": 18,
+      "target_hidden_event_count": 24,
+      "target_public_artifact_count": 16,
+      "target_mystery_count": 5,
+      "seed": 4201
+    }
+  ],
+  "fragments": [
+    {
+      "schema_version": "1.2",
+      "kind": "civilization_fragment",
+      "id": "fragment.high_artifact_density",
+      "title": "High Artifact Density",
+      "category": "artifact_bias",
+      "priority": 100,
+      "tags": [
+        "artifact_rich",
+        "preservation_bias"
+      ],
+      "requires_tags": [],
+      "excludes_tags": [
+        "no_material_culture"
+      ],
+      "patches": [
+        {
+          "path": "target_public_artifact_count",
+          "strategy": "max",
+          "value": 18
+        },
+        {
+          "path": "artifact_media",
+          "strategy": "append_unique",
+          "value": [
+            "seal_impression",
+            "shrine_copy_tablet"
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": "1.2",
+      "kind": "civilization_fragment",
+      "id": "fragment.partial_truth_policy",
+      "title": "Partial Truth Policy",
+      "category": "truth_policy",
+      "priority": 120,
+      "tags": [
+        "truth_partial",
+        "canon_restricted"
+      ],
+      "requires_tags": [],
+      "excludes_tags": [],
+      "patches": [
+        {
+          "path": "tags",
+          "strategy": "append_unique",
+          "value": [
+            "truth_partial",
+            "canon_restricted"
+          ]
+        },
+        {
+          "path": "evidence_distortion_modes",
+          "strategy": "append_unique",
+          "value": [
+            "archive_silence",
+            "ritual_compression"
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": "1.2",
+      "kind": "civilization_fragment",
+      "id": "fragment.protected_founder_ambiguity",
+      "title": "Protected Founder Ambiguity",
+      "category": "mystery_policy",
+      "priority": 90,
+      "tags": [
+        "protected_ambiguity",
+        "mythic_truth_enabled"
+      ],
+      "requires_tags": [
+        "protected_ambiguity"
+      ],
+      "excludes_tags": [],
+      "patches": [
+        {
+          "path": "mystery_archetypes",
+          "strategy": "append_unique",
+          "value": [
+            "disputed_founder_identity",
+            "founder_name_taboo"
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": "1.2",
+      "kind": "civilization_fragment",
+      "id": "fragment.hydraulic_bureaucracy_bias",
+      "title": "Hydraulic Bureaucracy Bias",
+      "category": "polity",
+      "priority": 80,
+      "tags": [
+        "hydraulic_engineering",
+        "bureaucratic",
+        "water_access"
+      ],
+      "requires_tags": [
+        "water_access"
+      ],
+      "excludes_tags": [
+        "nomadic"
+      ],
+      "patches": [
+        {
+          "path": "institution_archetypes",
+          "strategy": "append_unique",
+          "value": [
+            "canal_inspector_house",
+            "water_gate_court"
+          ]
+        },
+        {
+          "path": "economic_pressures",
+          "strategy": "append_unique",
+          "value": [
+            "canal_labor_quota"
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": "1.2",
+      "kind": "civilization_fragment",
+      "id": "fragment.fragile_archive_preservation",
+      "title": "Fragile Archive Preservation",
+      "category": "preservation_model",
+      "priority": 110,
+      "tags": [
+        "fragile_archive",
+        "preservation_bias"
+      ],
+      "requires_tags": [],
+      "excludes_tags": [],
+      "patches": [
+        {
+          "path": "evidence_distortion_modes",
+          "strategy": "append_unique",
+          "value": [
+            "water_damage",
+            "copyist_normalization"
+          ]
+        },
+        {
+          "path": "artifact_media",
+          "strategy": "append_unique",
+          "value": [
+            "water_worn_clay_tablet"
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": "1.2",
+      "kind": "civilization_fragment",
+      "id": "fragment.ritual_legal_polity",
+      "title": "Ritual-Legal Polity",
+      "category": "religion",
+      "priority": 95,
+      "tags": [
+        "ritual_legal",
+        "bureaucratic"
+      ],
+      "requires_tags": [],
+      "excludes_tags": [],
+      "patches": [
+        {
+          "path": "religious_or_mythic_archetypes",
+          "strategy": "append_unique",
+          "value": [
+            "office_oath_liturgy"
+          ]
+        },
+        {
+          "path": "ritual_pressures",
+          "strategy": "append_unique",
+          "value": [
+            "annual_office_oath"
+          ]
+        }
+      ]
+    }
+  ]
+}
