@@ -17,6 +17,7 @@ enum class DiagnosticDetailSurface {
     CandidateArtifactPlanEvaluation,
     CandidateArtifactProposal,
     CandidateArtifactProposalAudit,
+    ControlLayerAudit,
     ValidationErrors,
 };
 
