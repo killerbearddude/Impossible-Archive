@@ -1,4 +1,5 @@
 #include "control_layer_audit_api.h"
+#include "diagnostic_access_policy.h"
 
 #include <map>
 #include <set>
@@ -472,7 +473,7 @@ void build_control_layer_audit_into_state(ArchiveEngineState& state) {
     append_counts(out, by_behavior);
     out << "Kind counts:\n";
     append_counts(out, by_kind);
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::ControlLayerAudit)) {
         out << "- details: public access receives aggregate control-layer status only; primary files, internal source chains, mutation notes, and curator diagnostics are restricted.\n";
     }
     return out.str();
@@ -488,7 +489,7 @@ void build_control_layer_audit_into_state(ArchiveEngineState& state) {
     out << "- errors: " << report.errors.size() << "\n";
     out << "- warnings: " << report.warnings.size() << "\n";
     if (!report.errors.empty()) {
-        if (can_view(access, AccessLevel::Curator)) {
+        if (can_view_diagnostic_detail(access, DiagnosticDetailSurface::ValidationErrors)) {
             out << "Validation errors:\n";
             for (const std::string& error : report.errors) {
                 out << "- " << error << "\n";
@@ -497,7 +498,7 @@ void build_control_layer_audit_into_state(ArchiveEngineState& state) {
             out << "- details: restricted\n";
         }
     }
-    if (!report.warnings.empty() && can_view(access, AccessLevel::Curator)) {
+    if (!report.warnings.empty() && can_view_diagnostic_detail(access, DiagnosticDetailSurface::ValidationErrors)) {
         out << "Validation warnings:\n";
         for (const std::string& warning : report.warnings) {
             out << "- " << warning << "\n";
@@ -510,7 +511,7 @@ void build_control_layer_audit_into_state(ArchiveEngineState& state) {
     const std::vector<ControlLayerAuditEntry> entries = entries_for_formatting(state);
     std::ostringstream out;
     out << "ControlLayerAudit entries visible to " << to_string(access) << ":\n";
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::ControlLayerAudit)) {
         out << "- total_entries: " << entries.size() << "\n";
         out << "- details: public/scholar access receives aggregate classification only; internal file lists, source chains, mutation details, and diagnostics are restricted.\n";
         for (const ControlLayerAuditEntry& entry : entries) {
@@ -553,7 +554,7 @@ void build_control_layer_audit_into_state(ArchiveEngineState& state) {
         out << "- found: false\n";
         return out.str();
     }
-    if (!can_view(access, AccessLevel::Curator)) {
+    if (!can_view_diagnostic_detail(access, DiagnosticDetailSurface::ControlLayerAudit)) {
         out << "- found: false\n";
         return out.str();
     }

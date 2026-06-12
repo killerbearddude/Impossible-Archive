@@ -35,6 +35,7 @@ CandidateArtifactPlan summary/list/detail/validation-error diagnostics
 CandidateArtifactPlanEvaluation summary/list/detail/validation-error diagnostics
 CandidateArtifactProposal summary/list/detail/validation-error diagnostics
 CandidateArtifactProposalAudit summary/list/detail/validation-error diagnostics
+ControlLayerAudit summary/list/entry-detail/validation diagnostics
 ```
 
 ## Public/scholar behavior preserved
@@ -83,6 +84,19 @@ Public and scholar output must continue to preserve these behaviors:
 - curator/debug diagnostic detail remains visible
 ```
 
+### ControlLayerAudit
+
+Public and scholar output must continue to preserve these behaviors:
+
+```text
+- summary output remains aggregate-only
+- entry list output remains classification-only
+- entry detail returns found:false below curator/debug access
+- primary file lists remain restricted
+- internal source chains, mutation notes, and diagnostics remain restricted
+- validation errors and warnings remain restricted below curator/debug access
+```
+
 ## Validation used for migrations
 
 The source-changing migrations were validated before merge with:
@@ -106,12 +120,6 @@ No public exposure of diagnostic IDs.
 No v29 draft/detail implementation.
 ```
 
-## Future migration target
+## Migration status
 
-The remaining likely helper-based detail access migration candidate is:
-
-```text
-ControlLayerAudit entry detail
-```
-
-Each future migration should remain behavior-preserving and should keep public/scholar output at least as restrictive as the current formatter behavior.
+The v28 diagnostic/detail formatter migration sequence is complete for the tracked surfaces. Future migrations should remain behavior-preserving and should keep public/scholar output at least as restrictive as the current formatter behavior.
