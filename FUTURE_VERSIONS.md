@@ -172,17 +172,25 @@ The implementation keeps review records advisory-only: no Artifact insertion, no
 
 ## Recommended next slices
 
-### v29.2 — Persistent Runtime Session Planning, No File/Database Persistence Yet
+### v29.2 — Runtime Session Planning, In-Memory First
 
-Purpose: design the smallest persistent-runtime interface before introducing storage. The first useful target is an in-memory session that can initialize once, run multiple queries against the same state, and end explicitly.
+Purpose: design and then implement the smallest persistent-runtime interface before introducing storage. The first useful target is an in-memory session that can initialize once, run multiple read-only queries against the same state, and end explicitly.
+
+Design artifact:
+
+```text
+docs/RUNTIME_SESSION_DESIGN.md
+```
 
 Allowed work:
 
 ```text
 Document Initialize -> Run Query -> Run Query -> End Session flow.
-Identify the minimal session state wrapper around ArchiveEngineState.
+Identify the minimal RuntimeSession wrapper around ArchiveEngineState.
 Keep storage in memory only.
-Keep CLI single-shot behavior unchanged unless an explicit session mode is selected.
+Keep existing one-shot CLI behavior unchanged unless an explicit session mode is selected.
+Prefer read-only query support first.
+Deny mutating workflows in session mode until mutation semantics are designed explicitly.
 ```
 
 Non-goals:
@@ -192,7 +200,8 @@ No JSON/database persistence.
 No GUI/API layer.
 No background worker.
 No multi-user server.
-No behavior change for existing CLI queries.
+No behavior change for existing one-shot CLI queries.
+No artifact generation, insertion, discovery scheduling, or archive mutation from session-only code.
 ```
 
 ## Later hardening passes
