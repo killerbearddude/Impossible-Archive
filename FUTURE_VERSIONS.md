@@ -1,16 +1,16 @@
 # Future Versions Roadmap
 
-This file records version history and recommended future slices after the current v28.11 baseline. It is a roadmap, not active runtime behavior.
+This file records version history and recommended future slices after the current v29.1 baseline. It is a roadmap, not active runtime behavior.
 
 ## Current baseline
 
 ```text
-v29.0 — CandidateArtifactDraft / Text Outline, No Artifact Insertion
+v29.1 — CandidateArtifactDraftReview / Draft Review Policy, No Artifact Insertion
 ```
 
-The current engine has a deterministic, access-aware, read-only/advisory chain from hidden truth through EvidencePotential, KnowledgeHorizon, ContradictionBudget, CandidateArtifactPlan, CandidateArtifactPlanEvaluation, CandidateArtifactProposal, CandidateArtifactProposalAudit, CandidateArtifactDraft, and ControlLayerAudit.
+The current engine has a deterministic, access-aware, read-only/advisory chain from hidden truth through EvidencePotential, KnowledgeHorizon, ContradictionBudget, CandidateArtifactPlan, CandidateArtifactPlanEvaluation, CandidateArtifactProposal, CandidateArtifactProposalAudit, CandidateArtifactDraft, CandidateArtifactDraftReview, and ControlLayerAudit.
 
-The current baseline includes draft-outline records derived from proposal/audit chains, with CLI inspection, validation, snapshot counters, summary-digest material, snapshot comparison fields, and smoke coverage. It still does not include artifact text generation, Artifact insertion, PublicClaim insertion, discovery scheduling/expansion, proposal materialization, EvidencePotential-to-artifact conversion, persistence, resolver/composition behavior, or interactive runtime behavior.
+The current baseline includes draft-outline records and draft-review records derived from proposal/audit chains, with CLI inspection, validation, snapshot counters, summary-digest material, snapshot comparison fields, and smoke coverage through CandidateArtifactDraftReview. It still does not include artifact text generation, Artifact insertion, PublicClaim insertion, discovery scheduling/expansion, proposal materialization, EvidencePotential-to-artifact conversion, persistence, resolver/composition behavior, or interactive runtime behavior.
 
 ## Implemented historical notes
 
@@ -164,34 +164,13 @@ Implemented a non-mutating CandidateArtifactDraft outline layer derived from Can
 
 The implementation keeps all insertion and mutation flags false: no Artifact insertion, no PublicClaim insertion, no discovery scheduling, no hidden truth mutation, no PublicArchive mutation, no persistence, no resolver/composition behavior, and no final artifact prose generation.
 
+### v29.1 — CandidateArtifactDraftReview / Draft Review Policy, No Artifact Insertion
+
+Implemented a non-mutating CandidateArtifactDraftReview policy layer derived from CandidateArtifactDraft records. Reviews score outline completeness, traceability, safety, specificity, and revision pressure; emit deterministic decisions; require actionable revisions for non-pass decisions; and participate in ArchiveEngineState, CLI inspection, full-state validation, ArchiveSnapshot counters, summary digest material, snapshot comparison fields, and README smoke coverage.
+
+The implementation keeps review records advisory-only: no Artifact insertion, no PublicClaim insertion, no discovery scheduling, no hidden truth mutation, no PublicArchive mutation, no persistence, no resolver/composition behavior, and no final artifact prose generation.
+
 ## Recommended next slices
-
-### v29.1 — CandidateArtifactDraft Review/Audit Policy, No Artifact Insertion
-
-Purpose: add an audit/review layer over CandidateArtifactDraft records without converting drafts into generated artifacts or public archive mutations.
-
-Allowed work:
-
-```text
-Create deterministic draft review/audit records from CandidateArtifactDraft records.
-Score outline completeness, proposal/audit traceability, safety, specificity, and remaining revision pressure.
-Require actionable revisions for non-pass draft reviews.
-Add validation, snapshot counters, digest material, smoke coverage, and public-detail blocking checks.
-Keep draft records and review records advisory-only.
-```
-
-Non-goals:
-
-```text
-No Artifact insertion.
-No PublicClaim insertion.
-No discovery scheduling.
-No hidden truth mutation.
-No public archive mutation.
-No persistence.
-No resolver/composition behavior.
-No final artifact prose generation.
-```
 
 ### v29.2 — Persistent Runtime Session Planning, No File/Database Persistence Yet
 

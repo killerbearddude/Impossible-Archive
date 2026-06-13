@@ -1,6 +1,6 @@
 # Architecture Map
 
-This is a practical map of the current v29.0 runtime and control-layer code paths. It describes the implemented repository state after the CandidateArtifactDraft outline layer and its snapshot/smoke coverage. It does not describe a composition resolver, persistent runtime, GUI/API layer, artifact text generation, Artifact insertion, PublicClaim insertion, or discovery expansion because those do not exist yet.
+This is a practical map of the current v29.1 runtime and control-layer code paths. It describes the implemented repository state after the CandidateArtifactDraftReview policy layer and its snapshot/smoke coverage. It does not describe a composition resolver, persistent runtime, GUI/API layer, artifact text generation, Artifact insertion, PublicClaim insertion, or discovery expansion because those do not exist yet.
 
 ## 1. Runtime selection
 
@@ -23,10 +23,10 @@ CLI options
       -> validate catalog
       -> select civilization_id
       -> bootstrap ArchiveEngineState
-      -> derive current control-layer and draft-outline records
+      -> derive current control-layer, draft-outline, and draft-review records
    -> FixedFixture
       -> build regression fixture state
-      -> derive current control-layer and draft-outline records
+      -> derive current control-layer, draft-outline, and draft-review records
 ```
 
 `SpecSelected` is the default runtime. The bundled default spec file is `examples/40_civilization_specs_v1_1.json`, and the default civilization is `marsh_citadel`. `FixedFixture` is explicit regression mode via `--runtime fixed-fixture`.
@@ -110,6 +110,7 @@ candidate_artifact_plan_evaluations
 candidate_artifact_proposals
 candidate_artifact_proposal_audits
 candidate_artifact_drafts
+candidate_artifact_draft_reviews
 control_layer_audit_entries
 civilization_source
 civilization_spec_count
@@ -297,7 +298,7 @@ CLI fixture query
 -> build_golden_fixture_world(...)
    -> FixedFixture: initialize_archive_engine(seed)
    -> SpecSelected: load catalog -> validate catalog only -> observe inert fragments -> select spec -> bootstrap ArchiveEngineState
--> derive current control-layer and draft-outline records
+-> derive current control-layer, draft-outline, and draft-review records
 -> build_archive_snapshot(...)
 -> format_archive_snapshot(...) or format_archive_snapshot_comparison(...)
 ```
@@ -433,7 +434,29 @@ CandidateArtifactDraft is a non-mutating outline layer. It stores outline title,
 
 Public/scholar access receives aggregate or public-safe summaries only. Curator/debug access can inspect proposal/audit IDs, source chains, validation gates, and diagnostic notes.
 
-## 24. ControlLayerAudit
+## 24. CandidateArtifactDraftReview policy seam
+
+Primary files:
+
+- `src/candidate_artifact_draft_review_model.h`
+- `src/candidate_artifact_draft_review_api.h`
+- `src/candidate_artifact_draft_review.cpp`
+- `src/archive_snapshot.cpp`
+- `src/cli.cpp`
+
+Flow:
+
+```text
+CandidateArtifactDraft
+-> CandidateArtifactDraftReview
+-> validate / inspect / snapshot only
+```
+
+CandidateArtifactDraftReview is a non-mutating policy/review layer. It scores outline completeness, traceability, safety, specificity, and revision pressure; emits deterministic pass/revision/review/block/invalid decisions; and requires actionable revisions for non-pass decisions. Review pass means review-clean only. It does not enable artifact prose, Artifact insertion, PublicClaim insertion, discovery scheduling, hidden truth mutation, PublicArchive mutation, persistence, resolver/composition behavior, or an interactive runtime session.
+
+Public/scholar access receives aggregate review summaries only. Curator/debug access can inspect review IDs, draft/proposal/audit IDs, scores, reason codes, and required revisions.
+
+## 25. ControlLayerAudit
 
 Primary files:
 
@@ -445,7 +468,7 @@ Primary files:
 
 It is not a generation, discovery, resolver, persistence, or mutation layer.
 
-## 25. Test and release surfaces
+## 26. Test and release surfaces
 
 Primary files:
 
@@ -468,12 +491,12 @@ make release-check
 
 GitHub Actions currently covers C++20 self-test, C++17 self-test, and strict warnings self-test. CI parity for sanitizer and smoke remains a recommended follow-up.
 
-## 26. Explicit non-goals in the current architecture
+## 27. Explicit non-goals in the current architecture
 
 ```text
-No artifact text generation from proposal/audit/draft records.
-No Artifact insertion or PublicClaim insertion from CandidateArtifactDraft records.
-No discovery scheduling from CandidateArtifactDraft records.
+No artifact text generation from proposal/audit/draft/review records.
+No Artifact insertion or PublicClaim insertion from CandidateArtifactDraft or CandidateArtifactDraftReview records.
+No discovery scheduling from CandidateArtifactDraft or CandidateArtifactDraftReview records.
 No EvidencePotential-to-artifact conversion.
 No discovery expansion from the v28 control chain.
 No proposal materialization.
