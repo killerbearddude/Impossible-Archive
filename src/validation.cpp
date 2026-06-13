@@ -793,6 +793,10 @@ namespace archive {
 
     std::vector<std::string> candidate_draft_errors = validate_candidate_artifact_drafts(state);
     errors.insert(errors.end(), candidate_draft_errors.begin(), candidate_draft_errors.end());
+
+    std::vector<std::string> candidate_draft_review_errors = validate_candidate_artifact_draft_reviews(state);
+    errors.insert(errors.end(), candidate_draft_review_errors.begin(), candidate_draft_review_errors.end());
+
     std::vector<std::string> control_layer_audit_errors = validate_control_layer_audit_report(build_control_layer_audit_report());
     errors.insert(errors.end(), control_layer_audit_errors.begin(), control_layer_audit_errors.end());
 

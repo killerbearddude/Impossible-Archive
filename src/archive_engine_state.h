@@ -8,6 +8,7 @@
 #include "candidate_artifact_proposal_model.h"
 #include "candidate_artifact_proposal_audit_model.h"
 #include "candidate_artifact_draft_model.h"
+#include "candidate_artifact_draft_review_model.h"
 #include "control_layer_audit_model.h"
 
 namespace archive {
@@ -36,6 +37,7 @@ struct ArchiveEngineState {
     std::vector<CandidateArtifactProposal> candidate_artifact_proposals;
     std::vector<CandidateArtifactProposalAudit> candidate_artifact_proposal_audits;
     std::vector<CandidateArtifactDraft> candidate_artifact_drafts;
+    std::vector<CandidateArtifactDraftReview> candidate_artifact_draft_reviews;
     std::vector<ControlLayerAuditEntry> control_layer_audit_entries;
     std::optional<CivilizationRuntimeSource> civilization_source;
     std::size_t civilization_spec_count = 0;

@@ -215,6 +215,10 @@ struct FormattedCommandResult {
             query == "list-candidate-artifact-drafts" ||
             query == "show-candidate-artifact-draft" ||
             query == "validate-candidate-artifact-drafts" ||
+             query == "candidate-artifact-draft-review-summary" ||
+             query == "list-candidate-artifact-draft-reviews" ||
+             query == "show-candidate-artifact-draft-review" ||
+             query == "validate-candidate-artifact-draft-reviews" ||
            query == "control-layer-audit-summary" ||
            query == "list-control-layer-audit-entries" ||
            query == "show-control-layer-audit-entry" ||
@@ -254,6 +258,7 @@ struct FormattedCommandResult {
         draft_candidate_artifact_proposals_into_state(result.state, AccessLevel::Curator);
         audit_candidate_artifact_proposals_into_state(result.state, AccessLevel::Curator);
         derive_candidate_artifact_drafts_into_state(result.state, AccessLevel::Curator);
+        review_candidate_artifact_drafts_into_state(result.state, AccessLevel::Curator);
         build_control_layer_audit_into_state(result.state);
         result.ok = true;
         return result;
@@ -311,6 +316,7 @@ struct FormattedCommandResult {
     draft_candidate_artifact_proposals_into_state(result.state, AccessLevel::Curator);
     audit_candidate_artifact_proposals_into_state(result.state, AccessLevel::Curator);
     derive_candidate_artifact_drafts_into_state(result.state, AccessLevel::Curator);
+    review_candidate_artifact_drafts_into_state(result.state, AccessLevel::Curator);
         build_control_layer_audit_into_state(result.state);
     result.state.civilization_spec_count = load.catalog.civilizations.size();
     result.state.civilization_fragment_count = load.catalog.fragments.size();
@@ -628,6 +634,8 @@ struct FormattedCommandResult {
             options.candidate_artifact_proposal_audit_id = next("--candidate-artifact-proposal-audit-id");
         } else if (arg == "--candidate-artifact-draft-id") {
             options.candidate_artifact_draft_id = next("--candidate-artifact-draft-id");
+        } else if (arg == "--candidate-artifact-draft-review-id") {
+            options.candidate_artifact_draft_review_id = next("--candidate-artifact-draft-review-id");
         } else if (arg == "--control-layer-audit-entry-id") {
             options.control_layer_audit_entry_id = next("--control-layer-audit-entry-id");
         } else if (arg == "--runtime") {
@@ -745,6 +753,7 @@ struct FormattedCommandResult {
         out << format_candidate_artifact_proposal_summary(state, access) << "\n";
         out << format_candidate_artifact_proposal_audit_summary(state, access) << "\n";
         out << format_candidate_artifact_draft_summary(state, access) << "\n";
+        out << format_candidate_artifact_draft_review_summary(state, access) << "\n";
     }
     out << format_discoveries(state, access, archive_year) << "\n";
     out << format_artifacts(state, access, archive_year) << "\n";
@@ -920,6 +929,14 @@ int run_cli(const CliArgs& args) {
         std::cout << format_candidate_artifact_draft_detail(state, options.access, options.candidate_artifact_draft_id);
     } else if (options.query == "validate-candidate-artifact-drafts") {
         std::cout << format_candidate_artifact_draft_validation(state, options.access);
+    } else if (options.query == "candidate-artifact-draft-review-summary") {
+        std::cout << format_candidate_artifact_draft_review_summary(state, options.access);
+    } else if (options.query == "list-candidate-artifact-draft-reviews") {
+        std::cout << format_candidate_artifact_draft_review_list(state, options.access);
+    } else if (options.query == "show-candidate-artifact-draft-review") {
+        std::cout << format_candidate_artifact_draft_review_detail(state, options.access, options.candidate_artifact_draft_review_id);
+    } else if (options.query == "validate-candidate-artifact-draft-reviews") {
+        std::cout << format_candidate_artifact_draft_review_validation(state, options.access);
     } else if (options.query == "control-layer-audit-summary") {
         std::cout << format_control_layer_audit_summary(state, options.access);
     } else if (options.query == "list-control-layer-audit-entries") {
