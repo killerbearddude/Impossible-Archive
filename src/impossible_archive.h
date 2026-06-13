@@ -43,3 +43,5 @@
 #include "archive_snapshot_api.h"
 #include "golden_fixture_model.h"
 #include "golden_fixtures_api.h"
+#include "runtime_session_model.h"
+#include "runtime_session_api.h"
