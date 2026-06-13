@@ -1,8 +1,8 @@
-# v29.2 Runtime Session Design — In-Memory First
+# v29.2 Runtime Session Design and Landed Baseline — In-Memory First
 
 ## Restated goal
 
-Introduce the smallest useful persistent runtime concept without adding file/database persistence, GUI/API behavior, background execution, multi-user state, or changes to existing one-shot CLI queries.
+Introduce and land the smallest useful runtime-session concept without adding file/database persistence, GUI/API behavior, background execution, multi-user state, or changes to existing one-shot CLI queries.
 
 The intended user flow is:
 
@@ -19,9 +19,9 @@ The session persists one `ArchiveEngineState` in process memory so multiple quer
 
 ## Scope boundary
 
-This is a design and implementation-planning document. It does not define a storage format and does not authorize changes to archive generation, artifact insertion, discovery scheduling, draft/review policy, fragment resolution, or public archive mutation.
+This began as a design and implementation-planning document and now records the landed v29.2 baseline. It does not define a storage format and does not authorize changes to archive generation, artifact insertion, discovery scheduling, draft/review policy, fragment resolution, or public archive mutation.
 
-The first implementation must be opt-in. Existing command-line behavior must remain a one-shot query path unless an explicit session mode is selected.
+The first implementation is opt-in through `--session` / `--runtime-session`. Existing command-line behavior must remain a one-shot query path unless an explicit session mode is selected.
 
 ## Smallest useful version
 
@@ -157,7 +157,7 @@ A v29.2 implementation is acceptable only if:
 - existing make test passes
 - C++17 test passes
 - strict build/test passes
-- README smoke workflow passes
+- CLI smoke workflow passes
 - one-shot CLI output remains unchanged for existing smoke-covered queries
 - session init builds one state successfully
 - two different read-only queries can run against the same session
@@ -179,7 +179,7 @@ A v29.2 implementation is acceptable only if:
 
 ## Implementation plan
 
-### PR 1 — RuntimeSession model and query dispatcher seam
+### PR 1 — RuntimeSession model and query dispatcher seam — landed
 
 ```text
 Add RuntimeSession model/API/source files.
@@ -191,7 +191,7 @@ No new public archive mutation behavior.
 No persistence.
 ```
 
-### PR 2 — CLI session loop
+### PR 2 — CLI session loop — landed
 
 ```text
 Add explicit session mode flag or command.
@@ -200,7 +200,7 @@ Add README smoke coverage for session init, two read-only queries, invalid query
 Keep existing one-shot CLI path unchanged.
 ```
 
-### PR 3 — Snapshot/smoke/docs reconciliation
+### PR 3 — Docs reconciliation — this slice
 
 ```text
 Add any needed session diagnostics to smoke coverage.

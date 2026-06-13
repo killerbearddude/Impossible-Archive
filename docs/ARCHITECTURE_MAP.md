@@ -1,6 +1,6 @@
 # Architecture Map
 
-This is a practical map of the current v29.1 runtime and control-layer code paths. It describes the implemented repository state after the CandidateArtifactDraftReview policy layer and its snapshot/smoke coverage. It does not describe a composition resolver, persistent runtime, GUI/API layer, artifact text generation, Artifact insertion, PublicClaim insertion, or discovery expansion because those do not exist yet.
+This is a practical map of the current v29.2 runtime and control-layer code paths. It describes the implemented repository state after the RuntimeSession core seam and opt-in CLI loop. It does not describe a composition resolver, persistent runtime, GUI/API layer, artifact text generation, Artifact insertion, PublicClaim insertion, or discovery expansion because those do not exist yet.
 
 ## 1. Runtime selection
 
@@ -16,6 +16,7 @@ Flow:
 
 ```text
 CLI options
+-> one-shot query path or --session path
 -> build_runtime_state_for_query(...)
 -> ArchiveRuntimeMode
    -> SpecSelected
@@ -117,7 +118,7 @@ civilization_spec_count
 civilization_fragment_count
 ```
 
-This is an in-memory state object for one CLI invocation. There is no file-backed or database-backed session persistence.
+This is an in-memory state object. One-shot CLI mode builds it for one invocation. `--session` mode wraps it in RuntimeSession and reuses it for multiple bounded read-only query commands in the same process. There is no file-backed or database-backed session persistence.
 
 ## 6. Generation target resolution
 
@@ -456,7 +457,32 @@ CandidateArtifactDraftReview is a non-mutating policy/review layer. It scores ou
 
 Public/scholar access receives aggregate review summaries only. Curator/debug access can inspect review IDs, draft/proposal/audit IDs, scores, reason codes, and required revisions.
 
-## 25. ControlLayerAudit
+## 25. RuntimeSession in-memory CLI seam
+
+Primary files:
+
+- `src/runtime_session_model.h`
+- `src/runtime_session_api.h`
+- `src/runtime_session.cpp`
+- `src/cli.cpp`
+- `src/cli_model.h`
+- `scripts/smoke_test_cli_workflows.sh`
+
+Flow:
+
+```text
+--session / --runtime-session
+-> build one ArchiveEngineState through existing runtime selection
+-> initialize RuntimeSession
+-> read line-oriented query commands from stdin
+-> accept bounded read-only query subset
+-> reject unknown or unsupported commands while keeping session active
+-> end on end-session / quit / exit
+```
+
+RuntimeSession is process-local convenience, not storage. The first CLI loop intentionally supports a bounded read-only subset; broadening support should follow dispatch hardening.
+
+## 26. ControlLayerAudit
 
 Primary files:
 
@@ -468,12 +494,12 @@ Primary files:
 
 It is not a generation, discovery, resolver, persistence, or mutation layer.
 
-## 26. Test and release surfaces
+## 27. Test and release surfaces
 
 Primary files:
 
 - `src/self_tests.cpp`
-- `scripts/smoke_test_readme_workflows.sh`
+- `scripts/smoke_test_cli_workflows.sh`
 - `Makefile`
 - `.github/workflows/ci.yml`
 - `RELEASE_CHECKLIST.md`
@@ -491,7 +517,7 @@ make release-check
 
 GitHub Actions currently covers C++20 self-test, C++17 self-test, and strict warnings self-test. CI parity for sanitizer and smoke remains a recommended follow-up.
 
-## 27. Explicit non-goals in the current architecture
+## 28. Explicit non-goals in the current architecture
 
 ```text
 No artifact text generation from proposal/audit/draft/review records.

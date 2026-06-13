@@ -170,11 +170,17 @@ Implemented a non-mutating CandidateArtifactDraftReview policy layer derived fro
 
 The implementation keeps review records advisory-only: no Artifact insertion, no PublicClaim insertion, no discovery scheduling, no hidden truth mutation, no PublicArchive mutation, no persistence, no resolver/composition behavior, and no final artifact prose generation.
 
+### v29.2 — RuntimeSession Core and CLI Loop, In-Memory Only
+
+Implemented the first opt-in in-memory RuntimeSession path. The session initializes one ArchiveEngineState, accepts line-oriented read-only query commands, rejects invalid or explicitly unsupported commands without ending the session, and exits on an explicit end command.
+
+Implemented surfaces include `src/runtime_session_model.h`, `src/runtime_session_api.h`, `src/runtime_session.cpp`, `--session` / `--runtime-session`, and CLI smoke coverage. Existing one-shot CLI behavior remains the default.
+
 ## Recommended next slices
 
-### v29.2 — Runtime Session Planning, In-Memory First
+### v29.3 — RuntimeSession Query Coverage and Dispatch Hardening
 
-Purpose: design and then implement the smallest persistent-runtime interface before introducing storage. The first useful target is an in-memory session that can initialize once, run multiple read-only queries against the same state, and end explicitly.
+Purpose: broaden read-only session query coverage only after shared one-shot/session formatting seams are easier to maintain.
 
 Design artifact:
 
@@ -225,7 +231,7 @@ EvidencePotential-to-artifact conversion
 resolver/composition behavior
 fragment activation
 file/database persistence
-interactive runtime
+interactive runtime beyond the current in-memory session loop
 GUI/API layer
 multi-spec runtime state
 cross-civilization merge

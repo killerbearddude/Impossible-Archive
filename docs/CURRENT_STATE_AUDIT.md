@@ -1,10 +1,10 @@
-# Current State Audit — v29.1 CandidateArtifactDraftReview Baseline
+# Current State Audit — v29.2 RuntimeSession Baseline
 
 ## 1. Executive summary
 
-The engine is not release-ready. It is at the v29.1 CandidateArtifactDraftReview baseline. Artifact generation, artifact text generation, Artifact insertion, PublicClaim insertion, discovery expansion/scheduling, proposal materialization, EvidencePotential-to-artifact conversion, resolver/composition behavior, persistence, and interactive runtime behavior remain deferred.
+The engine is not release-ready. It is at the v29.2 RuntimeSession baseline. Artifact generation, artifact text generation, Artifact insertion, PublicClaim insertion, discovery expansion/scheduling, proposal materialization, EvidencePotential-to-artifact conversion, resolver/composition behavior, persistence, and interactive runtime behavior remain deferred.
 
-v29.1 extends the v29.0 draft-outline baseline with non-mutating `CandidateArtifactDraftReview` records derived from `CandidateArtifactDraft` records. The current control layers are intended to make the engine inspectable, deterministic, access-aware, and safe to extend without accidentally turning advisory records into archive mutation.
+v29.2 extends the v29.1 draft-review baseline with an opt-in in-memory `RuntimeSession` path over one initialized `ArchiveEngineState`. The current control layers are intended to make the engine inspectable, deterministic, access-aware, and safe to extend without accidentally turning advisory records into archive mutation.
 
 ## 2. Current version baseline
 
@@ -33,6 +33,7 @@ v28.13    CI parity and self-test structure hardening
 v28.14    Centralized diagnostic detail access gates
 v29.0     CandidateArtifactDraft outline layer, snapshot coverage, and smoke coverage
 v29.1     CandidateArtifactDraftReview policy layer, snapshot coverage, and smoke coverage
+v29.2     RuntimeSession core seam and opt-in CLI loop, in-memory only
 ```
 
 ## 3. Control-layer inventory
@@ -89,6 +90,7 @@ Use:
 | CandidateArtifactProposalAudit | Audit-only quality gate with v28.10 policy thresholds and reason-coded findings. |
 | CandidateArtifactDraft | Draft-outline-only records derived from proposal/audit chains. No artifact text generation, Artifact insertion, PublicClaim insertion, discovery scheduling, hidden truth mutation, PublicArchive mutation, persistence, or resolver/composition behavior. |
 | CandidateArtifactDraftReview | Review-policy-only records derived from CandidateArtifactDraft records. Scores outline completeness, traceability, safety, specificity, and revision pressure without enabling artifact prose, insertion, discovery, mutation, persistence, or resolver/composition behavior. |
+| RuntimeSession | Opt-in in-memory session convenience path. Reuses one initialized state for bounded read-only query commands and exits explicitly. No storage or new archive-changing behavior. |
 | ControlLayerAudit | Audit-only inventory of the control stack. |
 | Mutating workflows | Limited to explicit materialization paths, access-gated and validation-gated. |
 
@@ -130,7 +132,7 @@ Known risk: some access behavior remains distributed across formatters rather th
 
 ## 9. Smoke/self-test coverage
 
-The smoke workflow covers representative runtime selection, specs, fragments, fixtures, snapshots, EvidencePotential, KnowledgeHorizon, ContradictionBudget, CandidateArtifactPlan, CandidateArtifactPlanEvaluation, CandidateArtifactProposal, CandidateArtifactProposalAudit, CandidateArtifactDraft, CandidateArtifactDraftReview, and ControlLayerAudit query surfaces, including public-detail blocking checks and expected failures.
+The CLI smoke workflow covers representative runtime selection, specs, fragments, fixtures, snapshots, EvidencePotential, KnowledgeHorizon, ContradictionBudget, CandidateArtifactPlan, CandidateArtifactPlanEvaluation, CandidateArtifactProposal, CandidateArtifactProposalAudit, CandidateArtifactDraft, CandidateArtifactDraftReview, ControlLayerAudit, and RuntimeSession query surfaces, including public-detail blocking checks, expected failures, invalid session-query recovery, unsupported session-query rejection, and explicit session end.
 
 Self-tests remain monolithic but broad. They cover runtime selection, catalog/tag metadata, access gates, generation/materialization constraints, archive invariants, deterministic snapshots, and control-layer validation. Splitting self-tests by subsystem is now a recommended maintainability improvement, not a behavior requirement.
 
@@ -181,7 +183,7 @@ v29.1 documentation reconciliation for the landed CandidateArtifactDraftReview b
 Recommended next feature-shaped slice:
 
 ```text
-v29.2 — Persistent Runtime Session Planning, In-Memory First
+v29.3 — RuntimeSession query coverage and dispatch hardening
 ```
 
 Still deferred:
