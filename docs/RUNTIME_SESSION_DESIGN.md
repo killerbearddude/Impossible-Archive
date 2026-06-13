@@ -1,16 +1,4 @@
-#!/usr/bin/env python3
-from pathlib import Path
-
-
-def replace_once(path: str, old: str, new: str) -> None:
-    p = Path(path)
-    text = p.read_text()
-    if old not in text:
-        raise SystemExit(f"expected text not found in {path}: {old[:160]!r}")
-    p.write_text(text.replace(old, new, 1))
-
-
-design = """# v29.2 Runtime Session Design — In-Memory First
+# v29.2 Runtime Session Design — In-Memory First
 
 ## Restated goal
 
@@ -237,67 +225,3 @@ No discovery scheduling.
 No hidden truth mutation from session-only code.
 No PublicArchive mutation from session-only code.
 ```
-"""
-
-Path("docs/RUNTIME_SESSION_DESIGN.md").write_text(design)
-
-old = """### v29.2 — Persistent Runtime Session Planning, No File/Database Persistence Yet
-
-Purpose: design the smallest persistent-runtime interface before introducing storage. The first useful target is an in-memory session that can initialize once, run multiple queries against the same state, and end explicitly.
-
-Allowed work:
-
-```text
-Document Initialize -> Run Query -> Run Query -> End Session flow.
-Identify the minimal session state wrapper around ArchiveEngineState.
-Keep storage in memory only.
-Keep CLI single-shot behavior unchanged unless an explicit session mode is selected.
-```
-
-Non-goals:
-
-```text
-No JSON/database persistence.
-No GUI/API layer.
-No background worker.
-No multi-user server.
-No behavior change for existing CLI queries.
-```
-"""
-
-new = """### v29.2 — Runtime Session Planning, In-Memory First
-
-Purpose: design and then implement the smallest persistent-runtime interface before introducing storage. The first useful target is an in-memory session that can initialize once, run multiple read-only queries against the same state, and end explicitly.
-
-Design artifact:
-
-```text
-docs/RUNTIME_SESSION_DESIGN.md
-```
-
-Allowed work:
-
-```text
-Document Initialize -> Run Query -> Run Query -> End Session flow.
-Identify the minimal RuntimeSession wrapper around ArchiveEngineState.
-Keep storage in memory only.
-Keep existing one-shot CLI behavior unchanged unless an explicit session mode is selected.
-Prefer read-only query support first.
-Deny mutating workflows in session mode until mutation semantics are designed explicitly.
-```
-
-Non-goals:
-
-```text
-No JSON/database persistence.
-No GUI/API layer.
-No background worker.
-No multi-user server.
-No behavior change for existing one-shot CLI queries.
-No artifact generation, insertion, discovery scheduling, or archive mutation from session-only code.
-```
-"""
-
-replace_once("FUTURE_VERSIONS.md", old, new)
-
-print("Applied v29.2 runtime session design docs.")
