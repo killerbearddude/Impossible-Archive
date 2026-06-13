@@ -1,10 +1,10 @@
-# Current State Audit — v28.11 Control-Layer Consolidation
+# Current State Audit — v29.0 CandidateArtifactDraft Outline Baseline
 
 ## 1. Executive summary
 
-The engine is not release-ready. It is in v28 control-layer consolidation with a v28.11 baseline. Artifact generation, artifact text generation, discovery expansion, proposal materialization, EvidencePotential-to-artifact conversion, resolver/composition behavior, persistence, and interactive runtime behavior remain deferred.
+The engine is not release-ready. It is at the v29.0 CandidateArtifactDraft outline baseline. Artifact generation, artifact text generation, Artifact insertion, PublicClaim insertion, discovery expansion/scheduling, proposal materialization, EvidencePotential-to-artifact conversion, resolver/composition behavior, persistence, and interactive runtime behavior remain deferred.
 
-v28.11 extends the v28 control stack with validator-backed `ContradictionBudget` policy/status tightening. The current control layers are intended to make the engine inspectable, deterministic, access-aware, and safe to extend without accidentally turning advisory records into archive mutation.
+v29.0 extends the v28 control stack with non-mutating `CandidateArtifactDraft` outline records derived from proposal/audit chains. The current control layers are intended to make the engine inspectable, deterministic, access-aware, and safe to extend without accidentally turning advisory records into archive mutation.
 
 ## 2. Current version baseline
 
@@ -28,6 +28,10 @@ v28.8     CandidateArtifactProposal audit / quality gates
 v28.9     Control-layer consolidation audit
 v28.10    Proposal quality gate policy tightening
 v28.11    ContradictionBudget validator-backed status tightening
+v28.12    Documentation / roadmap reconciliation and release-gate parity prep
+v28.13    CI parity and self-test structure hardening
+v28.14    Centralized diagnostic detail access gates
+v29.0     CandidateArtifactDraft outline layer, snapshot coverage, and smoke coverage
 ```
 
 ## 3. Control-layer inventory
@@ -47,6 +51,7 @@ CandidateArtifactPlan
 CandidateArtifactPlanEvaluation
 CandidateArtifactProposal
 CandidateArtifactProposalAudit
+CandidateArtifactDraft
 CandidateGeneration
 CandidateMaterialization
 HiddenClusterPreview
@@ -80,6 +85,7 @@ Use:
 | CandidateArtifactPlanEvaluation | Evaluation-only advisory records. |
 | CandidateArtifactProposal | Proposal-only draft records. No final artifact text, claims, or discovery records. |
 | CandidateArtifactProposalAudit | Audit-only quality gate with v28.10 policy thresholds and reason-coded findings. |
+| CandidateArtifactDraft | Draft-outline-only records derived from proposal/audit chains. No artifact text generation, Artifact insertion, PublicClaim insertion, discovery scheduling, hidden truth mutation, PublicArchive mutation, persistence, or resolver/composition behavior. |
 | ControlLayerAudit | Audit-only inventory of the control stack. |
 | Mutating workflows | Limited to explicit materialization paths, access-gated and validation-gated. |
 
@@ -100,6 +106,7 @@ CandidateArtifactPlan
 CandidateArtifactPlanEvaluation
 CandidateArtifactProposal
 CandidateArtifactProposalAudit
+CandidateArtifactDraft
 ControlLayerAudit
 HiddenClusterPreview
 HiddenMutationArtifactCandidate planning output
@@ -115,11 +122,11 @@ Known risk: some access behavior remains distributed across formatters rather th
 
 ## 8. Snapshot/digest coverage
 
-`ArchiveSnapshot` includes summary counts for v28 control layers through `CandidateArtifactProposalAudit`, `ControlLayerAudit`, and v28.11 `ContradictionBudget` reason/status counts. The `summary_digest` is a deterministic regression tripwire, not a persistence format and not a full semantic state digest.
+`ArchiveSnapshot` includes summary counts for control layers through `CandidateArtifactDraft`, `ControlLayerAudit`, and v28.11 `ContradictionBudget` reason/status counts. CandidateArtifactDraft contributes counters, mutation-enabled count checks, deterministic digest material, replay lines, comparison fields, and count deltas. The `summary_digest` is a deterministic regression tripwire, not a persistence format and not a full semantic state digest.
 
 ## 9. Smoke/self-test coverage
 
-The smoke workflow covers representative runtime selection, specs, fragments, fixtures, snapshots, EvidencePotential, KnowledgeHorizon, ContradictionBudget, CandidateArtifactPlan, CandidateArtifactPlanEvaluation, CandidateArtifactProposal, CandidateArtifactProposalAudit, and ControlLayerAudit query surfaces, including public-detail blocking checks and expected failures.
+The smoke workflow covers representative runtime selection, specs, fragments, fixtures, snapshots, EvidencePotential, KnowledgeHorizon, ContradictionBudget, CandidateArtifactPlan, CandidateArtifactPlanEvaluation, CandidateArtifactProposal, CandidateArtifactProposalAudit, CandidateArtifactDraft, and ControlLayerAudit query surfaces, including public-detail blocking checks and expected failures.
 
 Self-tests remain monolithic but broad. They cover runtime selection, catalog/tag metadata, access gates, generation/materialization constraints, archive invariants, deterministic snapshots, and control-layer validation. Splitting self-tests by subsystem is now a recommended maintainability improvement, not a behavior requirement.
 
@@ -131,8 +138,8 @@ High-level gaps:
 No database or file-backed persistence.
 No resolver/composition behavior.
 No EvidencePotential-to-artifact conversion.
-No artifact text generation from proposal/audit records.
-No discovery expansion from the v28 control chain.
+No artifact text generation from proposal/audit/draft records.
+No discovery expansion from the control chain.
 Some access control remains formatting/query-projection based rather than centralized policy-engine based.
 Self-tests remain monolithic.
 CI does not yet run every local release-check surface by default.
@@ -149,26 +156,33 @@ Public access gates
 Full-state validation
 ContradictionBudget policy/reason-code validation
 CandidateArtifactProposalAudit policy/revision outputs
+CandidateArtifactDraft outline records and non-mutation invariants
 ```
 
-The safest immediate direction is still non-mutating hardening: documentation reconciliation, CI parity, self-test structure cleanup, and centralized diagnostic access helper work.
+The safest immediate direction is still non-mutating hardening: documentation reconciliation, CandidateArtifactDraft review/audit policy, and persistent runtime session planning without storage.
 
 ## 12. Do-not-build-on-yet layers
 
-Do not build artifact generation, discovery expansion, or proposal materialization directly on `CandidateArtifactProposal` or `CandidateArtifactProposalAudit` yet. The next artifact-facing slice should remain a draft/outline layer only, with explicit no-insertion and no-discovery invariants.
+Do not build artifact generation, discovery expansion, or proposal materialization directly on `CandidateArtifactProposal`, `CandidateArtifactProposalAudit`, or `CandidateArtifactDraft` yet. The next artifact-facing slice should remain an audit/review layer over drafts, with explicit no-insertion and no-discovery invariants.
 
 ## 13. Recommended next slices
 
 Recommended immediate maintenance slice:
 
 ```text
-v28.12 — Documentation / roadmap reconciliation, CI parity planning, and test-structure hardening prep
+v29.0 documentation reconciliation for the landed CandidateArtifactDraft outline baseline
 ```
 
-Recommended next feature-shaped slice after maintenance:
+Recommended next feature-shaped slice:
 
 ```text
-v29.0 — CandidateArtifactDraft / Text Outline, No Artifact Insertion
+v29.1 — CandidateArtifactDraft Review/Audit Policy, No Artifact Insertion
+```
+
+Recommended runtime-planning slice after draft-review policy:
+
+```text
+v29.2 — Persistent Runtime Session Planning, In-Memory First
 ```
 
 Still deferred:
