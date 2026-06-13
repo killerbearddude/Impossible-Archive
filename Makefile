@@ -49,8 +49,8 @@ sanitize: $(SANITIZE_TARGET)
 	ASAN_OPTIONS=detect_leaks=1:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1 ./$(SANITIZE_TARGET) --self-test
 
 smoke: build
-	@echo "Running README workflow smoke tests"
-	./scripts/smoke_test_readme_workflows.sh
+	@echo "Running CLI workflow smoke tests"
+	./scripts/smoke_test_cli_workflows.sh
 
 release-check:
 	$(MAKE) clean
