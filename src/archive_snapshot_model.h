@@ -46,6 +46,12 @@ struct ArchiveSnapshot {
     std::size_t candidate_artifact_proposal_audit_blocked_count = 0;
     std::size_t candidate_artifact_proposal_audit_review_count = 0;
     std::size_t candidate_artifact_proposal_audit_revision_count = 0;
+    std::size_t candidate_artifact_draft_count = 0;
+    std::size_t candidate_artifact_draft_ready_count = 0;
+    std::size_t candidate_artifact_draft_blocked_count = 0;
+    std::size_t candidate_artifact_draft_review_count = 0;
+    std::size_t candidate_artifact_draft_revision_count = 0;
+    std::size_t candidate_artifact_draft_mutation_enabled_count = 0;
     std::size_t control_layer_audit_entry_count = 0;
     std::size_t control_layer_audit_mutation_capable_count = 0;
     std::size_t control_layer_audit_report_only_count = 0;
