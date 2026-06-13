@@ -77,6 +77,21 @@ run_failure_and_grep() {
   fi
 }
 
+run_session_and_grep() {
+  local name="$1"
+  local pattern="$2"
+  local input="$3"
+  shift 3
+  local output="/tmp/impossible_archive_smoke_${name//[^A-Za-z0-9_]/_}.txt"
+  echo "[smoke] $name"
+  printf "%b" "$input" | "$@" >"$output"
+  if ! grep -qE "$pattern" "$output"; then
+    echo "[smoke] expected pattern not found for $name: $pattern" >&2
+    cat "$output" >&2
+    exit 1
+  fi
+}
+
 run_and_grep self_test "All self-tests passed" "$BIN" --self-test
 run_and_grep validate_specs "CivilizationSpec validation|valid:" "$BIN" --query validate-civilization-specs
 run_and_grep list_tags "CivilizationSpec tags" "$BIN" --query list-civilization-tags
@@ -172,4 +187,17 @@ run_and_reject_grep control_layer_audit_public_detail_blocked "ControlLayerAudit
 run_and_grep control_layer_audit_snapshot "control_layer_audit_entry_count: [1-9]|control_layer_audit_mutation_capable_count" "$BIN" --query archive-snapshot --fixture-id fixture.default_archive
 run_and_grep control_layer_audit_compare_snapshots "ArchiveSnapshot comparison|result: same|control_layer_audit_entry_count" "$BIN" --query compare-archive-snapshots --fixture-id fixture.default_archive
 
-echo "README workflow smoke tests passed."
+run_session_and_grep runtime_session_two_read_queries "RuntimeSession initialized|CandidateArtifactDraftReview summary|ControlLayerAudit summary|RuntimeSession ended" "--query candidate-artifact-draft-review-summary
+--query control-layer-audit-summary
+end-session
+" "$BIN" --session
+run_session_and_grep runtime_session_invalid_query_recovers "RuntimeSession query rejected|denied_unknown|session_active: true|CandidateArtifactDraftReview summary|RuntimeSession ended" "--query definitely-not-a-query
+--query candidate-artifact-draft-review-summary
+end-session
+" "$BIN" --session
+run_session_and_grep runtime_session_mutating_query_denied "RuntimeSession query rejected|denied_mutating|materialize-hidden-cluster|session_active: true|CandidateArtifactDraftReview summary|RuntimeSession ended" "--query materialize-hidden-cluster
+--query candidate-artifact-draft-review-summary
+end-session
+" "$BIN" --session
+
+echo "CLI workflow smoke tests passed."
