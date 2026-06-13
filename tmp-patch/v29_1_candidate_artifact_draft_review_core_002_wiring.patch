@@ -1,0 +1,128 @@
+diff --git a/src/archive_engine_state.h b/src/archive_engine_state.h
+--- a/src/archive_engine_state.h
++++ b/src/archive_engine_state.h
+@@ -11,3 +11,4 @@
+ #include "candidate_artifact_proposal_audit_model.h"
+ #include "candidate_artifact_draft_model.h"
++#include "candidate_artifact_draft_review_model.h"
+ #include "control_layer_audit_model.h"
+
+diff --git a/src/archive_engine_state.h b/src/archive_engine_state.h
+--- a/src/archive_engine_state.h
++++ b/src/archive_engine_state.h
+@@ -39,3 +39,4 @@
+     std::vector<CandidateArtifactProposalAudit> candidate_artifact_proposal_audits;
+     std::vector<CandidateArtifactDraft> candidate_artifact_drafts;
++    std::vector<CandidateArtifactDraftReview> candidate_artifact_draft_reviews;
+     std::vector<ControlLayerAuditEntry> control_layer_audit_entries;
+
+diff --git a/src/impossible_archive.h b/src/impossible_archive.h
+--- a/src/impossible_archive.h
++++ b/src/impossible_archive.h
+@@ -26,4 +26,6 @@
+ #include "candidate_artifact_proposal_audit_api.h"
+ #include "candidate_artifact_draft_model.h"
+ #include "candidate_artifact_draft_api.h"
++#include "candidate_artifact_draft_review_model.h"
++#include "candidate_artifact_draft_review_api.h"
+ #include "control_layer_audit_model.h"
+
+diff --git a/src/diagnostic_access_policy.h b/src/diagnostic_access_policy.h
+--- a/src/diagnostic_access_policy.h
++++ b/src/diagnostic_access_policy.h
+@@ -21,4 +21,5 @@
+     CandidateArtifactProposalAudit,
+     CandidateArtifactDraft,
++    CandidateArtifactDraftReview,
+     ControlLayerAudit,
+     ValidationErrors,
+
+diff --git a/src/cli_model.h b/src/cli_model.h
+--- a/src/cli_model.h
++++ b/src/cli_model.h
+@@ -80,3 +80,4 @@
+     std::string candidate_artifact_proposal_audit_id;
+     std::string candidate_artifact_draft_id;
++    std::string candidate_artifact_draft_review_id;
+     std::string control_layer_audit_entry_id;
+
+diff --git a/src/cli.cpp b/src/cli.cpp
+--- a/src/cli.cpp
++++ b/src/cli.cpp
+@@ -58,4 +58,8 @@
+              query == "list-candidate-artifact-drafts" ||
+              query == "show-candidate-artifact-draft" ||
+              query == "validate-candidate-artifact-drafts" ||
++             query == "candidate-artifact-draft-review-summary" ||
++             query == "list-candidate-artifact-draft-reviews" ||
++             query == "show-candidate-artifact-draft-review" ||
++             query == "validate-candidate-artifact-draft-reviews" ||
+            query == "control-layer-audit-summary" ||
+
+diff --git a/src/cli.cpp b/src/cli.cpp
+--- a/src/cli.cpp
++++ b/src/cli.cpp
+@@ -97,4 +97,5 @@
+         draft_candidate_artifact_proposals_into_state(result.state, AccessLevel::Curator);
+         audit_candidate_artifact_proposals_into_state(result.state, AccessLevel::Curator);
+         derive_candidate_artifact_drafts_into_state(result.state, AccessLevel::Curator);
++        review_candidate_artifact_drafts_into_state(result.state, AccessLevel::Curator);
+         build_control_layer_audit_into_state(result.state);
+
+diff --git a/src/cli.cpp b/src/cli.cpp
+--- a/src/cli.cpp
++++ b/src/cli.cpp
+@@ -311,4 +311,5 @@
+     draft_candidate_artifact_proposals_into_state(result.state, AccessLevel::Curator);
+     audit_candidate_artifact_proposals_into_state(result.state, AccessLevel::Curator);
+     derive_candidate_artifact_drafts_into_state(result.state, AccessLevel::Curator);
++    review_candidate_artifact_drafts_into_state(result.state, AccessLevel::Curator);
+         build_control_layer_audit_into_state(result.state);
+
+diff --git a/src/cli.cpp b/src/cli.cpp
+--- a/src/cli.cpp
++++ b/src/cli.cpp
+@@ -632,3 +632,5 @@
+         } else if (arg == "--candidate-artifact-draft-id") {
+             options.candidate_artifact_draft_id = next("--candidate-artifact-draft-id");
++        } else if (arg == "--candidate-artifact-draft-review-id") {
++            options.candidate_artifact_draft_review_id = next("--candidate-artifact-draft-review-id");
+         } else if (arg == "--control-layer-audit-entry-id") {
+
+diff --git a/src/cli.cpp b/src/cli.cpp
+--- a/src/cli.cpp
++++ b/src/cli.cpp
+@@ -747,4 +747,5 @@
+         out << format_candidate_artifact_proposal_summary(state, access) << "\n";
+         out << format_candidate_artifact_proposal_audit_summary(state, access) << "\n";
+         out << format_candidate_artifact_draft_summary(state, access) << "\n";
++        out << format_candidate_artifact_draft_review_summary(state, access) << "\n";
+     }
+
+diff --git a/src/cli.cpp b/src/cli.cpp
+--- a/src/cli.cpp
++++ b/src/cli.cpp
+@@ -923,3 +923,11 @@
+     } else if (options.query == "validate-candidate-artifact-drafts") {
+         std::cout << format_candidate_artifact_draft_validation(state, options.access);
++    } else if (options.query == "candidate-artifact-draft-review-summary") {
++        std::cout << format_candidate_artifact_draft_review_summary(state, options.access);
++    } else if (options.query == "list-candidate-artifact-draft-reviews") {
++        std::cout << format_candidate_artifact_draft_review_list(state, options.access);
++    } else if (options.query == "show-candidate-artifact-draft-review") {
++        std::cout << format_candidate_artifact_draft_review_detail(state, options.access, options.candidate_artifact_draft_review_id);
++    } else if (options.query == "validate-candidate-artifact-draft-reviews") {
++        std::cout << format_candidate_artifact_draft_review_validation(state, options.access);
+     } else if (options.query == "control-layer-audit-summary") {
+
+diff --git a/src/validation.cpp b/src/validation.cpp
+--- a/src/validation.cpp
++++ b/src/validation.cpp
+@@ -797,3 +797,7 @@
+     std::vector<std::string> candidate_draft_errors = validate_candidate_artifact_drafts(state);
+     errors.insert(errors.end(), candidate_draft_errors.begin(), candidate_draft_errors.end());
++
++    std::vector<std::string> candidate_draft_review_errors = validate_candidate_artifact_draft_reviews(state);
++    errors.insert(errors.end(), candidate_draft_review_errors.begin(), candidate_draft_review_errors.end());
++
+     std::vector<std::string> control_layer_audit_errors = validate_control_layer_audit_report(build_control_layer_audit_report());
