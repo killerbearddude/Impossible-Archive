@@ -5,6 +5,7 @@
 #include "candidate_artifact_proposal_api.h"
 #include "candidate_artifact_proposal_audit_api.h"
 #include "candidate_artifact_draft_api.h"
+#include "candidate_artifact_draft_review_api.h"
 #include "contradiction_budget_api.h"
 #include "control_layer_audit_api.h"
 #include "evidence_potential_api.h"
@@ -181,6 +182,28 @@ namespace {
     out << "candidate_artifact_draft_review_count=" << draft_review << "\n";
     out << "candidate_artifact_draft_revision_count=" << draft_revision << "\n";
     out << "candidate_artifact_draft_mutation_enabled_count=" << draft_mutation_enabled << "\n";
+    const CandidateArtifactDraftReviewReport draft_review_report = review_candidate_artifact_drafts(state, AccessLevel::Curator);
+    std::size_t draft_review_pass = 0;
+    std::size_t draft_review_blocked = 0;
+    std::size_t draft_review_curator_review = 0;
+    std::size_t draft_review_revision = 0;
+    std::size_t draft_review_mutation_enabled = 0;
+    for (const CandidateArtifactDraftReview& review : draft_review_report.reviews) {
+        if (review.decision == CandidateArtifactDraftReviewDecision::Pass) { ++draft_review_pass; }
+        if (review.decision == CandidateArtifactDraftReviewDecision::Blocked || review.decision == CandidateArtifactDraftReviewDecision::Invalid) { ++draft_review_blocked; }
+        if (review.decision == CandidateArtifactDraftReviewDecision::NeedsCuratorReview) { ++draft_review_curator_review; }
+        if (review.decision == CandidateArtifactDraftReviewDecision::NeedsRevision) { ++draft_review_revision; }
+        if (review.current_artifact_insertion_enabled || review.current_public_claim_insertion_enabled ||
+            review.current_discovery_scheduling_enabled || review.hidden_truth_mutation_enabled ||
+            review.public_archive_mutation_enabled || review.persistence_enabled ||
+            review.final_artifact_prose_generation_enabled) { ++draft_review_mutation_enabled; }
+    }
+    out << "candidate_artifact_draft_review_record_count=" << draft_review_report.reviews.size() << "\n";
+    out << "candidate_artifact_draft_review_pass_count=" << draft_review_pass << "\n";
+    out << "candidate_artifact_draft_review_blocked_count=" << draft_review_blocked << "\n";
+    out << "candidate_artifact_draft_review_curator_review_count=" << draft_review_curator_review << "\n";
+    out << "candidate_artifact_draft_review_revision_count=" << draft_review_revision << "\n";
+    out << "candidate_artifact_draft_review_mutation_enabled_count=" << draft_review_mutation_enabled << "\n";
     const ControlLayerAuditReport control_report = build_control_layer_audit_report();
     std::size_t control_mutation_capable = 0;
     std::size_t control_report_only = 0;
@@ -226,6 +249,22 @@ namespace {
             << "|hidden_truth_mutation_enabled=" << (draft.hidden_truth_mutation_enabled ? "true" : "false")
             << "|public_archive_mutation_enabled=" << (draft.public_archive_mutation_enabled ? "true" : "false")
             << "|persistence_enabled=" << (draft.persistence_enabled ? "true" : "false")
+            << "\n";
+    }
+    for (const CandidateArtifactDraftReview& review : draft_review_report.reviews) {
+        out << "R|" << review.id
+            << "|" << review.draft_id
+            << "|" << review.proposal_id
+            << "|" << review.audit_id
+            << "|" << to_string(review.decision)
+            << "|outline=" << review.outline_completeness_score
+            << "|traceability=" << review.traceability_score
+            << "|safety=" << review.safety_score
+            << "|specificity=" << review.specificity_score
+            << "|revision_pressure=" << review.revision_pressure_score
+            << "|reason_codes=" << review.reason_codes.size()
+            << "|required_revisions=" << review.required_revisions.size()
+            << "|mutation_or_generation_enabled=" << ((review.current_artifact_insertion_enabled || review.current_public_claim_insertion_enabled || review.current_discovery_scheduling_enabled || review.hidden_truth_mutation_enabled || review.public_archive_mutation_enabled || review.persistence_enabled || review.final_artifact_prose_generation_enabled) ? "true" : "false")
             << "\n";
     }
     for (const CandidateArtifactProposalAudit& audit : audit_report.audits) {
@@ -480,6 +519,36 @@ void format_count_delta(std::ostringstream& out,
                    draft.public_archive_mutation_enabled || draft.persistence_enabled;
         }
     ));
+    const CandidateArtifactDraftReviewReport draft_review_report = review_candidate_artifact_drafts(state, AccessLevel::Curator);
+    snapshot.candidate_artifact_draft_review_record_count = draft_review_report.reviews.size();
+    snapshot.candidate_artifact_draft_review_pass_count = static_cast<std::size_t>(std::count_if(
+        draft_review_report.reviews.begin(), draft_review_report.reviews.end(),
+        [](const CandidateArtifactDraftReview& review) { return review.decision == CandidateArtifactDraftReviewDecision::Pass; }
+    ));
+    snapshot.candidate_artifact_draft_review_blocked_count = static_cast<std::size_t>(std::count_if(
+        draft_review_report.reviews.begin(), draft_review_report.reviews.end(),
+        [](const CandidateArtifactDraftReview& review) { return review.decision == CandidateArtifactDraftReviewDecision::Blocked || review.decision == CandidateArtifactDraftReviewDecision::Invalid; }
+    ));
+    snapshot.candidate_artifact_draft_review_curator_review_count = static_cast<std::size_t>(std::count_if(
+        draft_review_report.reviews.begin(), draft_review_report.reviews.end(),
+        [](const CandidateArtifactDraftReview& review) { return review.decision == CandidateArtifactDraftReviewDecision::NeedsCuratorReview; }
+    ));
+    snapshot.candidate_artifact_draft_review_revision_count = static_cast<std::size_t>(std::count_if(
+        draft_review_report.reviews.begin(), draft_review_report.reviews.end(),
+        [](const CandidateArtifactDraftReview& review) { return review.decision == CandidateArtifactDraftReviewDecision::NeedsRevision; }
+    ));
+    snapshot.candidate_artifact_draft_review_mutation_enabled_count = static_cast<std::size_t>(std::count_if(
+        draft_review_report.reviews.begin(), draft_review_report.reviews.end(),
+        [](const CandidateArtifactDraftReview& review) {
+            return review.current_artifact_insertion_enabled ||
+                   review.current_public_claim_insertion_enabled ||
+                   review.current_discovery_scheduling_enabled ||
+                   review.hidden_truth_mutation_enabled ||
+                   review.public_archive_mutation_enabled ||
+                   review.persistence_enabled ||
+                   review.final_artifact_prose_generation_enabled;
+        }
+    ));
     const ControlLayerAuditReport control_report = build_control_layer_audit_report();
     snapshot.control_layer_audit_entry_count = control_report.entries.size();
     snapshot.control_layer_audit_mutation_capable_count = static_cast<std::size_t>(std::count_if(
@@ -557,6 +626,12 @@ void format_count_delta(std::ostringstream& out,
     out << "- candidate_artifact_draft_review_count: " << snapshot.candidate_artifact_draft_review_count << "\n";
     out << "- candidate_artifact_draft_revision_count: " << snapshot.candidate_artifact_draft_revision_count << "\n";
     out << "- candidate_artifact_draft_mutation_enabled_count: " << snapshot.candidate_artifact_draft_mutation_enabled_count << "\n";
+    out << "- candidate_artifact_draft_review_record_count: " << snapshot.candidate_artifact_draft_review_record_count << "\n";
+    out << "- candidate_artifact_draft_review_pass_count: " << snapshot.candidate_artifact_draft_review_pass_count << "\n";
+    out << "- candidate_artifact_draft_review_blocked_count: " << snapshot.candidate_artifact_draft_review_blocked_count << "\n";
+    out << "- candidate_artifact_draft_review_curator_review_count: " << snapshot.candidate_artifact_draft_review_curator_review_count << "\n";
+    out << "- candidate_artifact_draft_review_revision_count: " << snapshot.candidate_artifact_draft_review_revision_count << "\n";
+    out << "- candidate_artifact_draft_review_mutation_enabled_count: " << snapshot.candidate_artifact_draft_review_mutation_enabled_count << "\n";
     out << "- control_layer_audit_entry_count: " << snapshot.control_layer_audit_entry_count << "\n";
     out << "- control_layer_audit_mutation_capable_count: " << snapshot.control_layer_audit_mutation_capable_count << "\n";
     out << "- control_layer_audit_report_only_count: " << snapshot.control_layer_audit_report_only_count << "\n";
@@ -624,6 +699,12 @@ void format_count_delta(std::ostringstream& out,
                        before.candidate_artifact_draft_review_count == after.candidate_artifact_draft_review_count &&
                        before.candidate_artifact_draft_revision_count == after.candidate_artifact_draft_revision_count &&
                        before.candidate_artifact_draft_mutation_enabled_count == after.candidate_artifact_draft_mutation_enabled_count &&
+                       before.candidate_artifact_draft_review_record_count == after.candidate_artifact_draft_review_record_count &&
+                       before.candidate_artifact_draft_review_pass_count == after.candidate_artifact_draft_review_pass_count &&
+                       before.candidate_artifact_draft_review_blocked_count == after.candidate_artifact_draft_review_blocked_count &&
+                       before.candidate_artifact_draft_review_curator_review_count == after.candidate_artifact_draft_review_curator_review_count &&
+                       before.candidate_artifact_draft_review_revision_count == after.candidate_artifact_draft_review_revision_count &&
+                       before.candidate_artifact_draft_review_mutation_enabled_count == after.candidate_artifact_draft_review_mutation_enabled_count &&
                       before.control_layer_audit_entry_count == after.control_layer_audit_entry_count &&
                       before.control_layer_audit_mutation_capable_count == after.control_layer_audit_mutation_capable_count &&
                       before.control_layer_audit_report_only_count == after.control_layer_audit_report_only_count &&
@@ -682,6 +763,12 @@ void format_count_delta(std::ostringstream& out,
     format_count_delta(out, "candidate_artifact_draft_review_count", before.candidate_artifact_draft_review_count, after.candidate_artifact_draft_review_count);
     format_count_delta(out, "candidate_artifact_draft_revision_count", before.candidate_artifact_draft_revision_count, after.candidate_artifact_draft_revision_count);
     format_count_delta(out, "candidate_artifact_draft_mutation_enabled_count", before.candidate_artifact_draft_mutation_enabled_count, after.candidate_artifact_draft_mutation_enabled_count);
+    format_count_delta(out, "candidate_artifact_draft_review_record_count", before.candidate_artifact_draft_review_record_count, after.candidate_artifact_draft_review_record_count);
+    format_count_delta(out, "candidate_artifact_draft_review_pass_count", before.candidate_artifact_draft_review_pass_count, after.candidate_artifact_draft_review_pass_count);
+    format_count_delta(out, "candidate_artifact_draft_review_blocked_count", before.candidate_artifact_draft_review_blocked_count, after.candidate_artifact_draft_review_blocked_count);
+    format_count_delta(out, "candidate_artifact_draft_review_curator_review_count", before.candidate_artifact_draft_review_curator_review_count, after.candidate_artifact_draft_review_curator_review_count);
+    format_count_delta(out, "candidate_artifact_draft_review_revision_count", before.candidate_artifact_draft_review_revision_count, after.candidate_artifact_draft_review_revision_count);
+    format_count_delta(out, "candidate_artifact_draft_review_mutation_enabled_count", before.candidate_artifact_draft_review_mutation_enabled_count, after.candidate_artifact_draft_review_mutation_enabled_count);
     format_count_delta(out, "control_layer_audit_entry_count", before.control_layer_audit_entry_count, after.control_layer_audit_entry_count);
     format_count_delta(out, "control_layer_audit_mutation_capable_count", before.control_layer_audit_mutation_capable_count, after.control_layer_audit_mutation_capable_count);
     format_count_delta(out, "control_layer_audit_report_only_count", before.control_layer_audit_report_only_count, after.control_layer_audit_report_only_count);
