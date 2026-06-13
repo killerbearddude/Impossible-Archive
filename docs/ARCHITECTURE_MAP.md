@@ -1,6 +1,6 @@
 # Architecture Map
 
-This is a practical map of the current v28.11 runtime and control-layer code paths. It describes the implemented state of the repository after ContradictionBudget validator-backed status tightening. It does not describe a composition resolver, persistent runtime, GUI/API layer, or discovery expansion because those do not exist yet.
+This is a practical map of the current v29.0 runtime and control-layer code paths. It describes the implemented repository state after the CandidateArtifactDraft outline layer and its snapshot/smoke coverage. It does not describe a composition resolver, persistent runtime, GUI/API layer, artifact text generation, Artifact insertion, PublicClaim insertion, or discovery expansion because those do not exist yet.
 
 ## 1. Runtime selection
 
@@ -23,10 +23,10 @@ CLI options
       -> validate catalog
       -> select civilization_id
       -> bootstrap ArchiveEngineState
-      -> derive v28 control-layer records
+      -> derive current control-layer and draft-outline records
    -> FixedFixture
       -> build regression fixture state
-      -> derive v28 control-layer records
+      -> derive current control-layer and draft-outline records
 ```
 
 `SpecSelected` is the default runtime. The bundled default spec file is `examples/40_civilization_specs_v1_1.json`, and the default civilization is `marsh_citadel`. `FixedFixture` is explicit regression mode via `--runtime fixed-fixture`.
@@ -109,6 +109,7 @@ candidate_artifact_plans
 candidate_artifact_plan_evaluations
 candidate_artifact_proposals
 candidate_artifact_proposal_audits
+candidate_artifact_drafts
 control_layer_audit_entries
 civilization_source
 civilization_spec_count
@@ -274,7 +275,7 @@ Primary files:
 
 Public/scholar output is filtered through access-aware formatters. Curator/canon/debug can inspect internal traces where the workflow allows it.
 
-Known architectural gap: some access behavior remains distributed across formatting/query code rather than centralized in a policy engine. This should be tightened before v29 detail surfaces expand.
+Diagnostic detail access for the tracked v28/v29 outline surfaces is routed through centralized helper surfaces where migrated. Public/scholar output for hidden or diagnostic details remains restricted or `found: false`; curator/canon/debug can inspect internal traces where the workflow allows it.
 
 ## 15. Golden fixtures and ArchiveSnapshot
 
@@ -296,7 +297,7 @@ CLI fixture query
 -> build_golden_fixture_world(...)
    -> FixedFixture: initialize_archive_engine(seed)
    -> SpecSelected: load catalog -> validate catalog only -> observe inert fragments -> select spec -> bootstrap ArchiveEngineState
--> derive v28 control-layer records
+-> derive current control-layer and draft-outline records
 -> build_archive_snapshot(...)
 -> format_archive_snapshot(...) or format_archive_snapshot_comparison(...)
 ```
@@ -409,7 +410,30 @@ CandidateArtifactProposalAudit classification is policy-backed. The audit module
 
 This is not a generation or mutation layer. Audit `Pass` means audit-clean only; it does not enable artifact generation, candidate materialization, discovery scheduling, public archive mutation, hidden truth mutation, resolver/composition behavior, persistence, or interactive runtime.
 
-## 23. ControlLayerAudit
+## 23. CandidateArtifactDraft outline seam
+
+Primary files:
+
+- `src/candidate_artifact_draft_model.h`
+- `src/candidate_artifact_draft_api.h`
+- `src/candidate_artifact_draft.cpp`
+- `src/archive_snapshot.cpp`
+- `src/cli.cpp`
+
+Flow:
+
+```text
+CandidateArtifactProposal
++ CandidateArtifactProposalAudit
+-> CandidateArtifactDraft
+-> validate / inspect / snapshot only
+```
+
+CandidateArtifactDraft is a non-mutating outline layer. It stores outline title, intended artifact type/register, claim-outline lines, required validation gates, public-safe summaries, source-chain diagnostics, and curator notes. All mutation flags remain false: no Artifact insertion, no PublicClaim insertion, no discovery scheduling, no hidden truth mutation, no PublicArchive mutation, no persistence, no resolver/composition behavior, and no final artifact prose generation.
+
+Public/scholar access receives aggregate or public-safe summaries only. Curator/debug access can inspect proposal/audit IDs, source chains, validation gates, and diagnostic notes.
+
+## 24. ControlLayerAudit
 
 Primary files:
 
@@ -421,7 +445,7 @@ Primary files:
 
 It is not a generation, discovery, resolver, persistence, or mutation layer.
 
-## 24. Test and release surfaces
+## 25. Test and release surfaces
 
 Primary files:
 
@@ -444,10 +468,12 @@ make release-check
 
 GitHub Actions currently covers C++20 self-test, C++17 self-test, and strict warnings self-test. CI parity for sanitizer and smoke remains a recommended follow-up.
 
-## 25. Explicit non-goals in the current architecture
+## 26. Explicit non-goals in the current architecture
 
 ```text
-No artifact text generation from proposal/audit records.
+No artifact text generation from proposal/audit/draft records.
+No Artifact insertion or PublicClaim insertion from CandidateArtifactDraft records.
+No discovery scheduling from CandidateArtifactDraft records.
 No EvidencePotential-to-artifact conversion.
 No discovery expansion from the v28 control chain.
 No proposal materialization.

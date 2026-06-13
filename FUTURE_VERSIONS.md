@@ -5,12 +5,12 @@ This file records version history and recommended future slices after the curren
 ## Current baseline
 
 ```text
-v28.11 — ContradictionBudget Validator-Backed Status Tightening
+v29.0 — CandidateArtifactDraft / Text Outline, No Artifact Insertion
 ```
 
-The current engine is in v28 control-layer consolidation. It has a deterministic, access-aware, read-only/advisory chain from hidden truth through EvidencePotential, KnowledgeHorizon, ContradictionBudget, CandidateArtifactPlan, CandidateArtifactPlanEvaluation, CandidateArtifactProposal, CandidateArtifactProposalAudit, and ControlLayerAudit.
+The current engine has a deterministic, access-aware, read-only/advisory chain from hidden truth through EvidencePotential, KnowledgeHorizon, ContradictionBudget, CandidateArtifactPlan, CandidateArtifactPlanEvaluation, CandidateArtifactProposal, CandidateArtifactProposalAudit, CandidateArtifactDraft, and ControlLayerAudit.
 
-The current baseline still does not include artifact text generation, discovery expansion, proposal materialization, EvidencePotential-to-artifact conversion, persistence, resolver/composition behavior, or interactive runtime behavior.
+The current baseline includes draft-outline records derived from proposal/audit chains, with CLI inspection, validation, snapshot counters, summary-digest material, snapshot comparison fields, and smoke coverage. It still does not include artifact text generation, Artifact insertion, PublicClaim insertion, discovery scheduling/expansion, proposal materialization, EvidencePotential-to-artifact conversion, persistence, resolver/composition behavior, or interactive runtime behavior.
 
 ## Implemented historical notes
 
@@ -154,57 +154,30 @@ Implemented policy hardening for CandidateArtifactProposalAudit. Audit decisions
 
 Implemented explicit ContradictionBudgetPolicy thresholds, deterministic reason codes, too-clean archive detection, productive ambiguity classification, generation-bug pressure classification, and stricter validation while keeping the layer advisory-only and non-mutating.
 
-## Recommended next slices
+### v28.12–v28.14 — Roadmap Reconciliation, CI/Self-Test Hardening, and Diagnostic Access Centralization
 
-### v28.12 — Documentation / Roadmap Reconciliation and Release-Gate Parity Prep
-
-Purpose: reconcile stale roadmap/audit documentation with the v28.11 baseline and prepare the repository for the next feature-shaped slice.
-
-Allowed work:
-
-```text
-Update docs that still describe v28.9/v28.10 as current or future.
-Clarify that v28.11 is current.
-Clarify that v29.0 is the next feature-shaped target.
-Record CI parity and self-test structure as follow-up hardening work.
-Do not change runtime behavior.
-```
-
-### v28.13 — CI Parity / Test-Structure Hardening, No Runtime Behavior Change
-
-Purpose: bring GitHub Actions closer to the local release gate and make the monolithic self-test suite easier to maintain.
-
-Allowed work:
-
-```text
-Add CI coverage for smoke and sanitizer paths where practical.
-Split self-tests by subsystem without removing assertions.
-Keep CLI/runtime behavior unchanged.
-```
-
-### v28.14 — Centralized Diagnostic Detail Access Gates, No Output Expansion
-
-Purpose: reduce hidden/diagnostic leak risk before v29 adds richer draft/detail surfaces.
-
-Allowed work:
-
-```text
-Introduce small access-policy helpers for diagnostic detail surfaces.
-Migrate KnowledgeHorizon, ContradictionBudget, CandidateArtifactProposalAudit, and ControlLayerAudit detail gates incrementally.
-Keep public/scholar output at least as restrictive as today.
-```
+Implemented repository hardening needed before richer draft surfaces: roadmap reconciliation, CI/smoke coverage hardening, self-test include-boundary cleanup, and centralized diagnostic detail access helpers for KnowledgeHorizon, ContradictionBudget, CandidateArtifactPlan, CandidateArtifactPlanEvaluation, CandidateArtifactProposal, CandidateArtifactProposalAudit, and ControlLayerAudit.
 
 ### v29.0 — CandidateArtifactDraft / Text Outline, No Artifact Insertion
 
-Purpose: introduce a draft-outline layer derived from audited CandidateArtifactProposal records.
+Implemented a non-mutating CandidateArtifactDraft outline layer derived from CandidateArtifactProposal and CandidateArtifactProposalAudit chains. Drafts store outline title, intended artifact type/register, claim-outline lines, required validation gates, public-safe summaries, and curator diagnostics. The layer participates in ArchiveEngineState, CLI inspection, full-state validation, ArchiveSnapshot counters, summary digest material, snapshot comparison fields, and README smoke coverage.
+
+The implementation keeps all insertion and mutation flags false: no Artifact insertion, no PublicClaim insertion, no discovery scheduling, no hidden truth mutation, no PublicArchive mutation, no persistence, no resolver/composition behavior, and no final artifact prose generation.
+
+## Recommended next slices
+
+### v29.1 — CandidateArtifactDraft Review/Audit Policy, No Artifact Insertion
+
+Purpose: add an audit/review layer over CandidateArtifactDraft records without converting drafts into generated artifacts or public archive mutations.
 
 Allowed work:
 
 ```text
-Create CandidateArtifactDraft records from valid proposal/audit chains.
-Store outline titles, intended artifact type/register, claim-outline lines, and required validation gates.
-Expose public-safe summaries and curator/debug diagnostics.
-Add validation, snapshot counts, smoke coverage, and self-tests.
+Create deterministic draft review/audit records from CandidateArtifactDraft records.
+Score outline completeness, proposal/audit traceability, safety, specificity, and remaining revision pressure.
+Require actionable revisions for non-pass draft reviews.
+Add validation, snapshot counters, digest material, smoke coverage, and public-detail blocking checks.
+Keep draft records and review records advisory-only.
 ```
 
 Non-goals:
@@ -218,6 +191,29 @@ No public archive mutation.
 No persistence.
 No resolver/composition behavior.
 No final artifact prose generation.
+```
+
+### v29.2 — Persistent Runtime Session Planning, No File/Database Persistence Yet
+
+Purpose: design the smallest persistent-runtime interface before introducing storage. The first useful target is an in-memory session that can initialize once, run multiple queries against the same state, and end explicitly.
+
+Allowed work:
+
+```text
+Document Initialize -> Run Query -> Run Query -> End Session flow.
+Identify the minimal session state wrapper around ArchiveEngineState.
+Keep storage in memory only.
+Keep CLI single-shot behavior unchanged unless an explicit session mode is selected.
+```
+
+Non-goals:
+
+```text
+No JSON/database persistence.
+No GUI/API layer.
+No background worker.
+No multi-user server.
+No behavior change for existing CLI queries.
 ```
 
 ## Later hardening passes
