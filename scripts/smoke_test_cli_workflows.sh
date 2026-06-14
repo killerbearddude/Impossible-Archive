@@ -191,6 +191,14 @@ run_session_and_grep runtime_session_two_read_queries "RuntimeSession initialize
 --query control-layer-audit-summary
 end-session
 " "$BIN" --session
+run_session_and_grep runtime_session_knowledge_horizon_summary_and_validation "RuntimeSession initialized|KnowledgeHorizon summary|KnowledgeHorizon validation|RuntimeSession ended" "--query knowledge-horizon-summary
+--query validate-knowledge-horizon
+end-session
+" "$BIN" --session
+run_session_and_grep runtime_session_knowledge_horizon_list_and_detail "RuntimeSession initialized|KnowledgeHorizon findings visible to curator|KnowledgeHorizon finding:|- found: true|RuntimeSession ended" "--access curator --query list-knowledge-horizon-findings
+--access curator --query show-knowledge-horizon-finding --knowledge-horizon-finding-id knowledge_horizon.0039
+end-session
+" "$BIN" --session --runtime fixed-fixture
 run_session_and_grep runtime_session_evidence_potential_list_and_detail "RuntimeSession initialized|EvidencePotentials visible to curator|EvidencePotential:|- found: true|RuntimeSession ended" "--access curator --query list-evidence-potentials
 --access curator --query show-evidence-potential --evidence-potential-id evidence_potential.0000
 end-session

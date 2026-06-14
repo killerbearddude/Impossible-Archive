@@ -845,6 +845,10 @@ struct FormattedCommandResult {
            query == "validate-control-layer-audit" ||
            query == "list-control-layer-audit-entries" ||
            query == "show-control-layer-audit-entry" ||
+           query == "knowledge-horizon-summary" ||
+           query == "validate-knowledge-horizon" ||
+           query == "list-knowledge-horizon-findings" ||
+           query == "show-knowledge-horizon-finding" ||
            query == "evidence-potential-summary" ||
            query == "validate-evidence-potentials" ||
            query == "list-evidence-potentials" ||
@@ -943,6 +947,18 @@ struct FormattedCommandResult {
     }
     if (options.query == "show-control-layer-audit-entry") {
         return FormattedCommandResult{format_control_layer_audit_entry_detail(state, options.access, options.control_layer_audit_entry_id), EXIT_SUCCESS};
+    }
+    if (options.query == "knowledge-horizon-summary") {
+        return FormattedCommandResult{format_knowledge_horizon_summary(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "validate-knowledge-horizon") {
+        return FormattedCommandResult{format_knowledge_horizon_validation(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "list-knowledge-horizon-findings") {
+        return FormattedCommandResult{format_knowledge_horizon_findings(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "show-knowledge-horizon-finding") {
+        return FormattedCommandResult{format_knowledge_horizon_finding_detail(state, options.access, options.knowledge_horizon_finding_id), EXIT_SUCCESS};
     }
     if (options.query == "evidence-potential-summary") {
         return FormattedCommandResult{format_evidence_potential_summary(state, options.access), EXIT_SUCCESS};
