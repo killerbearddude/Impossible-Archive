@@ -847,8 +847,12 @@ struct FormattedCommandResult {
            query == "show-control-layer-audit-entry" ||
            query == "evidence-potential-summary" ||
            query == "validate-evidence-potentials" ||
+           query == "list-evidence-potentials" ||
+           query == "show-evidence-potential" ||
            query == "contradiction-budget-summary" ||
-           query == "validate-contradiction-budget";
+           query == "validate-contradiction-budget" ||
+           query == "list-contradiction-budget-buckets" ||
+           query == "show-contradiction-budget-bucket";
 }
 
 [[nodiscard]] std::optional<FormattedCommandResult> format_shared_read_only_state_query_result(const ArchiveEngineState& state,
@@ -946,11 +950,23 @@ struct FormattedCommandResult {
     if (options.query == "validate-evidence-potentials") {
         return FormattedCommandResult{format_evidence_potential_validation(state, options.access), EXIT_SUCCESS};
     }
+    if (options.query == "list-evidence-potentials") {
+        return FormattedCommandResult{format_evidence_potential_list(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "show-evidence-potential") {
+        return FormattedCommandResult{format_evidence_potential_detail(state, options.access, options.evidence_potential_id), EXIT_SUCCESS};
+    }
     if (options.query == "contradiction-budget-summary") {
         return FormattedCommandResult{format_contradiction_budget_summary(state, options.access), EXIT_SUCCESS};
     }
     if (options.query == "validate-contradiction-budget") {
         return FormattedCommandResult{format_contradiction_budget_validation(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "list-contradiction-budget-buckets") {
+        return FormattedCommandResult{format_contradiction_budget_buckets(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "show-contradiction-budget-bucket") {
+        return FormattedCommandResult{format_contradiction_budget_bucket_detail(state, options.access, options.contradiction_budget_bucket_id), EXIT_SUCCESS};
     }
     return std::nullopt;
 }
