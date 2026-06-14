@@ -1,0 +1,18 @@
+diff --git a/src/cli.cpp b/src/cli.cpp
+--- a/src/cli.cpp
++++ b/src/cli.cpp
+@@ -827,10 +827,14 @@ [[nodiscard]] bool is_shared_read_only_state_query(std::string_view query) {
+            query == "candidate-artifact-plan-evaluation-summary" ||
+            query == "validate-candidate-artifact-plan-evaluations" ||
+            query == "list-candidate-artifact-plan-evaluations" ||
+            query == "show-candidate-artifact-plan-evaluation" ||
++           query == "candidate-artifact-proposal-summary" ||
++           query == "validate-candidate-artifact-proposals" ||
+            query == "list-candidate-artifact-proposals" ||
+            query == "show-candidate-artifact-proposal" ||
++           query == "candidate-artifact-proposal-audit-summary" ||
++           query == "validate-candidate-artifact-proposal-audits" ||
+            query == "list-candidate-artifact-proposal-audits" ||
+            query == "show-candidate-artifact-proposal-audit" ||
+            query == "candidate-artifact-draft-summary" ||
+            query == "validate-candidate-artifact-drafts" ||
