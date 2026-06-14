@@ -199,6 +199,10 @@ run_session_and_grep runtime_session_candidate_proposal_list_and_detail "Runtime
 --access curator --query show-candidate-artifact-proposal --candidate-artifact-proposal-id candidate_artifact_proposal.candidate_artifact_plan_evaluation.candidate_artifact_plan.evidence_potential.0000.administrative_docket
 end-session
 " "$BIN" --session --runtime fixed-fixture
+run_session_and_grep runtime_session_candidate_proposal_audit_list_and_detail "RuntimeSession initialized|CandidateArtifactProposalAudits visible to curator|CandidateArtifactProposalAudit:|- found: true|RuntimeSession ended" "--access curator --query list-candidate-artifact-proposal-audits
+--access curator --query show-candidate-artifact-proposal-audit --candidate-artifact-proposal-audit-id candidate_artifact_proposal_audit.candidate_artifact_proposal.candidate_artifact_plan_evaluation.candidate_artifact_plan.evidence_potential.0000.administrative_docket
+end-session
+" "$BIN" --session --runtime fixed-fixture
 run_session_and_grep runtime_session_invalid_query_recovers "RuntimeSession query rejected|denied_unknown|session_active: true|CandidateArtifactDraftReview summary|RuntimeSession ended" "--query definitely-not-a-query
 --query candidate-artifact-draft-review-summary
 end-session
