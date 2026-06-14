@@ -817,6 +817,10 @@ struct FormattedCommandResult {
 
 [[nodiscard]] bool is_shared_read_only_state_query(std::string_view query) {
     return query == "report" ||
+           query == "candidate-artifact-plan-summary" ||
+           query == "validate-candidate-artifact-plans" ||
+           query == "list-candidate-artifact-plans" ||
+           query == "show-candidate-artifact-plan" ||
            query == "list-candidate-artifact-proposals" ||
            query == "show-candidate-artifact-proposal" ||
            query == "list-candidate-artifact-proposal-audits" ||
@@ -843,6 +847,18 @@ struct FormattedCommandResult {
                                                                                                const CliOptions& options) {
     if (options.query == "report") {
         return FormattedCommandResult{format_report(state, options.access, options.archive_year), EXIT_SUCCESS};
+    }
+    if (options.query == "candidate-artifact-plan-summary") {
+        return FormattedCommandResult{format_candidate_artifact_plan_summary(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "validate-candidate-artifact-plans") {
+        return FormattedCommandResult{format_candidate_artifact_plan_validation(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "list-candidate-artifact-plans") {
+        return FormattedCommandResult{format_candidate_artifact_plan_list(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "show-candidate-artifact-plan") {
+        return FormattedCommandResult{format_candidate_artifact_plan_detail(state, options.access, options.candidate_artifact_plan_id), EXIT_SUCCESS};
     }
     if (options.query == "list-candidate-artifact-proposals") {
         return FormattedCommandResult{format_candidate_artifact_proposal_list(state, options.access), EXIT_SUCCESS};
