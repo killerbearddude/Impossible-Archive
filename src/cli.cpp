@@ -821,6 +821,10 @@ struct FormattedCommandResult {
            query == "validate-candidate-artifact-plans" ||
            query == "list-candidate-artifact-plans" ||
            query == "show-candidate-artifact-plan" ||
+           query == "candidate-artifact-plan-evaluation-summary" ||
+           query == "validate-candidate-artifact-plan-evaluations" ||
+           query == "list-candidate-artifact-plan-evaluations" ||
+           query == "show-candidate-artifact-plan-evaluation" ||
            query == "list-candidate-artifact-proposals" ||
            query == "show-candidate-artifact-proposal" ||
            query == "list-candidate-artifact-proposal-audits" ||
@@ -859,6 +863,18 @@ struct FormattedCommandResult {
     }
     if (options.query == "show-candidate-artifact-plan") {
         return FormattedCommandResult{format_candidate_artifact_plan_detail(state, options.access, options.candidate_artifact_plan_id), EXIT_SUCCESS};
+    }
+    if (options.query == "candidate-artifact-plan-evaluation-summary") {
+        return FormattedCommandResult{format_candidate_artifact_plan_evaluation_summary(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "validate-candidate-artifact-plan-evaluations") {
+        return FormattedCommandResult{format_candidate_artifact_plan_evaluation_validation(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "list-candidate-artifact-plan-evaluations") {
+        return FormattedCommandResult{format_candidate_artifact_plan_evaluation_list(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "show-candidate-artifact-plan-evaluation") {
+        return FormattedCommandResult{format_candidate_artifact_plan_evaluation_detail(state, options.access, options.candidate_artifact_plan_evaluation_id), EXIT_SUCCESS};
     }
     if (options.query == "list-candidate-artifact-proposals") {
         return FormattedCommandResult{format_candidate_artifact_proposal_list(state, options.access), EXIT_SUCCESS};
