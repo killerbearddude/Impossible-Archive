@@ -191,6 +191,14 @@ run_session_and_grep runtime_session_two_read_queries "RuntimeSession initialize
 --query control-layer-audit-summary
 end-session
 " "$BIN" --session
+run_session_and_grep runtime_session_evidence_potential_list_and_detail "RuntimeSession initialized|EvidencePotentials visible to curator|EvidencePotential:|- found: true|RuntimeSession ended" "--access curator --query list-evidence-potentials
+--access curator --query show-evidence-potential --evidence-potential-id evidence_potential.0000
+end-session
+" "$BIN" --session --runtime fixed-fixture
+run_session_and_grep runtime_session_contradiction_budget_list_and_detail "RuntimeSession initialized|ContradictionBudget buckets visible to curator|ContradictionBudget bucket:|- found: true|RuntimeSession ended" "--access curator --query list-contradiction-budget-buckets
+--access curator --query show-contradiction-budget-bucket --contradiction-budget-bucket-id contradiction_budget.archive
+end-session
+" "$BIN" --session --runtime fixed-fixture
 run_session_and_grep runtime_session_candidate_plan_evaluation_summary_and_validation "RuntimeSession initialized|CandidateArtifactPlanEvaluation summary|CandidateArtifactPlanEvaluation validation|RuntimeSession ended" "--query candidate-artifact-plan-evaluation-summary
 --query validate-candidate-artifact-plan-evaluations
 end-session
