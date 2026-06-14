@@ -817,6 +817,8 @@ struct FormattedCommandResult {
 
 [[nodiscard]] bool is_shared_read_only_state_query(std::string_view query) {
     return query == "report" ||
+           query == "list-candidate-artifact-proposals" ||
+           query == "show-candidate-artifact-proposal" ||
            query == "candidate-artifact-draft-summary" ||
            query == "validate-candidate-artifact-drafts" ||
            query == "list-candidate-artifact-drafts" ||
@@ -839,6 +841,12 @@ struct FormattedCommandResult {
                                                                                                const CliOptions& options) {
     if (options.query == "report") {
         return FormattedCommandResult{format_report(state, options.access, options.archive_year), EXIT_SUCCESS};
+    }
+    if (options.query == "list-candidate-artifact-proposals") {
+        return FormattedCommandResult{format_candidate_artifact_proposal_list(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "show-candidate-artifact-proposal") {
+        return FormattedCommandResult{format_candidate_artifact_proposal_detail(state, options.access, options.candidate_artifact_proposal_id), EXIT_SUCCESS};
     }
     if (options.query == "candidate-artifact-draft-summary") {
         return FormattedCommandResult{format_candidate_artifact_draft_summary(state, options.access), EXIT_SUCCESS};
