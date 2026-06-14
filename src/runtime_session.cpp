@@ -8,7 +8,7 @@
 namespace archive {
 namespace {
 
-constexpr std::array<std::string_view, 66> kReadOnlyQueries = {
+constexpr std::array<std::string_view, 67> kReadOnlyQueries = {
     "report",
     "validate-civilization-specs",
     "list-civilization-tags",
@@ -27,6 +27,7 @@ constexpr std::array<std::string_view, 66> kReadOnlyQueries = {
     "compare-archive-snapshots",
     "evidence-potential-summary",
     "list-evidence-potentials",
+    "show-evidence-potential",
     "validate-evidence-potentials",
     "knowledge-horizon-summary",
     "validate-knowledge-horizon",
