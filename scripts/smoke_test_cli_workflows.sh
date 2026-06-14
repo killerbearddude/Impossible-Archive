@@ -191,6 +191,14 @@ run_session_and_grep runtime_session_two_read_queries "RuntimeSession initialize
 --query control-layer-audit-summary
 end-session
 " "$BIN" --session
+run_session_and_grep runtime_session_candidate_plan_summary_and_validation "RuntimeSession initialized|CandidateArtifactPlan summary|CandidateArtifactPlan validation|RuntimeSession ended" "--query candidate-artifact-plan-summary
+--query validate-candidate-artifact-plans
+end-session
+" "$BIN" --session
+run_session_and_grep runtime_session_candidate_plan_list_and_detail "RuntimeSession initialized|CandidateArtifactPlans visible to curator|CandidateArtifactPlan:|- found: true|RuntimeSession ended" "--access curator --query list-candidate-artifact-plans
+--access curator --query show-candidate-artifact-plan --candidate-artifact-plan-id candidate_artifact_plan.evidence_potential.0000.administrative_docket
+end-session
+" "$BIN" --session --runtime fixed-fixture
 run_session_and_grep runtime_session_candidate_draft_list_and_detail "RuntimeSession initialized|CandidateArtifactDrafts visible to curator|CandidateArtifactDraft detail:|- found: true|RuntimeSession ended" "--access curator --query list-candidate-artifact-drafts
 --access curator --query show-candidate-artifact-draft --candidate-artifact-draft-id candidate_artifact_draft.candidate_artifact_proposal.candidate_artifact_plan_evaluation.candidate_artifact_plan.evidence_potential.0000.administrative_docket
 end-session
