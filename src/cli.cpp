@@ -825,8 +825,12 @@ struct FormattedCommandResult {
            query == "validate-candidate-artifact-plan-evaluations" ||
            query == "list-candidate-artifact-plan-evaluations" ||
            query == "show-candidate-artifact-plan-evaluation" ||
+           query == "candidate-artifact-proposal-summary" ||
+           query == "validate-candidate-artifact-proposals" ||
            query == "list-candidate-artifact-proposals" ||
            query == "show-candidate-artifact-proposal" ||
+           query == "candidate-artifact-proposal-audit-summary" ||
+           query == "validate-candidate-artifact-proposal-audits" ||
            query == "list-candidate-artifact-proposal-audits" ||
            query == "show-candidate-artifact-proposal-audit" ||
            query == "candidate-artifact-draft-summary" ||
@@ -876,11 +880,23 @@ struct FormattedCommandResult {
     if (options.query == "show-candidate-artifact-plan-evaluation") {
         return FormattedCommandResult{format_candidate_artifact_plan_evaluation_detail(state, options.access, options.candidate_artifact_plan_evaluation_id), EXIT_SUCCESS};
     }
+    if (options.query == "candidate-artifact-proposal-summary") {
+        return FormattedCommandResult{format_candidate_artifact_proposal_summary(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "validate-candidate-artifact-proposals") {
+        return FormattedCommandResult{format_candidate_artifact_proposal_validation(state, options.access), EXIT_SUCCESS};
+    }
     if (options.query == "list-candidate-artifact-proposals") {
         return FormattedCommandResult{format_candidate_artifact_proposal_list(state, options.access), EXIT_SUCCESS};
     }
     if (options.query == "show-candidate-artifact-proposal") {
         return FormattedCommandResult{format_candidate_artifact_proposal_detail(state, options.access, options.candidate_artifact_proposal_id), EXIT_SUCCESS};
+    }
+    if (options.query == "candidate-artifact-proposal-audit-summary") {
+        return FormattedCommandResult{format_candidate_artifact_proposal_audit_summary(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "validate-candidate-artifact-proposal-audits") {
+        return FormattedCommandResult{format_candidate_artifact_proposal_audit_validation(state, options.access), EXIT_SUCCESS};
     }
     if (options.query == "list-candidate-artifact-proposal-audits") {
         return FormattedCommandResult{format_candidate_artifact_proposal_audit_list(state, options.access), EXIT_SUCCESS};
