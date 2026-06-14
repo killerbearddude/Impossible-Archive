@@ -819,6 +819,8 @@ struct FormattedCommandResult {
     return query == "report" ||
            query == "list-candidate-artifact-proposals" ||
            query == "show-candidate-artifact-proposal" ||
+           query == "list-candidate-artifact-proposal-audits" ||
+           query == "show-candidate-artifact-proposal-audit" ||
            query == "candidate-artifact-draft-summary" ||
            query == "validate-candidate-artifact-drafts" ||
            query == "list-candidate-artifact-drafts" ||
@@ -847,6 +849,12 @@ struct FormattedCommandResult {
     }
     if (options.query == "show-candidate-artifact-proposal") {
         return FormattedCommandResult{format_candidate_artifact_proposal_detail(state, options.access, options.candidate_artifact_proposal_id), EXIT_SUCCESS};
+    }
+    if (options.query == "list-candidate-artifact-proposal-audits") {
+        return FormattedCommandResult{format_candidate_artifact_proposal_audit_list(state, options.access), EXIT_SUCCESS};
+    }
+    if (options.query == "show-candidate-artifact-proposal-audit") {
+        return FormattedCommandResult{format_candidate_artifact_proposal_audit_detail(state, options.access, options.candidate_artifact_proposal_audit_id), EXIT_SUCCESS};
     }
     if (options.query == "candidate-artifact-draft-summary") {
         return FormattedCommandResult{format_candidate_artifact_draft_summary(state, options.access), EXIT_SUCCESS};
