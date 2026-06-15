@@ -93,6 +93,7 @@ run_session_and_grep() {
 }
 
 run_and_grep self_test "All self-tests passed" "$BIN" --self-test
+run_and_grep gui_query_catalog "GUI query catalog:|query: knowledge-horizon-summary|argv: --runtime fixed-fixture --access curator --query show-evidence-potential --evidence-potential-id evidence_potential.0000" "$BIN" --query gui-query-catalog
 run_and_grep validate_specs "CivilizationSpec validation|valid:" "$BIN" --query validate-civilization-specs
 run_and_grep list_tags "CivilizationSpec tags" "$BIN" --query list-civilization-tags
 run_and_grep list_by_tag "marsh_citadel|glass_delta|river_delta" "$BIN" --query list-civilizations-by-tag --tag river_delta
