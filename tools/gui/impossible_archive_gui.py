@@ -1,66 +1,4 @@
 #!/usr/bin/env python3
-from pathlib import Path
-
-
-def replace_once(text: str, old: str, new: str, label: str) -> str:
-    count = text.count(old)
-    if count != 1:
-        raise SystemExit(f"{label}: expected exactly one match, found {count}")
-    return text.replace(old, new, 1)
-
-Path("tools/gui").mkdir(parents=True, exist_ok=True)
-
-Path("tools/gui/README.md").write_text(r'''# Impossible Archive GUI wrapper prototype
-
-This directory contains a minimal local GUI wrapper for the existing
-`impossible_archive_mvp_v28_11` CLI binary.
-
-The wrapper intentionally does not link against engine internals. It discovers
-GUI-safe actions by running:
-
-```bash
-./impossible_archive_mvp_v28_11 --query gui-query-catalog
-```
-
-It then renders those catalog entries in a browser and runs only commands derived
-from catalog-emitted `argv` lines. Commands are executed with Python's
-`subprocess.run(argv, shell=False)`, so the UI never builds shell command strings.
-
-## Run
-
-From the repository root:
-
-```bash
-make build
-python3 tools/gui/impossible_archive_gui.py
-```
-
-Then open:
-
-```text
-http://127.0.0.1:8765/
-```
-
-Optional binary override:
-
-```bash
-python3 tools/gui/impossible_archive_gui.py --binary ./impossible_archive_mvp_v28_11
-```
-
-## Current scope
-
-- local-only browser UI
-- fixed-fixture runtime by default
-- read-only catalog entries only
-- no persistence
-- no mutation commands
-- no external Python packages
-- no shell command construction
-
-The engine CLI remains the source of truth for all archive behavior.
-''')
-
-Path("tools/gui/impossible_archive_gui.py").write_text(r'''#!/usr/bin/env python3
 """Local read-only GUI wrapper for the Impossible Archive CLI."""
 
 from __future__ import annotations
@@ -269,7 +207,7 @@ let catalog = [];
 let selected = null;
 
 function matches(entry, term) {
-  const haystack = `${entry.query} ${entry.label} ${entry.category}`.toLowerCase();
+  const haystack = (entry.query + ' ' + entry.label + ' ' + entry.category).toLowerCase();
   return haystack.includes(term.toLowerCase());
 }
 
@@ -279,7 +217,7 @@ function renderCatalog() {
   root.innerHTML = '';
   catalog.filter(entry => matches(entry, term)).forEach(entry => {
     const button = document.createElement('button');
-    button.textContent = `${entry.category}: ${entry.label}`;
+    button.textContent = entry.category + ': ' + entry.label;
     if (selected && selected.query === entry.query) button.classList.add('active');
     button.onclick = () => selectEntry(entry);
     root.appendChild(button);
@@ -289,7 +227,7 @@ function renderCatalog() {
 function selectEntry(entry) {
   selected = entry;
   document.getElementById('title').textContent = entry.label;
-  document.getElementById('description').textContent = `${entry.query} · ${entry.category} · ${entry.argv.join(' ')}`;
+  document.getElementById('description').textContent = entry.query + ' · ' + entry.category + ' · ' + entry.argv.join(' ');
   document.getElementById('access').value = entry.default_access;
   const optionBox = document.getElementById('optionBox');
   optionBox.innerHTML = '';
@@ -310,7 +248,7 @@ async function loadCatalog() {
   const response = await fetch('/api/catalog');
   const data = await response.json();
   catalog = data.entries;
-  document.getElementById('output').textContent = `Loaded ${catalog.length} read-only catalog entries.`;
+  document.getElementById('output').textContent = 'Loaded ' + catalog.length + ' read-only catalog entries.';
   renderCatalog();
   if (catalog.length) selectEntry(catalog[0]);
 }
@@ -331,19 +269,28 @@ async function runSelected() {
   });
   const data = await response.json();
   document.getElementById('output').textContent = [
-    `$ ${data.argv.join(' ')}`,
-    `exit_code: ${data.exit_code}`,
+    '$ ' + data.argv.join(' '),
+    'exit_code: ' + data.exit_code,
     '',
     data.stdout || '',
-    data.stderr ? `\nstderr:\n${data.stderr}` : '',
-  ].join('\n');
+    data.stderr ? String.fromCharCode(10) + 'stderr:' + String.fromCharCode(10) + data.stderr : '',
+  ].join(String.fromCharCode(10));
 }
 
-document.getElementById('filter').addEventListener('input', renderCatalog);
-document.getElementById('run').addEventListener('click', runSelected);
-loadCatalog().catch(error => {
-  document.getElementById('output').textContent = String(error);
-});
+function boot() {
+  document.getElementById('filter').addEventListener('input', renderCatalog);
+  document.getElementById('run').addEventListener('click', runSelected);
+  loadCatalog().catch(error => {
+    console.error(error);
+    document.getElementById('output').textContent = 'Catalog load failed:' + String.fromCharCode(10) + error;
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', boot);
+} else {
+  boot();
+}
 </script>
 </body>
 </html>
@@ -421,7 +368,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
 
 def main(argv: list[str]) -> int:
     args = parse_args(argv)
-    binary = str(Path(args.binary))
+    binary = args.binary
     catalog = load_catalog(binary, args.timeout)
 
     GuiRequestHandler.binary = binary
@@ -445,14 +392,3 @@ def main(argv: list[str]) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main(sys.argv[1:]))
-''')
-
-smoke_path = Path("scripts/smoke_test_cli_workflows.sh")
-smoke = smoke_path.read_text()
-smoke = replace_once(
-    smoke,
-    'run_and_grep gui_query_catalog_candidate_detail_examples "candidate_artifact_plan.evidence_potential.0000.administrative_docket|candidate_artifact_draft_review.candidate_artifact_draft.candidate_artifact_proposal.candidate_artifact_plan_evaluation.candidate_artifact_plan.evidence_potential.0000.administrative_docket" "$BIN" --query gui-query-catalog\n',
-    'run_and_grep gui_query_catalog_candidate_detail_examples "candidate_artifact_plan.evidence_potential.0000.administrative_docket|candidate_artifact_draft_review.candidate_artifact_draft.candidate_artifact_proposal.candidate_artifact_plan_evaluation.candidate_artifact_plan.evidence_potential.0000.administrative_docket" "$BIN" --query gui-query-catalog\nrun_and_grep gui_wrapper_help "Impossible Archive GUI wrapper prototype|--binary" python3 tools/gui/impossible_archive_gui.py --help\n',
-    'gui wrapper smoke insertion',
-)
-smoke_path.write_text(smoke)
