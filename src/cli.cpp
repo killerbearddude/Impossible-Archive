@@ -1227,6 +1227,7 @@ int run_writer_repl(const CliOptions& options) {
         }
 
         if (!result.text.empty()) std::cout << result.text;
+        std::cout << "\n__IA_END__\n" << std::flush;
         if (result.should_end) break;
     }
     std::cout << "Writer REPL ended.\n";

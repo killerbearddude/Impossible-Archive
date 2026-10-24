@@ -9,6 +9,8 @@ import json
 import os
 import shlex
 import subprocess
+import threading
+import queue
 import sys
 import webbrowser
 from dataclasses import dataclass
@@ -297,10 +299,60 @@ if (document.readyState === 'loading') {
 """
 
 
+
+class ReplSession:
+    """Long-lived --repl subprocess. One instance shared by the GUI."""
+
+    def __init__(self, binary: str, timeout: float = 15.0) -> None:
+        self.binary = binary
+        self.timeout = timeout
+        self.proc: subprocess.Popen[str] | None = None
+        self.lock = threading.Lock()
+        self._start()
+
+    def _start(self) -> None:
+        self.proc = subprocess.Popen(
+            [self.binary, "--repl"],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            bufsize=1,
+        )
+
+    def send(self, command: str) -> str:
+        if self.proc is None or self.proc.poll() is not None:
+            self._start()
+        assert self.proc is not None and self.proc.stdin is not None and self.proc.stdout is not None
+        with self.lock:
+            self.proc.stdin.write(command.strip() + "\n")
+            self.proc.stdin.flush()
+            lines: list[str] = []
+            while True:
+                line = self.proc.stdout.readline()
+                if not line:
+                    break
+                if line.strip() == "__IA_END__":
+                    break
+                lines.append(line)
+            return "".join(lines)
+
+    def close(self) -> None:
+        if self.proc and self.proc.poll() is None:
+            try:
+                if self.proc.stdin:
+                    self.proc.stdin.write("end\n")
+                    self.proc.stdin.flush()
+                self.proc.wait(timeout=2)
+            except Exception:
+                self.proc.kill()
+
+
 class GuiRequestHandler(BaseHTTPRequestHandler):
     binary: str = DEFAULT_BINARY
     timeout: float = 10.0
     catalog: list[CatalogEntry] = []
+    repl: ReplSession | None = None
 
     def log_message(self, format: str, *args: Any) -> None:
         sys.stderr.write("[gui] " + format % args + "\n")
@@ -325,9 +377,27 @@ class GuiRequestHandler(BaseHTTPRequestHandler):
         if self.path == "/api/catalog":
             self.send_json({"entries": [entry.to_json() for entry in self.catalog]})
             return
+        if self.path == "/api/repl/status":
+            alive = self.repl is not None and self.repl.proc is not None and self.repl.proc.poll() is None
+            self.send_json({"alive": alive})
+            return
         self.send_error(HTTPStatus.NOT_FOUND)
 
     def do_POST(self) -> None:  # noqa: N802 - http.server API
+        if self.path == "/api/repl":
+            length = int(self.headers.get("Content-Length", "0"))
+            try:
+                payload = json.loads(self.rfile.read(length).decode("utf-8"))
+                command = str(payload.get("command", "")).strip()
+                if not command:
+                    raise ValueError("missing command")
+                if self.repl is None:
+                    raise RuntimeError("repl session not started")
+                output = self.repl.send(command)
+                self.send_json({"command": command, "output": output})
+            except Exception as ex:
+                self.send_json({"error": str(ex)}, HTTPStatus.BAD_REQUEST)
+            return
         if self.path != "/api/run":
             self.send_error(HTTPStatus.NOT_FOUND)
             return
@@ -374,6 +444,8 @@ def main(argv: list[str]) -> int:
     GuiRequestHandler.binary = binary
     GuiRequestHandler.timeout = args.timeout
     GuiRequestHandler.catalog = catalog
+    repl = ReplSession(binary, timeout=max(args.timeout, 15.0))
+    GuiRequestHandler.repl = repl
 
     server = ThreadingHTTPServer((args.host, args.port), GuiRequestHandler)
     url = f"http://{args.host}:{args.port}/"
@@ -386,7 +458,10 @@ def main(argv: list[str]) -> int:
         server.serve_forever()
     except KeyboardInterrupt:
         print("\nStopping GUI wrapper.")
+        repl.close()
         return 0
+    finally:
+        repl.close()
     return 0
 
 
