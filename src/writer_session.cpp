@@ -469,6 +469,29 @@ WriterCommandResult interpret_writer_command(const WriterSessionContext& context
         result.text = out.str();
         return result;
     }
+    if (cmd == "show-text") {
+        std::string id = tokens.size() > 1 ? tokens[1] : "";
+        if (id.empty()) {
+            result.accepted = false;
+            result.text = "show-text: missing id\n";
+            return result;
+        }
+        for (const auto& t : context.generated_texts) {
+            if (t.id == id) {
+                std::ostringstream out;
+                out << "=== advisory text " << t.id << " (not in PublicArchive) ===\n";
+                out << "title: " << t.title << "\n";
+                out << "backend: " << t.backend << "\n";
+                out << "source_draft: " << t.source_draft_id << "\n\n";
+                out << t.text;
+                result.text = out.str();
+                return result;
+            }
+        }
+        result.accepted = false;
+        result.text = "show-text: not found\n";
+        return result;
+    }
 
     if (cmd == "format") {
         if (tokens.size() < 2) {

@@ -196,8 +196,13 @@ HTML_PAGE = """<!doctype html>
       </div>
       <h3>Drafts</h3>
       <div id="draftList" class="list"></div>
-      <h3>Generated texts</h3>
+      <h3>Generated texts <span class="meta">(advisory, not in archive)</span></h3>
       <div id="textList" class="list"></div>
+      <div class="controls">
+        <button id="btnShowText">show text</button>
+        <button id="btnCopyText">copy</button>
+        <button id="btnExportText">export .txt</button>
+      </div>
       <h3>Actions</h3>
       <button id="btnShow">show selected</button>
       <button id="btnGenerate">generate selected</button>
@@ -291,7 +296,12 @@ document.getElementById('btnTexts').onclick = async () => {
   items.forEach(t => {
     const div = document.createElement('div');
     div.textContent = t.id + '  ' + t.title + '  [' + t.backend + ']';
-    div.onclick = () => { selectedText = t.id; setOutput(t.id + '\n' + t.title); };
+    div.onclick = () => {
+      selectedText = t.id;
+      document.querySelectorAll('#textList div').forEach(el => el.classList.remove('active'));
+      div.classList.add('active');
+      setOutput('selected advisory text: ' + t.id + '\n(not in PublicArchive)');
+    };
     list.appendChild(div);
   });
 };
@@ -317,6 +327,35 @@ document.getElementById('btnBackend').onclick = async () => {
   const cmd = document.getElementById('extCmd').value.trim();
   const line = b === 'external' && cmd ? 'backend external ' + cmd : 'backend ' + b;
   setOutput((await repl(line)).text);
+};
+
+
+document.getElementById('btnShowText').onclick = async () => {
+  if (!selectedText) { setOutput('select a generated text first'); return; }
+  const res = await repl('show-text ' + selectedText);
+  setOutput(res.text + '\n\n[advisory only — not inserted into the public archive]');
+};
+
+document.getElementById('btnCopyText').onclick = async () => {
+  if (!selectedText) { setOutput('select a generated text first'); return; }
+  const res = await repl('show-text ' + selectedText);
+  try {
+    await navigator.clipboard.writeText(res.text);
+    setOutput('copied advisory text to clipboard\n\n' + res.text);
+  } catch (e) {
+    setOutput('copy failed: ' + e + '\n\n' + res.text);
+  }
+};
+
+document.getElementById('btnExportText').onclick = async () => {
+  if (!selectedText) { setOutput('select a generated text first'); return; }
+  const res = await repl('show-text ' + selectedText);
+  const blob = new Blob([res.text + '\n\n[advisory only — not in PublicArchive]\n'], {type: 'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = selectedText + '.txt';
+  a.click();
+  setOutput('exported ' + selectedText + '.txt (advisory)');
 };
 
 async function loadCatalog() {
