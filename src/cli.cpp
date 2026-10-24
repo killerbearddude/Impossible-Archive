@@ -1185,6 +1185,7 @@ int run_writer_repl(const CliOptions& options) {
     }
 
     WriterSessionContext ctx = make_writer_session_context(runtime_state.state, options.access);
+    std::cout << std::unitbuf;  // unbuffered when driven by the GUI
     std::cout << "Writer REPL ready. Type 'help' for commands, 'end' to exit.\n";
     std::cout << "This is a read-only front-end. A future GUI can drive the same interpreter.\n";
 

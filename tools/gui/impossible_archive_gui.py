@@ -9,6 +9,7 @@ import json
 import os
 import shlex
 import subprocess
+import select
 import threading
 import queue
 import sys
@@ -269,9 +270,19 @@ async function refreshStatus() {
   }
 }
 
-document.getElementById('btnStatus').onclick = async () => setOutput((await repl('status')).text);
-document.getElementById('btnPressures').onclick = async () => setOutput((await repl('pressures')).text);
-document.getElementById('btnReport').onclick = async () => setOutput((await repl('report')).text);
+async function run(cmd) {
+  try {
+    const res = await repl(cmd);
+    setOutput(res.text || '(empty)');
+    return res;
+  } catch (e) {
+    setOutput('error: ' + e);
+    return {text: '', json: null};
+  }
+}
+document.getElementById('btnStatus').onclick = async () => { await run('status'); };
+document.getElementById('btnPressures').onclick = async () => await run('pressures');
+document.getElementById('btnReport').onclick = async () => await run('report');
 
 document.getElementById('btnDrafts').onclick = async () => {
   const res = await repl('drafts');
@@ -443,7 +454,14 @@ class ReplSession:
             self.proc.stdin.write(command.strip() + "\n")
             self.proc.stdin.flush()
             lines: list[str] = []
+            deadline = __import__("time").time() + self.timeout
             while True:
+                if __import__("time").time() > deadline:
+                    lines.append("\n[gui] timed out waiting for REPL (rebuild the binary so it emits __IA_END__)\n")
+                    break
+                ready, _, _ = select.select([self.proc.stdout], [], [], 0.5)
+                if not ready:
+                    continue
                 line = self.proc.stdout.readline()
                 if not line:
                     break
