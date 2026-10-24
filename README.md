@@ -34,6 +34,15 @@ For the full local release gate:
 make release-check
 ```
 
+
+## Writer REPL (internal)
+
+`--repl` starts a guided read-only session with short commands (`status`, `pressures`, `drafts`, `show`, `select`, `report`, `access`, `year`, `help`, `raw`, `end`).
+
+It is a front-end over the existing engine and queries. It does not mutate the archive. The command interpreter (`interpret_writer_command`) is the seam a future GUI can call.
+
+Existing `--session` behavior is unchanged.
+
 ## Common commands
 
 ```bash

@@ -6,6 +6,7 @@
  * subsystem in future versions.
  */
 #include "impossible_archive.h"
+#include "writer_session.h"
 
 namespace archive {
 
@@ -657,6 +658,8 @@ struct GuiQueryCatalogEntry {
             options.self_test = true;
         } else if (arg == "--session" || arg == "--runtime-session") {
             options.runtime_session = true;
+        } else if (arg == "--repl") {
+            options.writer_repl = true;
         } else if (arg == "--seed") {
             options.seed = parse_u64(next("--seed"));
             options.seed_supplied = true;
@@ -752,7 +755,7 @@ struct GuiQueryCatalogEntry {
 
 [[nodiscard]] std::string usage(std::string_view exe) {
     std::ostringstream out;
-    out << "Usage: " << exe << " [--session] [--runtime fixed-fixture|spec-selected] [--seed N] [--access public|scholar|curator|canon|debug] [--archive-year YEAR] [--query gui-query-catalog|report|truth|artifacts|claims|contradictions|anachronisms|timeline|validation|theories|discoveries|mysteries|originality|candidate|materialize|generate-candidates|evaluate-dossier|materialize-generated|materialize-dossier-candidate|plan-dossier-selection|materialize-dossier-selection|hidden-proposals|evaluate-hidden-proposal|plan-hidden-proposal|hidden-cluster|materialize-hidden-cluster|hidden-mutations|generate-artifacts-from-hidden-mutation|materialize-hidden-mutation-artifact-candidate|list-generation-targets|validate-civilization-specs|list-civilization-specs|show-civilization-spec|list-civilization-tags|list-civilizations-by-tag|validate-civilization-tags|list-civilization-fragments|show-civilization-fragment|validate-civilization-fragments|bootstrap-civilization|list-golden-fixtures|show-golden-fixture|archive-snapshot|compare-archive-snapshots|list-evidence-potentials|show-evidence-potential|validate-evidence-potentials|evidence-potential-summary|validate-knowledge-horizon|knowledge-horizon-summary|list-knowledge-horizon-findings|show-knowledge-horizon-finding|contradiction-budget-summary|list-contradiction-budget-buckets|show-contradiction-budget-bucket|validate-contradiction-budget|candidate-artifact-plan-summary|list-candidate-artifact-plans|show-candidate-artifact-plan|validate-candidate-artifact-plans|candidate-artifact-plan-evaluation-summary|list-candidate-artifact-plan-evaluations|show-candidate-artifact-plan-evaluation|validate-candidate-artifact-plan-evaluations|candidate-artifact-proposal-summary|list-candidate-artifact-proposals|show-candidate-artifact-proposal|validate-candidate-artifact-proposals|candidate-artifact-proposal-audit-summary|list-candidate-artifact-proposal-audits|show-candidate-artifact-proposal-audit|validate-candidate-artifact-proposal-audits|control-layer-audit-summary|list-control-layer-audit-entries|show-control-layer-audit-entry|validate-control-layer-audit] [--candidate ID] [--strategy corroborating_fragment|misleading_forgery|ritual_variant|target_dossier] [--target-topic TOPIC] [--target-year YEAR] [--candidate-index N] [--candidate-role ROLE] [--candidate-shape admin_docket|ritual_notice|scholar_fragment] [--candidate-indices A,B] [--candidate-roles ROLE,ROLE] [--spec-file PATH] [--civilization-id ID] [--tag TAG] [--fragment-id ID] [--fixture-id ID] [--evidence-potential-id ID] [--knowledge-horizon-finding-id ID] [--contradiction-budget-bucket-id ID] [--candidate-artifact-plan-id ID] [--candidate-artifact-plan-evaluation-id ID] [--candidate-artifact-proposal-id ID] [--candidate-artifact-proposal-audit-id ID] [--control-layer-audit-entry-id ID] [--cluster-scope institution_origin|schism_precursor|ecological_pressure|political_realignment|ritual_codification] [--start-year YEAR] [--end-year YEAR] [--self-test]\n";
+    out << "Usage: " << exe << " [--session] [--repl] [--runtime fixed-fixture|spec-selected] [--seed N] [--access public|scholar|curator|canon|debug] [--archive-year YEAR] [--query gui-query-catalog|report|truth|artifacts|claims|contradictions|anachronisms|timeline|validation|theories|discoveries|mysteries|originality|candidate|materialize|generate-candidates|evaluate-dossier|materialize-generated|materialize-dossier-candidate|plan-dossier-selection|materialize-dossier-selection|hidden-proposals|evaluate-hidden-proposal|plan-hidden-proposal|hidden-cluster|materialize-hidden-cluster|hidden-mutations|generate-artifacts-from-hidden-mutation|materialize-hidden-mutation-artifact-candidate|list-generation-targets|validate-civilization-specs|list-civilization-specs|show-civilization-spec|list-civilization-tags|list-civilizations-by-tag|validate-civilization-tags|list-civilization-fragments|show-civilization-fragment|validate-civilization-fragments|bootstrap-civilization|list-golden-fixtures|show-golden-fixture|archive-snapshot|compare-archive-snapshots|list-evidence-potentials|show-evidence-potential|validate-evidence-potentials|evidence-potential-summary|validate-knowledge-horizon|knowledge-horizon-summary|list-knowledge-horizon-findings|show-knowledge-horizon-finding|contradiction-budget-summary|list-contradiction-budget-buckets|show-contradiction-budget-bucket|validate-contradiction-budget|candidate-artifact-plan-summary|list-candidate-artifact-plans|show-candidate-artifact-plan|validate-candidate-artifact-plans|candidate-artifact-plan-evaluation-summary|list-candidate-artifact-plan-evaluations|show-candidate-artifact-plan-evaluation|validate-candidate-artifact-plan-evaluations|candidate-artifact-proposal-summary|list-candidate-artifact-proposals|show-candidate-artifact-proposal|validate-candidate-artifact-proposals|candidate-artifact-proposal-audit-summary|list-candidate-artifact-proposal-audits|show-candidate-artifact-proposal-audit|validate-candidate-artifact-proposal-audits|control-layer-audit-summary|list-control-layer-audit-entries|show-control-layer-audit-entry|validate-control-layer-audit] [--candidate ID] [--strategy corroborating_fragment|misleading_forgery|ritual_variant|target_dossier] [--target-topic TOPIC] [--target-year YEAR] [--candidate-index N] [--candidate-role ROLE] [--candidate-shape admin_docket|ritual_notice|scholar_fragment] [--candidate-indices A,B] [--candidate-roles ROLE,ROLE] [--spec-file PATH] [--civilization-id ID] [--tag TAG] [--fragment-id ID] [--fixture-id ID] [--evidence-potential-id ID] [--knowledge-horizon-finding-id ID] [--contradiction-budget-bucket-id ID] [--candidate-artifact-plan-id ID] [--candidate-artifact-plan-evaluation-id ID] [--candidate-artifact-proposal-id ID] [--candidate-artifact-proposal-audit-id ID] [--control-layer-audit-entry-id ID] [--cluster-scope institution_origin|schism_precursor|ecological_pressure|political_realignment|ritual_codification] [--start-year YEAR] [--end-year YEAR] [--self-test]\n";
     out << "\n";
     out << "Examples:\n";
     out << "  " << exe << " --self-test\n";
@@ -1172,6 +1175,64 @@ int run_runtime_session_cli(const CliOptions& options) {
     return EXIT_SUCCESS;
 }
 
+
+int run_writer_repl(const CliOptions& options) {
+    const CliOptions init_options = runtime_session_initialization_options(options);
+    const RuntimeStateSelectionResult runtime_state = build_runtime_state_for_query(init_options);
+    if (!runtime_state.ok) {
+        std::cout << format_runtime_selection_errors(init_options, runtime_state);
+        return EXIT_FAILURE;
+    }
+
+    WriterSessionContext ctx = make_writer_session_context(runtime_state.state, options.access);
+    std::cout << "Writer REPL ready. Type 'help' for commands, 'end' to exit.\n";
+    std::cout << "This is a read-only front-end. A future GUI can drive the same interpreter.\n";
+
+    std::string line;
+    while (true) {
+        std::cout << format_writer_prompt(ctx) << std::flush;
+        if (!std::getline(std::cin, line)) break;
+
+        WriterCommandResult result = interpret_writer_command(ctx, line, runtime_state.state);
+        ctx = result.context;
+
+        if (!result.raw_query_line.empty()) {
+            // Escape hatch: reuse existing session query path.
+            const std::vector<std::string> tokens = split_session_command_line(result.raw_query_line);
+            try {
+                CliOptions query_options = parse_cli(make_session_cli_args(tokens));
+                // Force access from context unless the raw line overrode it.
+                if (query_options.access == AccessLevel::Public && ctx.access != AccessLevel::Public) {
+                    // keep parsed access if explicitly supplied; otherwise inherit
+                }
+                query_options.access = ctx.access;
+                if (ctx.archive_year_set) {
+                    query_options.archive_year = ctx.archive_year;
+                    query_options.archive_year_supplied = true;
+                }
+                RuntimeSession temp = initialize_runtime_session(runtime_state.state, "writer-repl");
+                const RuntimeSessionQueryPolicy policy = classify_runtime_session_query(query_options.query);
+                if (policy != RuntimeSessionQueryPolicy::AllowedReadOnly) {
+                    std::cout << "raw query rejected (not read-only or unknown)\n";
+                } else if (!is_runtime_session_cli_supported_query(query_options.query)) {
+                    std::cout << "raw query not supported in session/repl\n";
+                } else {
+                    const FormattedCommandResult formatted = format_runtime_session_state_query(temp, query_options);
+                    std::cout << formatted.text;
+                }
+            } catch (const std::exception& ex) {
+                std::cout << "raw parse error: " << ex.what() << "\n";
+            }
+            continue;
+        }
+
+        if (!result.text.empty()) std::cout << result.text;
+        if (result.should_end) break;
+    }
+    std::cout << "Writer REPL ended.\n";
+    return EXIT_SUCCESS;
+}
+
 int run_cli(const CliArgs& args) {
     const CliOptions options = parse_cli(args);
 
@@ -1188,6 +1249,10 @@ int run_cli(const CliArgs& args) {
     if (options.query == "gui-query-catalog") {
         std::cout << format_gui_query_catalog();
         return EXIT_SUCCESS;
+    }
+
+    if (options.writer_repl) {
+        return run_writer_repl(options);
     }
 
     if (options.runtime_session || options.query == "runtime-session") {

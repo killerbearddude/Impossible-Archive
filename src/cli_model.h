@@ -63,6 +63,7 @@ struct CliOptions {
     int end_year = 625;
     bool self_test = false;
     bool runtime_session = false;
+    bool writer_repl = false;
     std::string spec_file;
     bool spec_file_supplied = false;
     std::string civilization_id;
