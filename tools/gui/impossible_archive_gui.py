@@ -326,7 +326,7 @@ document.getElementById('btnTexts').onclick = async () => {
 };
 
 document.getElementById('btnShow').onclick = async () => {
-  if (!selectedDraft) { setOutput('select a draft first'); return; }
+  if (!selectedDraft) { setOutput('Click a draft in the list first (list loads on startup).'); return; }
   await run('show ' + selectedDraft);
 };
 
@@ -336,7 +336,7 @@ document.getElementById('btnGenerate').onclick = async () => {
     setOutput('generate requires curator, canon, or debug access');
     return;
   }
-  if (!selectedDraft) { setOutput('select a draft first'); return; }
+  if (!selectedDraft) { setOutput('Click a draft in the list first (list loads on startup).'); return; }
   await run('generate ' + selectedDraft);
   document.getElementById('btnTexts').click();
 };
@@ -421,7 +421,9 @@ document.getElementById('runCatalog').onclick = async () => {
 
 refreshStatus();
 loadCatalog();
-run('format json').then(() => setOutput('Writer surface ready. Click status or drafts.'));
+run('format json').then(() => {
+  document.getElementById('btnDrafts').click();
+});
 </script>
 </body>
 </html>
