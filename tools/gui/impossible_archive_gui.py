@@ -173,7 +173,7 @@ HTML_PAGE = """<!doctype html>
           font-size: 1rem; line-height: 1.45; font-family: ui-monospace, monospace; }
     body { font-size: 15px; }
     button, select, input { font-size: 0.95rem; }
-    .list { border: 1px solid #8884; max-height: 16rem; overflow: auto; margin: 0.4rem 0; }
+    .list { border: 1px solid #8884; min-height: 6rem; max-height: 16rem; overflow: auto; margin: 0.4rem 0; }
     .list div { padding: 0.3rem 0.5rem; cursor: pointer; }
     .list div:hover, .list div.active { background: #8882; }
     .meta { opacity: 0.75; font-size: 0.9rem; }
@@ -196,7 +196,7 @@ HTML_PAGE = """<!doctype html>
         <button id="btnStatus">status</button>
         <button id="btnPressures">pressures</button>
         <button id="btnReport">report</button>
-        <button id="btnDrafts">drafts</button>
+        <button id="btnDrafts">Load drafts</button>
         <button id="btnTexts">texts</button>
       </div>
       <h3>Drafts</h3>
@@ -296,6 +296,11 @@ document.getElementById('btnDrafts').onclick = async () => {
   const list = document.getElementById('draftList');
   list.innerHTML = '';
   const items = (res.json && res.json.drafts) ? res.json.drafts : [];
+  if (!items.length) {
+    const div = document.createElement('div');
+    div.textContent = '(no drafts returned — try Load drafts again)';
+    list.appendChild(div);
+  }
   items.forEach(d => {
     const div = document.createElement('div');
     div.textContent = d.title + '  [' + d.status + ']';
@@ -352,6 +357,7 @@ document.getElementById('access').onchange = updateAccessGuards;
 document.getElementById('applyAccess').onclick = async () => {
   await run('access ' + document.getElementById('access').value);
   updateAccessGuards();
+  document.getElementById('btnDrafts').click();
 };
 updateAccessGuards();
 
