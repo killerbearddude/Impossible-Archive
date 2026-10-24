@@ -1,5 +1,6 @@
 #pragma once
 #include "archive_engine_state.h"
+#include "candidate_artifact_text_model.h"
 #include <string>
 #include <string_view>
 
@@ -16,6 +17,9 @@ struct WriterSessionContext {
     bool archive_year_set = false;
     std::string selected_id;          // optional current draft/plan/etc.
     bool writer_format = true;        // false = prefer raw formatter output
+    std::vector<CandidateArtifactText> generated_texts;  // session-local advisory records
+    std::string text_backend = "template";               // "template" or "external"
+    std::string external_command;                        // command to run when backend=external
 };
 
 struct WriterCommandResult {

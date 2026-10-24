@@ -176,7 +176,39 @@ std::string report_text(const WriterSessionContext& ctx, const ArchiveEngineStat
 }
 
 
-std::string generate_text_from_draft(const WriterSessionContext& ctx, const ArchiveEngineState& state, const std::string& id) {
+std::string expand_template(const CandidateArtifactDraft& draft) {
+    std::ostringstream out;
+    out << draft.outline_title << "\n\n";
+    if (!draft.target_topic.empty()) out << "Subject: " << draft.target_topic << "\n";
+    out << "Recorded in year " << draft.intended_creation_year << ".\n\n";
+    if (!draft.claim_outline_lines.empty()) {
+        out << "Claims preserved in outline form:\n";
+        for (const auto& line : draft.claim_outline_lines) out << "  • " << line << "\n";
+        out << "\n";
+    }
+    if (!draft.public_safe_summary_lines.empty()) {
+        out << "Public-safe notes:\n";
+        for (const auto& line : draft.public_safe_summary_lines) out << "  • " << line << "\n";
+        out << "\n";
+    }
+    if (draft.touches_protected_mystery) out << "[Protected mystery pressure present; detail remains gated.]\n";
+    out << "[Template expansion. Advisory only. Source draft: " << draft.id << "]\n";
+    return out.str();
+}
+
+std::string expand_external(const CandidateArtifactDraft& draft, const WriterSessionContext& ctx) {
+    if (ctx.external_command.empty()) {
+        return "[external backend selected but no command configured; falling back]\n" + expand_template(draft);
+    }
+    std::ostringstream out;
+    out << "[external backend: " << ctx.external_command << "]\n";
+    out << "Prompt outline supplied:\n" << draft.outline_title << "\n";
+    for (const auto& line : draft.claim_outline_lines) out << line << "\n";
+    out << "[External model output would appear here. Advisory only.]\n";
+    return out.str();
+}
+
+std::string generate_text_from_draft(WriterSessionContext& ctx, const ArchiveEngineState& state, const std::string& id) {
     if (ctx.access != AccessLevel::Curator && ctx.access != AccessLevel::Canon && ctx.access != AccessLevel::Debug) {
         return "generate: requires curator, canon, or debug access\n";
     }
@@ -189,30 +221,24 @@ std::string generate_text_from_draft(const WriterSessionContext& ctx, const Arch
         return "generate: draft status does not allow generation (" + to_string(draft->status) + ")\n";
     }
 
-    std::ostringstream out;
-    out << "=== generated artifact text (advisory, not inserted) ===\n";
-    out << "source_draft: " << draft->id << "\n";
-    out << "title: " << draft->outline_title << "\n";
-    out << "intended_year: " << draft->intended_creation_year << "\n";
-    out << "constraints: access=" << access_name(ctx.access);
-    if (!draft->required_validation_gates.empty()) {
-        out << " gates=";
-        for (std::size_t i = 0; i < draft->required_validation_gates.size(); ++i) {
-            if (i) out << ",";
-            out << draft->required_validation_gates[i];
-        }
-    }
-    out << "\n\n";
+    CandidateArtifactText rec;
+    rec.id = "candidate_artifact_text." + std::to_string(ctx.generated_texts.size());
+    rec.source_draft_id = draft->id;
+    rec.title = draft->outline_title;
+    rec.intended_year = draft->intended_creation_year;
+    rec.backend = (ctx.text_backend == "external") ? "external" : "template";
+    rec.constraints = draft->required_validation_gates;
+    rec.text = (rec.backend == "external") ? expand_external(*draft, ctx) : expand_template(*draft);
+    ctx.generated_texts.push_back(rec);
 
-    // Deterministic expander from outline
-    out << draft->outline_title << "\n\n";
-    if (!draft->claim_outline_lines.empty()) {
-        for (const auto& line : draft->claim_outline_lines) {
-            out << "- " << line << "\n";
-        }
-        out << "\n";
-    }
-    out << "[Template expansion. No public archive mutation. Provenance retained via source_draft.]\n";
+    std::ostringstream out;
+    out << "=== generated artifact text (advisory record " << rec.id << ") ===\n";
+    out << "source_draft: " << rec.source_draft_id << "\n";
+    out << "backend: " << rec.backend << "\n";
+    out << "title: " << rec.title << "\n";
+    out << "intended_year: " << rec.intended_year << "\n";
+    out << "stored: session-local (not in PublicArchive)\n\n";
+    out << rec.text;
     return out.str();
 }
 
@@ -256,7 +282,9 @@ std::string format_writer_help() {
         "  access <public|scholar|curator|canon|debug>\n"
         "  year <n>|clear          set or clear archive-year filter\n"
         "  help                    this list\n"
-        "  generate [<id>]         advisory text from a draft (curator+; uses selection if id omitted)\n"
+        "  generate [<id>]         advisory text from a draft (curator+; stores session record)\n"
+        "  texts                   list generated text records in this session\n"
+        "  backend [template|external [cmd]]  select text backend\n"
         "  raw <existing-query>    escape hatch to current CLI query syntax\n"
         "  end                     end session\n"
         "\n"
@@ -373,7 +401,42 @@ WriterCommandResult interpret_writer_command(const WriterSessionContext& context
             result.text = "generate: missing id (or select a draft first)\n";
             return result;
         }
-        result.text = generate_text_from_draft(context, state, id);
+        result.text = generate_text_from_draft(result.context, state, id);
+        return result;
+    }
+
+    if (cmd == "backend") {
+        if (tokens.size() < 2) {
+            result.text = "backend: " + context.text_backend +
+                          (context.external_command.empty() ? "" : " (" + context.external_command + ")") + "\n";
+            return result;
+        }
+        if (tokens[1] == "template") {
+            result.context.text_backend = "template";
+            result.text = "backend: template\n";
+            return result;
+        }
+        if (tokens[1] == "external") {
+            result.context.text_backend = "external";
+            if (tokens.size() > 2) result.context.external_command = tokens[2];
+            result.text = "backend: external" +
+                          (result.context.external_command.empty() ? " (no command set)" : " (" + result.context.external_command + ")") + "\n";
+            return result;
+        }
+        result.accepted = false;
+        result.text = "backend: use 'template' or 'external [command]'\n";
+        return result;
+    }
+    if (cmd == "texts") {
+        if (context.generated_texts.empty()) {
+            result.text = "no generated texts in this session\n";
+            return result;
+        }
+        std::ostringstream out;
+        for (const auto& t : context.generated_texts) {
+            out << t.id << "  " << t.title << "  [" << t.backend << "]  draft:" << t.source_draft_id << "\n";
+        }
+        result.text = out.str();
         return result;
     }
 
