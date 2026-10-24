@@ -245,8 +245,7 @@ async function repl(command) {
   const data = await res.json();
   if (data.error) throw new Error(data.error);
   const raw = data.output || '';
-  // If a JSON line is present, parse it
-  const lines = raw.split('\n');
+  const lines = raw.split('\\n');
   let parsed = null;
   for (let i = lines.length - 1; i >= 0; --i) {
     const s = lines[i].trim();
@@ -261,15 +260,6 @@ function setOutput(text) {
   document.getElementById('output').textContent = text;
 }
 
-async function refreshStatus() {
-  try {
-    const s = await fetch('/api/repl/status').then(r => r.json());
-    document.getElementById('sessionStatus').textContent = s.alive ? 'session alive' : 'session down';
-  } catch (e) {
-    document.getElementById('sessionStatus').textContent = 'session ?';
-  }
-}
-
 async function run(cmd) {
   try {
     const res = await repl(cmd);
@@ -280,19 +270,28 @@ async function run(cmd) {
     return {text: '', json: null};
   }
 }
-document.getElementById('btnStatus').onclick = async () => { await run('status'); };
-document.getElementById('btnPressures').onclick = async () => await run('pressures');
-document.getElementById('btnReport').onclick = async () => await run('report');
+
+async function refreshStatus() {
+  try {
+    const s = await fetch('/api/repl/status').then(r => r.json());
+    document.getElementById('sessionStatus').textContent = s.alive ? 'session alive' : 'session down';
+  } catch (e) {
+    document.getElementById('sessionStatus').textContent = 'session ?';
+  }
+}
+
+document.getElementById('btnStatus').onclick = () => run('status');
+document.getElementById('btnPressures').onclick = () => run('pressures');
+document.getElementById('btnReport').onclick = () => run('report');
 
 document.getElementById('btnDrafts').onclick = async () => {
-  const res = await repl('drafts');
-  setOutput(res.text);
+  const res = await run('drafts');
   const list = document.getElementById('draftList');
   list.innerHTML = '';
   const items = (res.json && res.json.drafts) ? res.json.drafts : [];
   items.forEach(d => {
     const div = document.createElement('div');
-    div.textContent = d.id + '  ' + d.title + '  ' + d.status;
+    div.textContent = d.title + '  [' + d.status + ']';
     div.onclick = () => {
       selectedDraft = d.id;
       document.querySelectorAll('#draftList div').forEach(el => el.classList.remove('active'));
@@ -303,8 +302,7 @@ document.getElementById('btnDrafts').onclick = async () => {
 };
 
 document.getElementById('btnTexts').onclick = async () => {
-  const res = await repl('texts');
-  setOutput(res.text);
+  const res = await run('texts');
   const list = document.getElementById('textList');
   list.innerHTML = '';
   const items = (res.json && res.json.texts) ? res.json.texts : [];
@@ -315,7 +313,6 @@ document.getElementById('btnTexts').onclick = async () => {
       selectedText = t.id;
       document.querySelectorAll('#textList div').forEach(el => el.classList.remove('active'));
       div.classList.add('active');
-      setOutput('selected advisory text: ' + t.id + '\n(not in PublicArchive)');
     };
     list.appendChild(div);
   });
@@ -323,7 +320,7 @@ document.getElementById('btnTexts').onclick = async () => {
 
 document.getElementById('btnShow').onclick = async () => {
   if (!selectedDraft) { setOutput('select a draft first'); return; }
-  setOutput((await repl('show ' + selectedDraft)).text);
+  await run('show ' + selectedDraft);
 };
 
 document.getElementById('btnGenerate').onclick = async () => {
@@ -333,7 +330,7 @@ document.getElementById('btnGenerate').onclick = async () => {
     return;
   }
   if (!selectedDraft) { setOutput('select a draft first'); return; }
-  setOutput((await repl('generate ' + selectedDraft)).text + '\n\n[advisory only — not inserted into the public archive]');
+  await run('generate ' + selectedDraft);
   document.getElementById('btnTexts').click();
 };
 
@@ -346,8 +343,7 @@ function updateAccessGuards() {
 }
 document.getElementById('access').onchange = updateAccessGuards;
 document.getElementById('applyAccess').onclick = async () => {
-  const level = document.getElementById('access').value;
-  setOutput((await repl('access ' + level)).text);
+  await run('access ' + document.getElementById('access').value);
   updateAccessGuards();
 };
 updateAccessGuards();
@@ -356,17 +352,14 @@ document.getElementById('btnBackend').onclick = async () => {
   const b = document.getElementById('backend').value;
   const cmd = document.getElementById('extCmd').value.trim();
   const line = (b === 'external' && cmd) ? ('backend external ' + cmd) : ('backend ' + b);
-  const res = await repl(line);
-  setOutput(res.text);
-  const status = document.getElementById('backendStatus');
-  status.textContent = 'backend: ' + (b === 'external' ? ('external' + (cmd ? ' (' + cmd + ')' : ' (no command)')) : 'template');
+  await run(line);
+  document.getElementById('backendStatus').textContent =
+    'backend: ' + (b === 'external' ? ('external' + (cmd ? ' (' + cmd + ')' : '')) : 'template');
 };
-
 
 document.getElementById('btnShowText').onclick = async () => {
   if (!selectedText) { setOutput('select a generated text first'); return; }
-  const res = await repl('show-text ' + selectedText);
-  setOutput(res.text + '\n\n[advisory only — not inserted into the public archive]');
+  await run('show-text ' + selectedText);
 };
 
 document.getElementById('btnCopyText').onclick = async () => {
@@ -374,34 +367,37 @@ document.getElementById('btnCopyText').onclick = async () => {
   const res = await repl('show-text ' + selectedText);
   try {
     await navigator.clipboard.writeText(res.text);
-    setOutput('copied advisory text to clipboard\n\n' + res.text);
+    setOutput('copied\\n\\n' + res.text);
   } catch (e) {
-    setOutput('copy failed: ' + e + '\n\n' + res.text);
+    setOutput('copy failed: ' + e);
   }
 };
 
 document.getElementById('btnExportText').onclick = async () => {
   if (!selectedText) { setOutput('select a generated text first'); return; }
   const res = await repl('show-text ' + selectedText);
-  const blob = new Blob([res.text + '\n\n[advisory only — not in PublicArchive]\n'], {type: 'text/plain'});
+  const blob = new Blob([res.text], {type: 'text/plain'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = selectedText + '.txt';
   a.click();
-  setOutput('exported ' + selectedText + '.txt (advisory)');
 };
 
 async function loadCatalog() {
-  const res = await fetch('/api/catalog');
-  const data = await res.json();
-  catalog = data.entries || [];
-  const box = document.getElementById('catalog');
-  catalog.forEach(entry => {
-    const btn = document.createElement('button');
-    btn.textContent = entry.label || entry.query;
-    btn.onclick = () => { selectedCatalog = entry; setOutput('catalog: ' + entry.query); };
-    box.appendChild(btn);
-  });
+  try {
+    const res = await fetch('/api/catalog');
+    const data = await res.json();
+    catalog = data.entries || [];
+    const box = document.getElementById('catalog');
+    catalog.forEach(entry => {
+      const btn = document.createElement('button');
+      btn.textContent = entry.label || entry.query;
+      btn.onclick = () => { selectedCatalog = entry; setOutput('catalog: ' + entry.query); };
+      box.appendChild(btn);
+    });
+  } catch (e) {
+    setOutput('catalog load failed: ' + e);
+  }
 }
 
 document.getElementById('runCatalog').onclick = async () => {
@@ -418,7 +414,7 @@ document.getElementById('runCatalog').onclick = async () => {
 
 refreshStatus();
 loadCatalog();
-repl('format json').then(() => setOutput('Writer surface ready (JSON mode). Use the buttons or select a draft.'));
+run('format json').then(() => setOutput('Writer surface ready. Click status or drafts.'));
 </script>
 </body>
 </html>
