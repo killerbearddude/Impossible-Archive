@@ -206,14 +206,17 @@ HTML_PAGE = """<!doctype html>
       <h3>Actions</h3>
       <button id="btnShow">show selected</button>
       <button id="btnGenerate">generate selected</button>
+      <h3>Text backend</h3>
+      <div class="meta" id="backendStatus">backend: template</div>
       <div class="controls">
         <select id="backend">
-          <option value="template">template</option>
-          <option value="external">external</option>
+          <option value="template">template (deterministic)</option>
+          <option value="external">external command</option>
         </select>
-        <input id="extCmd" placeholder="external command (optional)" style="flex:1">
-        <button id="btnBackend">set backend</button>
+        <input id="extCmd" placeholder="command that reads stdin, writes stdout" style="flex:1">
+        <button id="btnBackend">set</button>
       </div>
+      <div class="meta">External command receives the outline on stdin and should write the artifact text to stdout. Falls back to template on failure.</div>
     </aside>
     <section>
       <h3>Output</h3>
@@ -295,7 +298,7 @@ document.getElementById('btnTexts').onclick = async () => {
   const items = (res.json && res.json.texts) ? res.json.texts : [];
   items.forEach(t => {
     const div = document.createElement('div');
-    div.textContent = t.id + '  ' + t.title + '  [' + t.backend + ']';
+    div.textContent = '[' + t.backend + '] ' + t.title;
     div.onclick = () => {
       selectedText = t.id;
       document.querySelectorAll('#textList div').forEach(el => el.classList.remove('active'));
@@ -325,8 +328,11 @@ document.getElementById('applyAccess').onclick = async () => {
 document.getElementById('btnBackend').onclick = async () => {
   const b = document.getElementById('backend').value;
   const cmd = document.getElementById('extCmd').value.trim();
-  const line = b === 'external' && cmd ? 'backend external ' + cmd : 'backend ' + b;
-  setOutput((await repl(line)).text);
+  const line = (b === 'external' && cmd) ? ('backend external ' + cmd) : ('backend ' + b);
+  const res = await repl(line);
+  setOutput(res.text);
+  const status = document.getElementById('backendStatus');
+  status.textContent = 'backend: ' + (b === 'external' ? ('external' + (cmd ? ' (' + cmd + ')' : ' (no command)')) : 'template');
 };
 
 
