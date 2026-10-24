@@ -1,3 +1,31 @@
+# Impossible Archive GUI
+
+**Packaging decision:** local Python HTTP server (current).  
+A native UI is deferred. The server drives one long-lived `--repl` subprocess and does not link against engine internals.
+
+## Launch
+
+From the repository root:
+
+```bash
+make build
+python3 tools/gui/impossible_archive_gui.py
+```
+
+Open http://127.0.0.1:8765/
+
+- Binds to 127.0.0.1 by default.
+- Advisory / read-only. No materialization controls.
+- Writer commands (status, drafts, generate, texts, backend, access) use the REPL bridge.
+- Catalog queries remain available under Advanced.
+
+Optional:
+
+```bash
+python3 tools/gui/impossible_archive_gui.py --binary ./impossible_archive_mvp_v28_11 --port 8765 --no-browser
+```
+
+
 # Impossible Archive GUI wrapper prototype
 
 This directory contains a minimal local GUI wrapper for the existing

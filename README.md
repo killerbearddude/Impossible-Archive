@@ -39,9 +39,22 @@ make release-check
 
 `--repl` starts a guided read-only session with short commands (`status`, `pressures`, `drafts`, `show`, `select`, `report`, `access`, `year`, `help`, `raw`, `end`).
 
-It is a front-end over the existing engine and queries. It does not mutate the archive. The command interpreter (`interpret_writer_command`) is the seam a future GUI can call.
+It is a front-end over the existing engine and queries. It does not mutate the archive. The command interpreter (`interpret_writer_command`) is the seam the GUI uses.
 
 Existing `--session` behavior is unchanged.
+
+## Local GUI (Python server)
+
+The current GUI packaging is a local Python HTTP server that drives one long-lived `--repl` process. It is not a native UI. A native front-end can be added later against the same interpreter.
+
+```bash
+make build
+python3 tools/gui/impossible_archive_gui.py
+```
+
+Then open http://127.0.0.1:8765/
+
+The server binds to localhost only. The UI is advisory/read-only (no materialization controls). See `tools/gui/README.md` for details.
 
 ## Common commands
 
