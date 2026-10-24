@@ -234,7 +234,17 @@ async function repl(command) {
   });
   const data = await res.json();
   if (data.error) throw new Error(data.error);
-  return data.output || '';
+  const raw = data.output || '';
+  // If a JSON line is present, parse it
+  const lines = raw.split('\n');
+  let parsed = null;
+  for (let i = lines.length - 1; i >= 0; --i) {
+    const s = lines[i].trim();
+    if (s.startsWith('{') && s.endsWith('}')) {
+      try { parsed = JSON.parse(s); break; } catch (e) {}
+    }
+  }
+  return { text: raw, json: parsed };
 }
 
 function setOutput(text) {
@@ -250,23 +260,22 @@ async function refreshStatus() {
   }
 }
 
-document.getElementById('btnStatus').onclick = async () => setOutput(await repl('status'));
-document.getElementById('btnPressures').onclick = async () => setOutput(await repl('pressures'));
-document.getElementById('btnReport').onclick = async () => setOutput(await repl('report'));
+document.getElementById('btnStatus').onclick = async () => setOutput((await repl('status')).text);
+document.getElementById('btnPressures').onclick = async () => setOutput((await repl('pressures')).text);
+document.getElementById('btnReport').onclick = async () => setOutput((await repl('report')).text);
 
 document.getElementById('btnDrafts').onclick = async () => {
-  const out = await repl('drafts');
-  setOutput(out);
+  const res = await repl('drafts');
+  setOutput(res.text);
   const list = document.getElementById('draftList');
   list.innerHTML = '';
-  out.split('\\n').forEach(line => {
-    const id = line.split('  ')[0];
-    if (!id || !id.startsWith('candidate_')) return;
+  const items = (res.json && res.json.drafts) ? res.json.drafts : [];
+  items.forEach(d => {
     const div = document.createElement('div');
-    div.textContent = line;
+    div.textContent = d.id + '  ' + d.title + '  ' + d.status;
     div.onclick = () => {
-      selectedDraft = id;
-      document.querySelectorAll('#draftList div').forEach(d => d.classList.remove('active'));
+      selectedDraft = d.id;
+      document.querySelectorAll('#draftList div').forEach(el => el.classList.remove('active'));
       div.classList.add('active');
     };
     list.appendChild(div);
@@ -274,41 +283,40 @@ document.getElementById('btnDrafts').onclick = async () => {
 };
 
 document.getElementById('btnTexts').onclick = async () => {
-  const out = await repl('texts');
-  setOutput(out);
+  const res = await repl('texts');
+  setOutput(res.text);
   const list = document.getElementById('textList');
   list.innerHTML = '';
-  out.split('\\n').forEach(line => {
-    const id = line.split('  ')[0];
-    if (!id || !id.startsWith('candidate_artifact_text')) return;
+  const items = (res.json && res.json.texts) ? res.json.texts : [];
+  items.forEach(t => {
     const div = document.createElement('div');
-    div.textContent = line;
-    div.onclick = () => { selectedText = id; setOutput(line); };
+    div.textContent = t.id + '  ' + t.title + '  [' + t.backend + ']';
+    div.onclick = () => { selectedText = t.id; setOutput(t.id + '\n' + t.title); };
     list.appendChild(div);
   });
 };
 
 document.getElementById('btnShow').onclick = async () => {
   if (!selectedDraft) { setOutput('select a draft first'); return; }
-  setOutput(await repl('show ' + selectedDraft));
+  setOutput((await repl('show ' + selectedDraft)).text);
 };
 
 document.getElementById('btnGenerate').onclick = async () => {
   if (!selectedDraft) { setOutput('select a draft first'); return; }
-  setOutput(await repl('generate ' + selectedDraft));
+  setOutput((await repl('generate ' + selectedDraft)).text);
   document.getElementById('btnTexts').click();
 };
 
 document.getElementById('applyAccess').onclick = async () => {
   const level = document.getElementById('access').value;
-  setOutput(await repl('access ' + level));
+  setOutput((await repl('access ' + level)).text);
 };
 
 document.getElementById('btnBackend').onclick = async () => {
   const b = document.getElementById('backend').value;
   const cmd = document.getElementById('extCmd').value.trim();
   const line = b === 'external' && cmd ? 'backend external ' + cmd : 'backend ' + b;
-  setOutput(await repl(line));
+  setOutput((await repl(line)).text);
 };
 
 async function loadCatalog() {
@@ -338,7 +346,7 @@ document.getElementById('runCatalog').onclick = async () => {
 
 refreshStatus();
 loadCatalog();
-setOutput('Writer surface ready. Use the buttons or select a draft.');
+repl('format json').then(() => setOutput('Writer surface ready (JSON mode). Use the buttons or select a draft.'));
 </script>
 </body>
 </html>

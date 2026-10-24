@@ -20,6 +20,7 @@ struct WriterSessionContext {
     std::vector<CandidateArtifactText> generated_texts;  // session-local advisory records
     std::string text_backend = "template";               // "template" or "external"
     std::string external_command;                        // command to run when backend=external
+    bool json_output = false;                            // when true, CLI also emits a JSON line
 };
 
 struct WriterCommandResult {
@@ -45,5 +46,6 @@ struct WriterCommandResult {
 
 [[nodiscard]] std::string format_writer_prompt(const WriterSessionContext& context);
 [[nodiscard]] std::string format_writer_help();
+[[nodiscard]] std::string format_writer_json(std::string_view command, const WriterCommandResult& result, const ArchiveEngineState& state);
 
 } // namespace archive

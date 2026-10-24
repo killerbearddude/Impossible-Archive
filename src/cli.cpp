@@ -1227,6 +1227,9 @@ int run_writer_repl(const CliOptions& options) {
         }
 
         if (!result.text.empty()) std::cout << result.text;
+        if (ctx.json_output) {
+            std::cout << format_writer_json(line, result, runtime_state.state) << "\n";
+        }
         std::cout << "\n__IA_END__\n" << std::flush;
         if (result.should_end) break;
     }

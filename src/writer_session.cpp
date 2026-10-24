@@ -470,9 +470,72 @@ WriterCommandResult interpret_writer_command(const WriterSessionContext& context
         return result;
     }
 
+    if (cmd == "format") {
+        if (tokens.size() < 2) {
+            result.text = std::string("format: ") + (context.json_output ? "json" : "text") + "\n";
+            return result;
+        }
+        if (tokens[1] == "json") {
+            result.context.json_output = true;
+            result.text = "format: json\n";
+            return result;
+        }
+        if (tokens[1] == "text") {
+            result.context.json_output = false;
+            result.text = "format: text\n";
+            return result;
+        }
+        result.accepted = false;
+        result.text = "format: use 'json' or 'text'\n";
+        return result;
+    }
+
     result.accepted = false;
     result.text = "unknown command: " + cmd + "  (try help)\n";
     return result;
+}
+
+
+std::string format_writer_json(std::string_view command, const WriterCommandResult& result, const ArchiveEngineState& state) {
+    std::ostringstream out;
+    out << "{\"command\":\"" << command << "\""
+        << ",\"accepted\":" << (result.accepted ? "true" : "false")
+        << ",\"text\":\"";
+    // minimal JSON string escape
+    for (char c : result.text) {
+        if (c == '\\' || c == '"') out << '\\' << c;
+        else if (c == '\n') out << "\\n";
+        else if (c == '\r') continue;
+        else out << c;
+    }
+    out << "\"";
+
+    // Structured extras for list-like commands
+    std::string cmd(command);
+    if (cmd == "drafts" || cmd.rfind("drafts", 0) == 0) {
+        out << ",\"drafts\":[";
+        bool first = true;
+        for (const auto& d : state.candidate_artifact_drafts) {
+            if (!first) out << ",";
+            first = false;
+            out << "{\"id\":\"" << d.id << "\",\"title\":\"" << d.outline_title
+                << "\",\"status\":\"" << to_string(d.status) << "\"}";
+        }
+        out << "]";
+    }
+    if (cmd == "texts") {
+        out << ",\"texts\":[";
+        bool first = true;
+        for (const auto& t : result.context.generated_texts) {
+            if (!first) out << ",";
+            first = false;
+            out << "{\"id\":\"" << t.id << "\",\"title\":\"" << t.title
+                << "\",\"backend\":\"" << t.backend << "\",\"source_draft_id\":\"" << t.source_draft_id << "\"}";
+        }
+        out << "]";
+    }
+    out << "}";
+    return out.str();
 }
 
 } // namespace archive
