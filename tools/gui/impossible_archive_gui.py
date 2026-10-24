@@ -153,146 +153,192 @@ def build_catalog_command(entry: CatalogEntry, access: str, option_value: str | 
 
 
 HTML_PAGE = """<!doctype html>
-<html lang=\"en\">
+<html lang="en">
 <head>
-  <meta charset=\"utf-8\">
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-  <title>Impossible Archive Explorer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Impossible Archive</title>
   <style>
     :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
     body { margin: 0; }
-    header { padding: 1rem 1.25rem; border-bottom: 1px solid #8884; }
-    main { display: grid; grid-template-columns: minmax(18rem, 26rem) 1fr; min-height: calc(100vh - 4rem); }
-    aside { border-right: 1px solid #8884; padding: 1rem; overflow: auto; }
-    section { padding: 1rem; overflow: auto; }
+    header { padding: 0.75rem 1rem; border-bottom: 1px solid #8884; display: flex; gap: 1rem; align-items: center; }
+    main { display: grid; grid-template-columns: 22rem 1fr; min-height: calc(100vh - 3.5rem); }
+    aside, section { padding: 0.75rem 1rem; overflow: auto; }
+    aside { border-right: 1px solid #8884; }
     button, select, input { font: inherit; }
-    button { display: block; width: 100%; text-align: left; margin: 0.25rem 0; padding: 0.45rem 0.6rem; }
-    button.active { outline: 2px solid currentColor; }
-    label { display: block; margin: 0.75rem 0 0.25rem; font-weight: 600; }
-    input, select { width: 100%; box-sizing: border-box; padding: 0.45rem; }
-    pre { white-space: pre-wrap; border: 1px solid #8884; padding: 1rem; min-height: 24rem; overflow: auto; }
+    button { margin: 0.2rem 0.2rem 0.2rem 0; padding: 0.35rem 0.6rem; }
+    .controls { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
+    pre { white-space: pre-wrap; border: 1px solid #8884; padding: 0.75rem; min-height: 8rem; }
+    .list { border: 1px solid #8884; max-height: 16rem; overflow: auto; margin: 0.4rem 0; }
+    .list div { padding: 0.3rem 0.5rem; cursor: pointer; }
+    .list div:hover, .list div.active { background: #8882; }
     .meta { opacity: 0.75; font-size: 0.9rem; }
-    .row { margin-bottom: 1rem; }
-    .run { margin-top: 1rem; text-align: center; font-weight: 700; }
+    h3 { margin: 0.6rem 0 0.3rem; }
   </style>
 </head>
 <body>
   <header>
-    <strong>Impossible Archive Explorer</strong>
-    <span class=\"meta\">read-only CLI wrapper prototype</span>
+    <strong>Impossible Archive</strong>
+    <span class="meta" id="sessionStatus">session…</span>
+    <label>access <select id="access">
+      <option>public</option><option>scholar</option><option>curator</option><option>canon</option><option>debug</option>
+    </select></label>
+    <button id="applyAccess">Apply</button>
   </header>
   <main>
     <aside>
-      <label for=\"filter\">Filter</label>
-      <input id=\"filter\" placeholder=\"query, label, category\">
-      <div id=\"catalog\"></div>
+      <div class="controls">
+        <button id="btnStatus">status</button>
+        <button id="btnPressures">pressures</button>
+        <button id="btnReport">report</button>
+        <button id="btnDrafts">drafts</button>
+        <button id="btnTexts">texts</button>
+      </div>
+      <h3>Drafts</h3>
+      <div id="draftList" class="list"></div>
+      <h3>Generated texts</h3>
+      <div id="textList" class="list"></div>
+      <h3>Actions</h3>
+      <button id="btnShow">show selected</button>
+      <button id="btnGenerate">generate selected</button>
+      <div class="controls">
+        <select id="backend">
+          <option value="template">template</option>
+          <option value="external">external</option>
+        </select>
+        <input id="extCmd" placeholder="external command (optional)" style="flex:1">
+        <button id="btnBackend">set backend</button>
+      </div>
     </aside>
     <section>
-      <div class=\"row\"><strong id=\"title\">Select a query</strong></div>
-      <div class=\"meta\" id=\"description\"></div>
-      <label for=\"access\">Access</label>
-      <select id=\"access\">
-        <option>public</option>
-        <option>scholar</option>
-        <option>curator</option>
-        <option>canon</option>
-        <option>debug</option>
-      </select>
-      <div id=\"optionBox\"></div>
-      <button class=\"run\" id=\"run\">Run selected query</button>
-      <label>Output</label>
-      <pre id=\"output\">Loading catalog...</pre>
+      <h3>Output</h3>
+      <pre id="output">Ready.</pre>
+      <details>
+        <summary>Advanced: raw query catalog</summary>
+        <div id="catalog"></div>
+        <button id="runCatalog">Run selected catalog query</button>
+      </details>
     </section>
   </main>
 <script>
 let catalog = [];
-let selected = null;
+let selectedCatalog = null;
+let selectedDraft = null;
+let selectedText = null;
 
-function matches(entry, term) {
-  const haystack = (entry.query + ' ' + entry.label + ' ' + entry.category).toLowerCase();
-  return haystack.includes(term.toLowerCase());
-}
-
-function renderCatalog() {
-  const term = document.getElementById('filter').value;
-  const root = document.getElementById('catalog');
-  root.innerHTML = '';
-  catalog.filter(entry => matches(entry, term)).forEach(entry => {
-    const button = document.createElement('button');
-    button.textContent = entry.category + ': ' + entry.label;
-    if (selected && selected.query === entry.query) button.classList.add('active');
-    button.onclick = () => selectEntry(entry);
-    root.appendChild(button);
-  });
-}
-
-function selectEntry(entry) {
-  selected = entry;
-  document.getElementById('title').textContent = entry.label;
-  document.getElementById('description').textContent = entry.query + ' · ' + entry.category + ' · ' + entry.argv.join(' ');
-  document.getElementById('access').value = entry.default_access;
-  const optionBox = document.getElementById('optionBox');
-  optionBox.innerHTML = '';
-  if (entry.required_flag) {
-    const label = document.createElement('label');
-    label.textContent = entry.required_flag;
-    label.setAttribute('for', 'optionValue');
-    const input = document.createElement('input');
-    input.id = 'optionValue';
-    input.value = entry.example_value || '';
-    optionBox.appendChild(label);
-    optionBox.appendChild(input);
-  }
-  renderCatalog();
-}
-
-async function loadCatalog() {
-  const response = await fetch('/api/catalog');
-  const data = await response.json();
-  catalog = data.entries;
-  document.getElementById('output').textContent = 'Loaded ' + catalog.length + ' read-only catalog entries.';
-  renderCatalog();
-  if (catalog.length) selectEntry(catalog[0]);
-}
-
-async function runSelected() {
-  if (!selected) return;
-  const optionInput = document.getElementById('optionValue');
-  const payload = {
-    query: selected.query,
-    access: document.getElementById('access').value,
-    option_value: optionInput ? optionInput.value : null,
-  };
-  document.getElementById('output').textContent = 'Running...';
-  const response = await fetch('/api/run', {
+async function repl(command) {
+  const res = await fetch('/api/repl', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(payload),
+    body: JSON.stringify({command})
   });
-  const data = await response.json();
-  document.getElementById('output').textContent = [
-    '$ ' + data.argv.join(' '),
-    'exit_code: ' + data.exit_code,
-    '',
-    data.stdout || '',
-    data.stderr ? String.fromCharCode(10) + 'stderr:' + String.fromCharCode(10) + data.stderr : '',
-  ].join(String.fromCharCode(10));
+  const data = await res.json();
+  if (data.error) throw new Error(data.error);
+  return data.output || '';
 }
 
-function boot() {
-  document.getElementById('filter').addEventListener('input', renderCatalog);
-  document.getElementById('run').addEventListener('click', runSelected);
-  loadCatalog().catch(error => {
-    console.error(error);
-    document.getElementById('output').textContent = 'Catalog load failed:' + String.fromCharCode(10) + error;
+function setOutput(text) {
+  document.getElementById('output').textContent = text;
+}
+
+async function refreshStatus() {
+  try {
+    const s = await fetch('/api/repl/status').then(r => r.json());
+    document.getElementById('sessionStatus').textContent = s.alive ? 'session alive' : 'session down';
+  } catch (e) {
+    document.getElementById('sessionStatus').textContent = 'session ?';
+  }
+}
+
+document.getElementById('btnStatus').onclick = async () => setOutput(await repl('status'));
+document.getElementById('btnPressures').onclick = async () => setOutput(await repl('pressures'));
+document.getElementById('btnReport').onclick = async () => setOutput(await repl('report'));
+
+document.getElementById('btnDrafts').onclick = async () => {
+  const out = await repl('drafts');
+  setOutput(out);
+  const list = document.getElementById('draftList');
+  list.innerHTML = '';
+  out.split('\\n').forEach(line => {
+    const id = line.split('  ')[0];
+    if (!id || !id.startsWith('candidate_')) return;
+    const div = document.createElement('div');
+    div.textContent = line;
+    div.onclick = () => {
+      selectedDraft = id;
+      document.querySelectorAll('#draftList div').forEach(d => d.classList.remove('active'));
+      div.classList.add('active');
+    };
+    list.appendChild(div);
+  });
+};
+
+document.getElementById('btnTexts').onclick = async () => {
+  const out = await repl('texts');
+  setOutput(out);
+  const list = document.getElementById('textList');
+  list.innerHTML = '';
+  out.split('\\n').forEach(line => {
+    const id = line.split('  ')[0];
+    if (!id || !id.startsWith('candidate_artifact_text')) return;
+    const div = document.createElement('div');
+    div.textContent = line;
+    div.onclick = () => { selectedText = id; setOutput(line); };
+    list.appendChild(div);
+  });
+};
+
+document.getElementById('btnShow').onclick = async () => {
+  if (!selectedDraft) { setOutput('select a draft first'); return; }
+  setOutput(await repl('show ' + selectedDraft));
+};
+
+document.getElementById('btnGenerate').onclick = async () => {
+  if (!selectedDraft) { setOutput('select a draft first'); return; }
+  setOutput(await repl('generate ' + selectedDraft));
+  document.getElementById('btnTexts').click();
+};
+
+document.getElementById('applyAccess').onclick = async () => {
+  const level = document.getElementById('access').value;
+  setOutput(await repl('access ' + level));
+};
+
+document.getElementById('btnBackend').onclick = async () => {
+  const b = document.getElementById('backend').value;
+  const cmd = document.getElementById('extCmd').value.trim();
+  const line = b === 'external' && cmd ? 'backend external ' + cmd : 'backend ' + b;
+  setOutput(await repl(line));
+};
+
+async function loadCatalog() {
+  const res = await fetch('/api/catalog');
+  const data = await res.json();
+  catalog = data.entries || [];
+  const box = document.getElementById('catalog');
+  catalog.forEach(entry => {
+    const btn = document.createElement('button');
+    btn.textContent = entry.label || entry.query;
+    btn.onclick = () => { selectedCatalog = entry; setOutput('catalog: ' + entry.query); };
+    box.appendChild(btn);
   });
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', boot);
-} else {
-  boot();
-}
+document.getElementById('runCatalog').onclick = async () => {
+  if (!selectedCatalog) { setOutput('select a catalog query'); return; }
+  const access = document.getElementById('access').value;
+  const res = await fetch('/api/run', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({query: selectedCatalog.query, access})
+  });
+  const data = await res.json();
+  setOutput(data.stdout || data.error || JSON.stringify(data));
+};
+
+refreshStatus();
+loadCatalog();
+setOutput('Writer surface ready. Use the buttons or select a draft.');
 </script>
 </body>
 </html>
