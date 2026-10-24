@@ -179,6 +179,7 @@ HTML_PAGE = """<!doctype html>
 <body>
   <header>
     <strong>Impossible Archive</strong>
+    <span class="meta">local only · advisory / read-only · no materialization</span>
     <span class="meta" id="sessionStatus">session…</span>
     <label>access <select id="access">
       <option>public</option><option>scholar</option><option>curator</option><option>canon</option><option>debug</option>
@@ -315,15 +316,30 @@ document.getElementById('btnShow').onclick = async () => {
 };
 
 document.getElementById('btnGenerate').onclick = async () => {
+  const level = document.getElementById('access').value;
+  if (level !== 'curator' && level !== 'canon' && level !== 'debug') {
+    setOutput('generate requires curator, canon, or debug access');
+    return;
+  }
   if (!selectedDraft) { setOutput('select a draft first'); return; }
-  setOutput((await repl('generate ' + selectedDraft)).text);
+  setOutput((await repl('generate ' + selectedDraft)).text + '\n\n[advisory only — not inserted into the public archive]');
   document.getElementById('btnTexts').click();
 };
 
+function updateAccessGuards() {
+  const level = document.getElementById('access').value;
+  const canGenerate = (level === 'curator' || level === 'canon' || level === 'debug');
+  const btn = document.getElementById('btnGenerate');
+  btn.disabled = !canGenerate;
+  btn.title = canGenerate ? 'generate advisory text' : 'requires curator or higher';
+}
+document.getElementById('access').onchange = updateAccessGuards;
 document.getElementById('applyAccess').onclick = async () => {
   const level = document.getElementById('access').value;
   setOutput((await repl('access ' + level)).text);
+  updateAccessGuards();
 };
+updateAccessGuards();
 
 document.getElementById('btnBackend').onclick = async () => {
   const b = document.getElementById('backend').value;
