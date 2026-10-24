@@ -169,7 +169,10 @@ HTML_PAGE = """<!doctype html>
     button, select, input { font: inherit; }
     button { margin: 0.2rem 0.2rem 0.2rem 0; padding: 0.35rem 0.6rem; }
     .controls { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
-    pre { white-space: pre-wrap; border: 1px solid #8884; padding: 0.75rem; min-height: 8rem; }
+    pre { white-space: pre-wrap; border: 1px solid #8884; padding: 0.75rem; min-height: 12rem;
+          font-size: 1rem; line-height: 1.45; font-family: ui-monospace, monospace; }
+    body { font-size: 15px; }
+    button, select, input { font-size: 0.95rem; }
     .list { border: 1px solid #8884; max-height: 16rem; overflow: auto; margin: 0.4rem 0; }
     .list div { padding: 0.3rem 0.5rem; cursor: pointer; }
     .list div:hover, .list div.active { background: #8882; }
@@ -257,7 +260,11 @@ async function repl(command) {
 }
 
 function setOutput(text) {
-  document.getElementById('output').textContent = text;
+  const cleaned = String(text || '').split('\\n').filter(l => {
+    const s = l.trim();
+    return !(s.startsWith('{') && s.endsWith('}') && s.includes('"command"'));
+  }).join('\\n');
+  document.getElementById('output').textContent = cleaned;
 }
 
 async function run(cmd) {
