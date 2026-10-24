@@ -178,23 +178,86 @@ std::string report_text(const WriterSessionContext& ctx, const ArchiveEngineStat
 }
 
 
+std::string readable_claim(std::string_view raw) {
+    std::string s(raw);
+    // Drop internal markers that are not useful to a writer.
+    const std::string markers[] = {
+        "factual_claim skeleton for ",
+        " rather than authored testimony (not a PublicClaim)",
+        " -> outline line only; no PublicClaim insertion",
+        "outline line only; no PublicClaim insertion"
+    };
+    for (const auto& m : markers) {
+        auto pos = s.find(m);
+        if (pos != std::string::npos) s.erase(pos, m.size());
+    }
+    // Trim
+    while (!s.empty() && std::isspace(static_cast<unsigned char>(s.front()))) s.erase(s.begin());
+    while (!s.empty() && std::isspace(static_cast<unsigned char>(s.back()))) s.pop_back();
+    if (!s.empty()) s.front() = static_cast<char>(std::toupper(static_cast<unsigned char>(s.front())));
+    return s;
+}
+
 std::string expand_template(const CandidateArtifactDraft& draft) {
     std::ostringstream out;
-    out << draft.outline_title << "\n\n";
-    if (!draft.target_topic.empty()) out << "Subject: " << draft.target_topic << "\n";
-    out << "Recorded in year " << draft.intended_creation_year << ".\n\n";
-    if (!draft.claim_outline_lines.empty()) {
-        out << "Claims preserved in outline form:\n";
-        for (const auto& line : draft.claim_outline_lines) out << "  • " << line << "\n";
-        out << "\n";
+    const bool ledger = draft.intended_artifact_type == ArtifactType::TradeLedger;
+    const bool oral = draft.intended_artifact_type == ArtifactType::OralHistory;
+    const bool decree = draft.intended_artifact_type == ArtifactType::ForgedDecree;
+    const std::string year = std::to_string(draft.intended_creation_year);
+    const std::string topic = draft.target_topic.empty() ? draft.outline_title : draft.target_topic;
+
+    if (ledger) {
+        out << "Ledger entry\n";
+        out << "Year " << year << "\n\n";
+        out << "Account: " << topic << "\n";
+        out << "Entry: " << draft.outline_title << "\n\n";
+        if (!draft.claim_outline_lines.empty()) {
+            out << "Noted:\n";
+            for (const auto& line : draft.claim_outline_lines) {
+                const std::string c = readable_claim(line);
+                if (!c.empty()) out << "- " << c << "\n";
+            }
+        }
+    } else if (oral) {
+        out << "Told of " << topic << "\n\n";
+        out << "In the year " << year << " it was said:\n";
+        if (!draft.claim_outline_lines.empty()) {
+            for (const auto& line : draft.claim_outline_lines) {
+                const std::string c = readable_claim(line);
+                if (!c.empty()) out << c << ". ";
+            }
+            out << "\n";
+        } else {
+            out << draft.outline_title << ".\n";
+        }
+    } else if (decree) {
+        out << "Notice\n";
+        out << "Year " << year << "\n\n";
+        out << draft.outline_title << "\n\n";
+        out << "Concerning " << topic << ".\n";
+        if (!draft.claim_outline_lines.empty()) {
+            out << "\n";
+            for (const auto& line : draft.claim_outline_lines) {
+                const std::string c = readable_claim(line);
+                if (!c.empty()) out << c << ".\n";
+            }
+        }
+    } else {
+        // Inscription / default
+        out << draft.outline_title << "\n";
+        out << "Year " << year << "\n\n";
+        out << "Cut for " << topic << ".\n\n";
+        if (!draft.claim_outline_lines.empty()) {
+            for (const auto& line : draft.claim_outline_lines) {
+                const std::string c = readable_claim(line);
+                if (!c.empty()) out << c << ".\n";
+            }
+        }
     }
-    if (!draft.public_safe_summary_lines.empty()) {
-        out << "Public-safe notes:\n";
-        for (const auto& line : draft.public_safe_summary_lines) out << "  • " << line << "\n";
-        out << "\n";
+
+    if (draft.touches_protected_mystery) {
+        out << "\n(The record stops short of the protected matter.)\n";
     }
-    if (draft.touches_protected_mystery) out << "[Protected mystery pressure present; detail remains gated.]\n";
-    out << "[Template expansion. Advisory only. Source draft: " << draft.id << "]\n";
     return out.str();
 }
 
