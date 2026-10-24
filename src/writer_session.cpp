@@ -175,6 +175,47 @@ std::string report_text(const WriterSessionContext& ctx, const ArchiveEngineStat
     return out.str();
 }
 
+
+std::string generate_text_from_draft(const WriterSessionContext& ctx, const ArchiveEngineState& state, const std::string& id) {
+    if (ctx.access != AccessLevel::Curator && ctx.access != AccessLevel::Canon && ctx.access != AccessLevel::Debug) {
+        return "generate: requires curator, canon, or debug access\n";
+    }
+    const CandidateArtifactDraft* draft = nullptr;
+    for (const auto& d : state.candidate_artifact_drafts) {
+        if (d.id == id) { draft = &d; break; }
+    }
+    if (!draft) return "generate: draft not found (" + id + ")\n";
+    if (draft->status == CandidateArtifactDraftStatus::Blocked || draft->status == CandidateArtifactDraftStatus::Invalid) {
+        return "generate: draft status does not allow generation (" + to_string(draft->status) + ")\n";
+    }
+
+    std::ostringstream out;
+    out << "=== generated artifact text (advisory, not inserted) ===\n";
+    out << "source_draft: " << draft->id << "\n";
+    out << "title: " << draft->outline_title << "\n";
+    out << "intended_year: " << draft->intended_creation_year << "\n";
+    out << "constraints: access=" << access_name(ctx.access);
+    if (!draft->required_validation_gates.empty()) {
+        out << " gates=";
+        for (std::size_t i = 0; i < draft->required_validation_gates.size(); ++i) {
+            if (i) out << ",";
+            out << draft->required_validation_gates[i];
+        }
+    }
+    out << "\n\n";
+
+    // Deterministic expander from outline
+    out << draft->outline_title << "\n\n";
+    if (!draft->claim_outline_lines.empty()) {
+        for (const auto& line : draft->claim_outline_lines) {
+            out << "- " << line << "\n";
+        }
+        out << "\n";
+    }
+    out << "[Template expansion. No public archive mutation. Provenance retained via source_draft.]\n";
+    return out.str();
+}
+
 } // namespace
 
 WriterSessionContext make_writer_session_context(const ArchiveEngineState& state, AccessLevel access) {
@@ -215,6 +256,7 @@ std::string format_writer_help() {
         "  access <public|scholar|curator|canon|debug>\n"
         "  year <n>|clear          set or clear archive-year filter\n"
         "  help                    this list\n"
+        "  generate [<id>]         advisory text from a draft (curator+; uses selection if id omitted)\n"
         "  raw <existing-query>    escape hatch to current CLI query syntax\n"
         "  end                     end session\n"
         "\n"
@@ -321,6 +363,17 @@ WriterCommandResult interpret_writer_command(const WriterSessionContext& context
             result.accepted = false;
             result.text = "raw: missing query line\n";
         }
+        return result;
+    }
+
+    if (cmd == "generate") {
+        std::string id = tokens.size() > 1 ? tokens[1] : context.selected_id;
+        if (id.empty()) {
+            result.accepted = false;
+            result.text = "generate: missing id (or select a draft first)\n";
+            return result;
+        }
+        result.text = generate_text_from_draft(context, state, id);
         return result;
     }
 
