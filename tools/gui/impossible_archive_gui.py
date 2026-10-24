@@ -262,9 +262,11 @@ async function repl(command) {
 function setOutput(text) {
   const cleaned = String(text || '').split('\\n').filter(l => {
     const s = l.trim();
-    return !(s.startsWith('{') && s.endsWith('}') && s.includes('"command"'));
-  }).join('\\n');
-  document.getElementById('output').textContent = cleaned;
+    if (s.startsWith('{') && s.endsWith('}') && s.includes('"command"')) return false;
+    if (s.includes('] >') && s.indexOf('] >') < 40) return false;
+    return true;
+  }).join('\\n').trim();
+  document.getElementById('output').textContent = cleaned || '(empty)';
 }
 
 async function run(cmd) {
@@ -325,6 +327,7 @@ document.getElementById('btnTexts').onclick = async () => {
       selectedText = t.id;
       document.querySelectorAll('#textList div').forEach(el => el.classList.remove('active'));
       div.classList.add('active');
+      document.getElementById('btnShowText').click();
     };
     list.appendChild(div);
   });
@@ -342,8 +345,24 @@ document.getElementById('btnGenerate').onclick = async () => {
     return;
   }
   if (!selectedDraft) { setOutput('Click a draft in the list first (list loads on startup).'); return; }
-  await run('generate ' + selectedDraft);
-  document.getElementById('btnTexts').click();
+  const res = await run('generate ' + selectedDraft);
+  // Refresh the list without replacing the readable output
+  const listed = await repl('texts');
+  const list = document.getElementById('textList');
+  list.innerHTML = '';
+  const items = (listed.json && listed.json.texts) ? listed.json.texts : [];
+  items.forEach(t => {
+    const div = document.createElement('div');
+    div.textContent = '[' + t.backend + '] ' + t.title;
+    div.onclick = () => {
+      selectedText = t.id;
+      document.querySelectorAll('#textList div').forEach(el => el.classList.remove('active'));
+      div.classList.add('active');
+      document.getElementById('btnShowText').click();
+    };
+    list.appendChild(div);
+  });
+  if (res && res.text) setOutput(res.text);
 };
 
 function updateAccessGuards() {
@@ -470,7 +489,7 @@ class ReplSession:
                 if __import__("time").time() > deadline:
                     lines.append("\n[gui] timed out waiting for REPL (rebuild the binary so it emits __IA_END__)\n")
                     break
-                ready, _, _ = select.select([self.proc.stdout], [], [], 0.5)
+                ready, _, _ = select.select([self.proc.stdout], [], [], 0.05)
                 if not ready:
                     continue
                 line = self.proc.stdout.readline()
