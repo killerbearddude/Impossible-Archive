@@ -4,6 +4,8 @@
 #include "evidence_potential_api.h"
 #include "evidence_potential_model.h"
 #include <sstream>
+#include <cstdio>
+#include <array>
 #include <cctype>
 
 namespace archive {
@@ -200,12 +202,40 @@ std::string expand_external(const CandidateArtifactDraft& draft, const WriterSes
     if (ctx.external_command.empty()) {
         return "[external backend selected but no command configured; falling back]\n" + expand_template(draft);
     }
-    std::ostringstream out;
-    out << "[external backend: " << ctx.external_command << "]\n";
-    out << "Prompt outline supplied:\n" << draft.outline_title << "\n";
-    for (const auto& line : draft.claim_outline_lines) out << line << "\n";
-    out << "[External model output would appear here. Advisory only.]\n";
-    return out.str();
+
+    std::string prompt = draft.outline_title + "\n";
+    if (!draft.target_topic.empty()) prompt += "Subject: " + draft.target_topic + "\n";
+    prompt += "Year: " + std::to_string(draft.intended_creation_year) + "\n";
+    for (const auto& line : draft.claim_outline_lines) prompt += line + "\n";
+    if (draft.touches_protected_mystery) prompt += "[protected mystery pressure]\n";
+
+    // Invoke the user command as a filter: prompt on stdin, capture stdout.
+    // The command string is used as-is; the caller is responsible for a safe command.
+    std::string invoke = ctx.external_command;
+    FILE* pipe = popen(invoke.c_str(), "w");
+    if (!pipe) {
+        return "[external backend failed to start: " + ctx.external_command + "]\n" + expand_template(draft);
+    }
+    // popen("w") feeds stdin but does not capture stdout.
+    // Use a shell wrapper that both accepts stdin and lets us read stdout.
+    pclose(pipe);
+
+    // Portable filter: sh -c 'command' with prompt via a here-document.
+    std::string shell = "sh -c '" + ctx.external_command + "' <<'IA_EOF'\n" + prompt + "IA_EOF\n";
+    FILE* out = popen(shell.c_str(), "r");
+    if (!out) {
+        return "[external backend failed to launch shell]\n" + expand_template(draft);
+    }
+    std::string captured;
+    std::array<char, 4096> buf{};
+    while (std::fgets(buf.data(), static_cast<int>(buf.size()), out)) {
+        captured.append(buf.data());
+    }
+    int rc = pclose(out);
+    if (captured.empty()) {
+        return "[external backend produced no output (rc=" + std::to_string(rc) + "); falling back]\n" + expand_template(draft);
+    }
+    return captured;
 }
 
 std::string generate_text_from_draft(WriterSessionContext& ctx, const ArchiveEngineState& state, const std::string& id) {
